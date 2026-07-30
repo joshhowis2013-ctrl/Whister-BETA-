@@ -1,0 +1,10 @@
+COMPANY_FULLNAME=The Whister Software Authors
+COMPANY_SHORTNAME=The Whister Authors
+PRODUCT_FULLNAME=Whister Browser
+PRODUCT_SHORTNAME=Whister
+PRODUCT_INSTALLER_FULLNAME=Chromium Installer
+PRODUCT_INSTALLER_SHORTNAME=Chromium Installer
+COPYRIGHT=Copyright 2026 The Whister Authors. All rights reserved.
+MAC_BUNDLE_ID=org.whister.Software
+MAC_CREATOR_CODE=Cr24
+MAC_TEAM_ID=
