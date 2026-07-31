@@ -10,3 +10,6 @@
 Whister is a fast, secure, browser with the looks (beta) 
 
 </div>
+> [!NOTE]
+> Whister is currently in beta, so unexpected issues may occur.
+> Please report them if they haven't already been reported.
