@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const lowPlatform = platform.toLowerCase();
 
     const targets = {
-        win: { text: "For Windows 10 or 11", link: "https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.exe", card: "card-windows" },
-        mac: { text: "For macOS 11 or later", link: "https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.dmg", card: "card-macos" },
-        lin: { text: "For Linux (64-bit)", link: "https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.deb", card: "card-linux" }
+        win: { text: "For Windows 10 or 11", link: "https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe", card: "card-windows" },
+        mac: { text: "For macOS 11 or later", link: "https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.dmg", card: "card-macos" },
+        lin: { text: "For Linux (64-bit)", link: "https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.deb", card: "card-linux" }
     };
 
     let detected = null;
