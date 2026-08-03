@@ -8,6 +8,77 @@
 </head>
 <body>
 
+     <style>
+        /* =======================================================
+           INTERNET EXPLORER FALLBACK & ADAPTIVE STYLING BLOCKS 
+           ======================================================= */
+
+        /* Targeted styling filter strictly executed by Internet Explorer 10 and 11 */
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            body {
+                background-color: #f4f7f9 !important;
+            }
+            
+            /* Displays the warning banner ONLY in real Internet Explorer */
+            .ie-browser-alert {
+                display: block !important;
+                background-color: #fff3cd !important;
+                color: #856404 !important;
+                padding: 15px !important;
+                text-align: center !important;
+                font-family: Arial, sans-serif !important;
+                border-bottom: 2px solid #ffeeba !important;
+                font-size: 14px !important;
+                position: relative !important;
+                z-index: 99999 !important;
+            }
+            .ie-browser-alert a {
+                color: #0056b3 !important;
+                text-decoration: underline !important;
+                font-weight: bold !important;
+            }
+            
+            /* IE-Only grid layouts: Fallback to floats safely without breaking modern grid code */
+            .platform-grid, .beta-grid, .stats-grid {
+                display: block !important;
+            }
+            .platform-card, .beta-card {
+                width: 30% !important;
+                float: left !important;
+                margin-right: 3% !important;
+                box-sizing: border-box !important;
+            }
+            .stat-item {
+                width: 33% !important;
+                float: left !important;
+                box-sizing: border-box !important;
+            }
+            /* Clearfix hack to contain the floated components above */
+            .platforms-section::after, .beta-section::after, .stats-grid::after {
+                content: "" !important;
+                display: table !important;
+                clear: both !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- This warning block stays hidden on modern browsers and auto-triggers inside IE via CSS -->
+    <div class="ie-browser-alert" style="display: none;">
+        Internet Explorer is no longer supported. For the security and speed required to download Whister, please use a modern browser or open this page inside 
+        <a href="https://microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Edge IE Mode</a>.
+    </div>
+
+</head>
+<body>
+
+    <!-- This warning block stays hidden on modern browsers and auto-triggers inside IE via CSS -->
+    <div class="ie-browser-alert" style="display: none;">
+        Internet Explorer is no longer supported. For the security and speed required to download Whister, please use a modern browser or open this page inside 
+        <a href="https://microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Edge IE Mode</a>.
+    </div>
+
     <!-- TOP NAVIGATION HEADER BAR -->
     <header class="navbar">
         <div class="nav-left">
