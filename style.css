@@ -1013,6 +1013,126 @@ body {
     background-color: #566cff;
 }
 
+/* =======================================================
+   MODERN FOOTER LAYOUT (All Modern Browsers)
+   ======================================================= */
+.main-footer {
+    background-color: #0b0f19; /* Deep dark theme background */
+    padding: 60px 20px 30px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+.footer-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-info {
+    flex: 1 1 300px;
+    margin-bottom: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.footer-info .logo {
+    color: #ffffff;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.brand-text {
+    color: #94a3b8; /* Muted silver text for readability */
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.footer-column {
+    flex: 1 1 180px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+}
+
+.footer-column h4 {
+    color: #ffffff; /* Bright white category headers */
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-column a {
+    display: block;
+    color: #64748b; /* Clean slate-blue links that stay visible */
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 12px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover effects for link states */
+.footer-column a:hover {
+    color: #3b82f6; /* Pops with your signature brand blue on hover */
+    transform: translateX(3px); /* Subtle shift interaction */
+}
+
+.footer-copyright {
+    max-width: 1200px;
+    margin: 20px auto 0 auto;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.footer-copyright p {
+    color: #475569;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* Responsive breakpoint for smaller browser widths */
+@media (max-width: 768px) {
+    .footer-layout {
+        display: block;
+    }
+    .footer-column {
+        width: 50%;
+        float: left;
+    }
+}
+
+/* =======================================================
+   LEGACY INTERNET EXPLORER FALLBACK ALIGNMENT
+   ======================================================= */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .main-footer {
+        background-color: #0b0f19 !important;
+    }
+    .footer-layout {
+        display: block !important;
+    }
+    .footer-info {
+        width: 35% !important;
+        float: left !important;
+    }
+    .footer-column {
+        width: 20% !important;
+        float: left !important;
+    }
+    .footer-layout::after, .main-footer::after {
+        content: "" !important;
+        display: table !important;
+        clear: both !important;
+    }
+    .footer-column a {
+        color: #3b82f6 !important; /* Forces link visibility inside standard IE configurations */
+    }
+}
 
 
 }

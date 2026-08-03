@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Whister Browser - Blog</title>
+    <link rel="stylesheet" href="../style.css?v=999">
+    
+    <style>
+        /* =======================================================
+           MODERN THEME & HOVER ACTIONS (Ignored by IE)
+           ======================================================= */
+        @supports (display: grid) {
+            /* Dark background canvas mirroring your template design */
+            body {
+                background-color: #0b0f19;
+                color: #ffffff;
+                font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+                margin: 0;
+            }
+
+            .blog-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                grid-gap: 30px;
+                margin-top: 40px;
+                padding: 20px;
+            }
+
+            /* Container card styled precisely to look like your image card */
+            .blog-card {
+                background: #0d1326;
+                border-radius: 12px;
+                overflow: hidden; /* Clips the child image corners neatly */
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+                transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+            }
+
+            /* Image container compartment */
+            .blog-image-wrapper {
+                width: 100%;
+                height: 180px;
+                background-color: #161f38; /* Placeholder color before asset loads */
+                overflow: hidden;
+            }
+
+            .blog-image-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Keeps imagery from squishing or stretching */
+                transition: transform 0.5s ease;
+            }
+
+            /* Text padding wrapper */
+            .blog-card-content {
+                padding: 24px;
+            }
+
+            .blog-date {
+                font-size: 13px;
+                color: #5d6b8f;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .blog-title {
+                margin: 0 0 12px 0;
+                font-size: 20px;
+                color: #ffffff;
+                line-height: 1.4;
+            }
+
+            .blog-excerpt {
+                color: #94a3b8;
+                font-size: 14px;
+                line-height: 1.6;
+                margin: 0 0 20px 0;
+            }
+
+            /* Dynamic button with inherited typography properties */
+            .btn-read-article {
+                display: inline-block;
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 10px 20px;
+                border: 2px solid rgba(255, 255, 255, 0.15);
+                border-radius: 6px;
+                transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+            }
+
+            /* HOVER STATE MODULES */
+            .blog-card:hover {
+                transform: translateY(-6px);
+                border-color: rgba(37, 99, 235, 0.4); /* Subtle ambient border expansion */
+            }
+
+            .blog-card:hover .blog-image-wrapper img {
+                transform: scale(1.04); /* Gentle zoom lens simulation on cover graphics */
+            }
+
+            /* Changes the text blue and builds a bright border layout */
+            .blog-card:hover .btn-read-article {
+                color: #3b82f6 !important; /* Matches the vibrant USR badge profile theme */
+                border-color: #3b82f6 !important;
+                background-color: rgba(59, 130, 246, 0.05);
+            }
+        }
+
+        /* =======================================================
+           LEGACY INTERNET EXPLORER STRUCTURAL FALLBACK
+           ======================================================= */
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            body { background-color: #0b0f19 !important; color: #ffffff !important; }
+            .blog-grid { display: block !important; }
+            .blog-card {
+                width: 31% !important;
+                float: left !important;
+                margin-right: 2% !important;
+                margin-bottom: 30px !important;
+                background: #0d1326 !important;
+                border: 1px solid #1e293b !important;
+                box-sizing: border-box !important;
+            }
+            .blog-card-content { padding: 20px !important; }
+            .btn-read-article {
+                border: 2px solid #3b82f6 !important;
+                color: #3b82f6 !important;
+                padding: 8px 16px !important;
+            }
+            .blog-container::after { content: "" !important; display: table !important; clear: both !important; }
+        }
+    </style>
+</head>
+
+<div class="ie-browser-alert" style="display: none;">
+        Internet Explorer is no longer supported. For the security and speed required to download Whister, please use a modern browser or open this page inside 
+        <a href="https://microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Edge IE Mode</a>.
+    </div>
+
+
+<body>
+
+     <div class="ie-browser-alert" style="display: none;">
+        Internet Explorer is no longer supported. For the security and speed required to download Whister, please use a modern browser or open this page inside 
+        <a href="https://microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Edge IE Mode</a>.
+    </div>
+
+
+    <!-- Main Navigation Header Container -->
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <a href="../index.html" style="color: inherit; text-decoration: none;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                        <path d="M2.5 3h3.8l3.7 12.2L13.7 3h3.6l3.7 12.2 3.7-12.2h3.8L21 21h-4l-3.7-12.2L9.6 21H5.6L2.5 3z"/>
+                    </svg>
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="../index.html#features">Features</a>
+                <a href="../index.html#bangs-dashboard">Bangs</a>
+                <a href="../index.html#faq">FAQ</a>
+                <a href="#" class="active">Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN BLOG GRID SECTION -->
+    <section class="section-container blog-container" style="margin-top: 100px; padding: 0 20px;">
+        <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 32px; margin-bottom: 10px;">The Whister Engine Blog</h2>
+            <p style="color: #64748b;">Updates, security records, and privacy documentation directly from the engine developers.</p>
+        </div>
+
+        <div class="blog-grid">
+            
+            <!-- ARTICLE CARD 1 (WITH IMAGE CHANNELS) -->
+            <article class="blog-card">
+                <div class="blog-image-wrapper">
+                    <!-- Drop your post thumbnail graphic file link directly inside this src tag -->
+                    <img src="https://unsplash.com" alt="Core Update Graphic">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-date">August 3, 2026</span>
+                    <h3 class="blog-title">Introducing Whister Beta v1.2</h3>
+                    <p class="blog-excerpt">Explore our updated tracking-block modules and the implementation of our newest core optimizations.</p>
+                    <a href="first-post.html" class="btn-read-article">Read Article</a>
+                </div>
+            </article>
+
+            <!-- ARTICLE CARD 2 (WITH IMAGE CHANNELS) -->
+            <article class="blog-card">
+                <div class="blog-image-wrapper">
+                    <img src="https://unsplash.com" alt="Privacy Architecture Overview">
+                </div>
+                <div class="blog-card-content">
+                    <span class="blog-date">July 28, 2026</span>
+                    <h3 class="blog-title">Deep-Dive into Privacy Bangs</h3>
+                    <p class="blog-excerpt">An extensive structural breakdown of how customized web requests bypass typical target profile trackers entirely.</p>
+                    <a href="#" class="btn-read-article">Read Article</a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+  <!-- NEW BULLETPROOF SITE FOOTER -->
+<footer class="wf-main-footer" style="background-color: #040710; position: relative; padding: 90px 40px 40px 40px; border-top: 1px solid rgba(59, 130, 246, 0.15); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: block; clear: both; overflow: hidden;">
+    
+    <!-- Ambient glowing tech accent behind the branding info -->
+    <div style="position: absolute; top: -150px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(37, 99, 235, 0.07) 0%, rgba(0,0,0,0) 70%); pointer-events: none;"></div>
+
+    <style>
+        /* Widen layout container up to 1400px maximum constraint */
+        .wf-footer-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Specialized narrow dimensions for the brand profile column */
+        .wf-footer-info {
+            flex: 1.5 1 280px;
+            margin-bottom: 40px;
+            padding-right: 40px;
+            box-sizing: border-box;
+        }
+        
+        /* Sleek modular structural allocation blocks */
+        .wf-footer-column {
+            flex: 1 1 180px;
+            margin-bottom: 40px;
+            box-sizing: border-box;
+        }
+        
+        /* Premium tech headers */
+        .wf-main-footer h4 {
+            color: #ffffff !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            margin: 0 0 24px 0 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1.5px !important;
+            opacity: 0.9;
+        }
+        
+        /* Clean links with high-contrast neutral typography */
+        .wf-footer-column a {
+            display: block !important;
+            color: #94a3b8 !important; /* Soft legible aluminum gray */
+            text-decoration: none !important;
+            font-size: 14px !important;
+            margin-bottom: 16px !important;
+            padding: 0 !important;
+            transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            font-weight: 400 !important;
+        }
+        
+        /* Vibrant, glow-style hover animation tracking */
+        .wf-footer-column a:hover {
+            color: #3b82f6 !important; /* Pops with Whister's signature electric blue */
+            transform: translateX(4px) !important; /* Elegant subtle micro-slide interaction */
+            text-decoration: none !important;
+        }
+
+        .wf-footer-copyright {
+            max-width: 1400px;
+            margin: 40px auto 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .wf-footer-copyright p {
+            color: #475569 !important;
+            font-size: 13px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            letter-spacing: 0.3px;
+        }
+
+        /* Internet Explorer Layout Fallbacks */
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            .wf-footer-layout { display: block !important; }
+            .wf-footer-info { width: 28% !important; float: left !important; }
+            .wf-footer-column { width: 17% !important; float: left !important; }
+            .wf-footer-layout::after, .wf-main-footer::after { content: "" !important; display: table !important; clear: both !important; }
+            .wf-footer-column a { color: #3b82f6 !important; }
+        }
+    </style>
+
+    <div class="wf-footer-layout">
+        <!-- Column 1: Brand Info Box -->
+        <div class="wf-footer-info">
+            <div class="logo" style="color: #3b82f6; margin-bottom: 24px;">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" style="display: block;">
+                    <path d="M2.5 3h3.8l3.7 12.2L13.7 3h3.6l3.7 12.2 3.7-12.2h3.8L21 21h-4l-3.7-12.2L9.6 21H5.6L2.5 3z"/>
+                </svg>
+            </div>
+            <p class="brand-text" style="color: #64748b; font-size: 14px; line-height: 1.7; margin: 0; padding: 0; font-weight: 400;">
+                Building a faster, decentralized, and private internet environment for everyone.
+            </p>
+        </div>
+        
+        <!-- Column 2: Product link directory -->
+        <div class="wf-footer-column">
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="#all-platforms">Download</a>
+            <a href="#">Security</a>
+        </div>
+        
+        <!-- Column 3: Navigation list paths -->
+        <div class="wf-footer-column">
+            <h4>Navigation</h4>
+            <a href="#bangs-dashboard">Bangs Index</a>
+            <a href="#stats">Live Metrics</a>
+            <a href="#beta-info">Stable Builds</a>
+        </div>
+        
+        <!-- Column 4: Documentation details -->
+        <div class="wf-footer-column">
+            <h4>Resources</h4>
+            <a href="#">Developer API</a>
+            <a href="#">Release Notes</a>
+            <a href="#">Open Source</a>
+        </div>
+        
+        <!-- Column 5: Corporate data protection nodes -->
+        <div class="wf-footer-column">
+            <h4>Company</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Support</a>
+        </div>
+    </div>
+    
+    <div class="wf-footer-copyright">
+        <p>&copy; 2026 Whister Software. All rights reserved.</p>
+        <p style="color: #3b82f6 !important; font-weight: 500; font-size: 12px !important; letter-spacing: 1px; text-transform: uppercase;">Engine v1.2.0 Stable</p>
+    </div>
+</footer>
+
+
+
+
+</body>
+</html>

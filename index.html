@@ -9,6 +9,96 @@
 <body>
 
      <style>
+       /* =======================================================
+           TARGETED HERO INTRO WHOOSH (Ignored by Internet Explorer)
+           ======================================================= */
+        @supports (display: grid) {
+            
+            @keyframes contentWhoosh {
+                0% {
+                    opacity: 0;
+                    transform: translateY(100px) scale(0.95);
+                    filter: blur(4px);
+                }
+                60% {
+                    opacity: 0.9;
+                    transform: translateY(-8px) scale(1.01);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                    filter: blur(0px);
+                }
+            }
+
+            @keyframes mockupWhoosh {
+                0% {
+                    opacity: 0;
+                    transform: translateY(150px) scale(0.9);
+                    filter: blur(6px);
+                }
+                70% {
+                    opacity: 0.9;
+                    transform: translateY(-12px) scale(1.02);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                    filter: blur(0px);
+                }
+            }
+
+            @keyframes gentleFloat {
+                0% { transform: translateY(0); }
+                50% { transform: translateY(-12px); }
+                100% { transform: translateY(0); }
+            }
+
+            @keyframes pulseAttention {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.03); }
+                100% { transform: scale(1); }
+            }
+            
+            .download-content {
+                opacity: 0;
+                animation: contentWhoosh 0.8s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+                animation-delay: 0.1s;
+            }
+
+            .browser-mockup {
+                opacity: 0;
+                animation: 
+                    mockupWhoosh 1s cubic-bezier(0.16, 1, 0.3, 1) forwards, 
+                    gentleFloat 4.5s ease-in-out infinite 1.1s;
+                animation-delay: 0.25s, 0s;
+                transition: transform 0.3s ease;
+            }
+
+            .btn-download {
+                transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            }
+            
+            .btn-download:hover {
+                animation: pulseAttention 1s ease-in-out infinite;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+
+            .platform-card, .beta-card, .legend-pill {
+                transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+            }
+
+            .platform-card:hover, .beta-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            }
+
+            .legend-pill:hover {
+                transform: scale(1.05);
+                cursor: pointer;
+            }
+        }
+
         /* =======================================================
            INTERNET EXPLORER FALLBACK & ADAPTIVE STYLING BLOCKS 
            ======================================================= */
@@ -91,6 +181,7 @@
                 <a href="#features">Features</a>
                 <a href="#bangs-dashboard">Bangs</a>
                 <a href="#faq">FAQ</a>
+                <a href="../Whister-BETA-/blog/index.html">Blog</a>
                 <a href="#" target="_blank" rel="noopener noreferrer" class="external-link">
                     GitHub
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -209,23 +300,86 @@
         </div>
     </section>
 
-        <!-- METRIC USAGE DATA STRIP OVERVIEW -->
-    <section class="section-container stats-bg" id="stats">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">152</div>
-                <div class="stat-label">Chromium Version</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">2.4x</div>
-                <div class="stat-label">Faster Page Loading</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">0.0%</div>
-                <div class="stat-label">Data Monitored or Sold</div>
-            </div>
+    
+
+  <!-- METRIC USAGE DATA STRIP OVERVIEW -->
+<section class="section-container stats-bg" id="stats">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <!-- data-target holds the end number. data-suffix holds formatting symbols -->
+            <div class="stat-number" id="stat-chromium" data-target="152">0</div>
+            <div class="stat-label">Chromium Version</div>
         </div>
-    </section>
+        <div class="stat-item">
+            <div class="stat-number" id="stat-speed" data-target="2.4" data-suffix="x">0x</div>
+            <div class="stat-label">Faster Page Loading</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="stat-privacy" data-target="0.0" data-suffix="%">0.0%</div>
+            <div class="stat-label">Data Monitored or Sold</div>
+        </div>
+    </div>
+</section>
+
+
+    <script>
+    // Global flag prevents the animation from running multiple times
+    var hasAnimatedStats = false;
+
+    // Linear interpolation math to count numbers up smoothly over time
+    function animateValue(obj, start, end, duration, decimalPlaces) {
+        var startTime = null;
+        function step(currentTime) {
+            if (!startTime) startTime = currentTime;
+            var progress = Math.min((currentTime - startTime) / duration, 1);
+            var currentVal = progress * (end - start) + start;
+            var suffix = obj.getAttribute('data-suffix') || '';
+            
+            obj.innerHTML = currentVal.toFixed(decimalPlaces) + suffix;
+            
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        }
+        window.requestAnimationFrame(step);
+    }
+
+    // Finds each tracker element and feeds them their respective target metrics
+    function triggerStatsCounter() {
+        if (hasAnimatedStats) return;
+        hasAnimatedStats = true;
+
+        var chromEl = document.getElementById('stat-chromium');
+        var speedEl = document.getElementById('stat-speed');
+        var privEl = document.getElementById('stat-privacy');
+
+        if (chromEl) animateValue(chromEl, 0, parseFloat(chromEl.getAttribute('data-target')), 1500, 0);
+        if (speedEl) animateValue(speedEl, 0.0, parseFloat(speedEl.getAttribute('data-target')), 1500, 1);
+        if (privEl)  animateValue(privEl, 0.0, parseFloat(privEl.getAttribute('data-target')), 1500, 1);
+    }
+
+    // FEATURE DETECTION: Use modern IntersectionObserver if available. 
+    // Fallback: Instantly apply the numbers for Internet Explorer without breaking the JS engine.
+    if (typeof window.IntersectionObserver !== 'undefined') {
+        var statsSection = document.getElementById('stats');
+        var observer = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) {
+                triggerStatsCounter();
+                observer.disconnect(); // Clears the listener once triggered
+            }
+        }, { threshold: 0.1 });
+
+        if (statsSection) observer.observe(statsSection);
+    } else {
+        // IE Fallback Action
+        var cE = document.getElementById('stat-chromium');
+        var sE = document.getElementById('stat-speed');
+        var pE = document.getElementById('stat-privacy');
+        if (cE) cE.innerHTML = cE.getAttribute('data-target');
+        if (sE) sE.innerHTML = sE.getAttribute('data-target') + (sE.getAttribute('data-suffix') || '');
+        if (pE) pE.innerHTML = pE.getAttribute('data-target') + (pE.getAttribute('data-suffix') || '');
+    }
+</script>
 
     <!-- USER FEEDBACK / REVIEW LAYOUT PANEL -->
     <section class="section-container">
@@ -378,44 +532,151 @@
         
     </section>
 
-    <!-- NEW BULLETPROOF SITE FOOTER -->
-    <footer class="main-footer">
-        <div class="footer-layout">
-            <div class="footer-info">
-                <div class="logo">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                        <path d="M2.5 3h3.8l3.7 12.2L13.7 3h3.6l3.7 12.2 3.7-12.2h3.8L21 21h-4l-3.7-12.2L9.6 21H5.6L2.5 3z"/>
-                    </svg>
-                </div>
-                <p class="brand-text">Building a faster, decentralized, and private internet environment for everyone.</p>
+     <!-- NEW BULLETPROOF SITE FOOTER -->
+<footer class="wf-main-footer" style="background-color: #040710; position: relative; padding: 90px 40px 40px 40px; border-top: 1px solid rgba(59, 130, 246, 0.15); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: block; clear: both; overflow: hidden;">
+    
+    <!-- Ambient glowing tech accent behind the branding info -->
+    <div style="position: absolute; top: -150px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(37, 99, 235, 0.07) 0%, rgba(0,0,0,0) 70%); pointer-events: none;"></div>
+
+    <style>
+        /* Widen layout container up to 1400px maximum constraint */
+        .wf-footer-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Specialized narrow dimensions for the brand profile column */
+        .wf-footer-info {
+            flex: 1.5 1 280px;
+            margin-bottom: 40px;
+            padding-right: 40px;
+            box-sizing: border-box;
+        }
+        
+        /* Sleek modular structural allocation blocks */
+        .wf-footer-column {
+            flex: 1 1 180px;
+            margin-bottom: 40px;
+            box-sizing: border-box;
+        }
+        
+        /* Premium tech headers */
+        .wf-main-footer h4 {
+            color: #ffffff !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            margin: 0 0 24px 0 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1.5px !important;
+            opacity: 0.9;
+        }
+        
+        /* Clean links with high-contrast neutral typography */
+        .wf-footer-column a {
+            display: block !important;
+            color: #94a3b8 !important; /* Soft legible aluminum gray */
+            text-decoration: none !important;
+            font-size: 14px !important;
+            margin-bottom: 16px !important;
+            padding: 0 !important;
+            transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            font-weight: 400 !important;
+        }
+        
+        /* Vibrant, glow-style hover animation tracking */
+        .wf-footer-column a:hover {
+            color: #3b82f6 !important; /* Pops with Whister's signature electric blue */
+            transform: translateX(4px) !important; /* Elegant subtle micro-slide interaction */
+            text-decoration: none !important;
+        }
+
+        .wf-footer-copyright {
+            max-width: 1400px;
+            margin: 40px auto 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .wf-footer-copyright p {
+            color: #475569 !important;
+            font-size: 13px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            letter-spacing: 0.3px;
+        }
+
+        /* Internet Explorer Layout Fallbacks */
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            .wf-footer-layout { display: block !important; }
+            .wf-footer-info { width: 28% !important; float: left !important; }
+            .wf-footer-column { width: 17% !important; float: left !important; }
+            .wf-footer-layout::after, .wf-main-footer::after { content: "" !important; display: table !important; clear: both !important; }
+            .wf-footer-column a { color: #3b82f6 !important; }
+        }
+    </style>
+
+    <div class="wf-footer-layout">
+        <!-- Column 1: Brand Info Box -->
+        <div class="wf-footer-info">
+            <div class="logo" style="color: #3b82f6; margin-bottom: 24px;">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" style="display: block;">
+                    <path d="M2.5 3h3.8l3.7 12.2L13.7 3h3.6l3.7 12.2 3.7-12.2h3.8L21 21h-4l-3.7-12.2L9.6 21H5.6L2.5 3z"/>
+                </svg>
             </div>
-            
-            <div class="footer-column">
-                <h4>Product</h4>
-                <a href="#features">Features</a>
-                <a href="#all-platforms">Download</a>
-                <a href="#">Security</a>
-            </div>
-            
-            <div class="footer-column">
-                <h4>Resources</h4>
-                <a href="#bangs-dashboard">Bangs Index</a>
-                <a href="#">Developer API</a>
-                <a href="#">Release Notes</a>
-            </div>
-            
-            <div class="footer-column">
-                <h4>Company</h4>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact Support</a>
-            </div>
+            <p class="brand-text" style="color: #64748b; font-size: 14px; line-height: 1.7; margin: 0; padding: 0; font-weight: 400;">
+                Building a faster, decentralized, and private internet environment for everyone.
+            </p>
         </div>
         
-        <div class="footer-copyright">
-            <p>&copy; 2026 Whister Software. All rights reserved.</p>
+        <!-- Column 2: Product link directory -->
+        <div class="wf-footer-column">
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="#all-platforms">Download</a>
+            <a href="#">Security</a>
         </div>
-    </footer>
+        
+        <!-- Column 3: Navigation list paths -->
+        <div class="wf-footer-column">
+            <h4>Navigation</h4>
+            <a href="#bangs-dashboard">Bangs Index</a>
+            <a href="#stats">Live Metrics</a>
+            <a href="#beta-info">Stable Builds</a>
+        </div>
+        
+        <!-- Column 4: Documentation details -->
+        <div class="wf-footer-column">
+            <h4>Resources</h4>
+            <a href="#">Developer API</a>
+            <a href="#">Release Notes</a>
+            <a href="#">Open Source</a>
+        </div>
+        
+        <!-- Column 5: Corporate data protection nodes -->
+        <div class="wf-footer-column">
+            <h4>Company</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Support</a>
+        </div>
+    </div>
+    
+    <div class="wf-footer-copyright">
+        <p>&copy; 2026 Whister Software. All rights reserved.</p>
+        <p style="color: #3b82f6 !important; font-weight: 500; font-size: 12px !important; letter-spacing: 1px; text-transform: uppercase;">Engine v1.2.0 Beta</p>
+    </div>
+</footer>
 <style>
     /* ==========================================================================
        FORCED OVERRIDE: SLIDER POSITION FIX
