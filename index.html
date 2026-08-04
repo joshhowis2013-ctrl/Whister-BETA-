@@ -169,38 +169,7 @@
         <a href="https://microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Edge IE Mode</a>.
     </div>
 
-    <!-- TOP NAVIGATION HEADER BAR -->
-    <header class="navbar">
-        <div class="nav-left">
-            <div class="logo">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-                    <path d="M2.5 3h3.8l3.7 12.2L13.7 3h3.6l3.7 12.2 3.7-12.2h3.8L21 21h-4l-3.7-12.2L9.6 21H5.6L2.5 3z"/>
-                </svg>
-            </div>
-            <nav class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#bangs-dashboard">Bangs</a>
-                <a href="#faq">FAQ</a>
-                <a href="../Whister-BETA-/blog/index.html">Blog</a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="external-link">
-                    GitHub
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
-                    </svg>
-                </a>
-            </nav>
-        </div>
-        <div class="nav-right">
-            <a href="#all-platforms" class="btn-nav-download">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 6px; vertical-align: middle;">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                </svg>
-                Download
-            </a>
-        </div>
-    </header>
-
-     <!-- MAIN HERO / DOWNLOAD SECTION -->
+    <!-- MAIN HERO / DOWNLOAD SECTION -->
 <section class="download-container">
     <style>
         /* Modern UI state modifications for the smooth transition (Ignored by IE) */
@@ -227,14 +196,6 @@
             }
             .step-node strong { color: #3b82f6; display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; }
             .step-node p { margin: 0; font-size: 13px; color: #94a3b8; line-height: 1.5; }
-            
-            /* Loading visual to tell the user the background stream is active */
-            .btn-download.is-loading {
-                background-color: #1e293b !important;
-                color: #94a3b8 !important;
-                pointer-events: none;
-                cursor: not-allowed;
-            }
         }
         /* IE Safe Fallbacks */
         @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
@@ -248,8 +209,12 @@
         <h1>Whister beta</h1>
         <p>Experience lightning-fast speeds, built-in privacy protection, and a customizable interface designed for the modern web.</p>
         <div class="actions">
-            <!-- Clicking this will securely fire our stream container script logic -->
-            <a href="#all-platforms" id="main-download-btn" class="btn-download" onclick="executeSilentDownload(event)">Download Browser</a>
+            <!-- Points to the real download link, but target="download-bridge" prevents it from redirecting this page -->
+            <a href="https://github.com" 
+               target="download-bridge"
+               id="main-download-btn" 
+               class="btn-download" 
+               onclick="executeDownloadThanks()">Download Browser</a>
             <span class="os-detect" id="os-text">Detecting your operating system...</span>
         </div>
     </div>
@@ -265,7 +230,51 @@
             </div>
         </div>
     </div>
+
+    <!-- Hidden native frame window context used to capture the download file stream behind the scenes -->
+    <iframe name="download-bridge" style="display:none; width:0; height:0; border:none;"></iframe>
 </section>
+
+<script>
+    function executeDownloadThanks() {
+        // 1. Let older browsers like Internet Explorer fall back to regular page scrolling
+        if (typeof window.IntersectionObserver === 'undefined') {
+            return true; 
+        }
+
+        var contentPanel = document.getElementById('hero-content-panel');
+        if (!contentPanel) return true;
+
+        // 2. Clear out the old content and transition the text layers smoothly
+        contentPanel.style.opacity = '0';
+        
+        setTimeout(function() {
+            // 3. Inject the onboarding step layout right into the hero panel
+            contentPanel.innerHTML = 
+                '<div class="thanks-fade-in">' +
+                    '<span style="display:inline-block; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); color:#3b82f6; padding:6px 14px; border-radius:20px; font-size:13px; font-weight:600; margin-bottom:16px;">✓ Download Initiated</span>' +
+                    '<h1 style="font-size:36px; margin:0 0 12px 0;">Thank You for Choosing Whister!</h1>' +
+                    '<p style="color:#94a3b8; margin:0; font-size:15px; line-height:1.6;">Your installation pack has started downloading. Follow the quick steps below to set up your secure engine instance.</p>' +
+                    
+                    '<div class="step-row">' +
+                        '<div class="step-node"><strong>Step 1</strong><p>Launch the downloaded setup installer binary.</p></div>' +
+                        '<div class="step-node"><strong>Step 2</strong><p>Grant permissions if prompted by your firewall.</p></div>' +
+                        '<div class="step-node"><strong>Step 3</strong><p>Enjoy built-in private tools at lightning speed.</p></div>' +
+                    '</div>' +
+                    
+                    '<div style="margin-top:24px;">' +
+                        '<a href="blog/index.html" class="btn-secondary" style="font-size:13px; display:inline-block; padding:10px 18px; text-decoration:none;">Go To Engine Blog &rarr;</a>' +
+                    '</div>' +
+                '</div>';
+            
+            contentPanel.style.opacity = '1';
+        }, 200);
+
+        // 4. Return true so the browser naturally executes the link directly into our hidden iframe window
+        return true;
+    }
+</script>
+
 
 <script>
     function executeSilentDownload(event) {
