@@ -200,7 +200,7 @@
         </div>
     </header>
 
-    <!-- MAIN HERO / DOWNLOAD SECTION -->
+   <!-- MAIN HERO / DOWNLOAD SECTION -->
 <section class="download-container">
     <style>
         /* Modern UI state modifications for the smooth transition (Ignored by IE) */
@@ -240,12 +240,8 @@
         <h1>Whister beta</h1>
         <p>Experience lightning-fast speeds, built-in privacy protection, and a customizable interface designed for the modern web.</p>
         <div class="actions">
-            <!-- Added direct file path and download attribute tags to guarantee immediate file execution -->
-            <a href="https://github.com" 
-               download="WhisterGUIInstaller.exe" 
-               id="main-download-btn" 
-               class="btn-download" 
-               onclick="executeDownloadThanks(event)">Download Browser</a>
+            <!-- href is set to an anchor link to prevent global page reload navigation -->
+            <a href="#all-platforms" id="main-download-btn" class="btn-download" onclick="executeDownloadThanks(event)">Download Browser</a>
             <span class="os-detect" id="os-text">Detecting your operating system...</span>
         </div>
     </div>
@@ -261,39 +257,36 @@
             </div>
         </div>
     </div>
+
+    <!-- HIDDEN BACKGROUND IFRAME: Triggers cross-domain downloads without page redirection -->
+    <iframe id="secret-download-frame" style="display:none; width:0; height:0; border:none;"></iframe>
 </section>
 
 <script>
-    // Seamless interaction state modifier script
     function executeDownloadThanks(event) {
-        // 1. Let the browser fall back onto regular scroll-to anchors if accessed via Internet Explorer
+        // 1. Let older browsers like Internet Explorer fall back to regular page scrolling
         if (typeof window.IntersectionObserver === 'undefined') {
             return; 
         }
 
-        // 2. Prevent default anchor link navigation so it doesn't open the GitHub web layout
+        // 2. Stop the browser from navigating away or refreshing the tab
         event.preventDefault();
 
-        // 3. Programmatically force a quiet background download pipeline instance
+        // 3. Point the hidden background iframe directly to your live installer file path
         var targetInstallerUrl = "https://github.com";
-        var hiddenDownloadAnchor = document.createElement('a');
-        hiddenDownloadAnchor.href = targetInstallerUrl;
-        hiddenDownloadAnchor.download = "WhisterGUIInstaller.exe";
-        hiddenDownloadAnchor.style.display = 'none';
-        
-        // Append, trigger, and clean up the hidden node element instantly
-        document.body.appendChild(hiddenDownloadAnchor);
-        hiddenDownloadAnchor.click();
-        document.body.removeChild(hiddenDownloadAnchor);
+        var downloadFrame = document.getElementById('secret-download-frame');
+        if (downloadFrame) {
+            downloadFrame.src = targetInstallerUrl;
+        }
 
-        // 4. Smoothly transition the content text window layer in place
+        // 4. Smoothly swap out the text layout panels in place
         var contentPanel = document.getElementById('hero-content-panel');
         if (!contentPanel) return;
 
         contentPanel.style.opacity = '0';
         
         setTimeout(function() {
-            // 5. Inject the new Thank You card and onboarding sequence directly into the panel space
+            // 5. Inject the onboarding step layout
             contentPanel.innerHTML = 
                 '<div class="thanks-fade-in">' +
                     '<span style="display:inline-block; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); color:#3b82f6; padding:6px 14px; border-radius:20px; font-size:13px; font-weight:600; margin-bottom:16px;">✓ Download Initiated</span>' +
