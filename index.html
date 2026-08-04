@@ -253,14 +253,17 @@
     
     <div class="download-preview">
         <div class="browser-mockup">
-            <div class="mockup-header">
-                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                <div class="mockup-url">https://github.com</div>
-            </div>
-            <div class="mockup-body">
-                <p>Interactive Preview Screen</p>
-            </div>
-        </div>
+    <div class="mockup-header">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <!-- This represents the address bar bar text field -->
+        <div class="mockup-url">https://whister.io<span id="typing-text"></span><span class="typing-cursor">|</span></div>
+    </div>
+    <div class="mockup-body" style="display: flex; align-items: center; justify-content: center; height: 180px; background-color: #0b0f19;">
+        <!-- Large high-contrast display message matching your theme aesthetic -->
+        <h2 id="mockup-display-phrase" style="color: #ffffff; font-size: 24px; font-weight: 700; margin: 0; letter-spacing: -0.5px;"></h2>
+    </div>
+</div>
+
     </div>
 
     <!-- Hidden native frame window context used to capture the download file stream behind the scenes -->
@@ -383,59 +386,102 @@
 </script>
 
 
-        <!-- ALL PLATFORMS SECTION WITH  LIVE WINDOWS LINK -->
-    <section class="platforms-section" id="all-platforms">
+<!-- ALL PLATFORMS SECTION WITH SCROLL REVEALS, HIGHLIGHTED CARDS & LIVE WINDOWS LINK -->
+    <section class="platforms-section reveal-hidden" id="all-platforms">
         <h2>Choose Your Platform</h2>
         <div class="platform-grid">
             
+            <!-- Active / Detected OS (Windows) -->
             <div class="platform-card" id="card-windows">
                 <h3>Windows</h3>
                 <p>Windows 10 / 11 (64-bit)</p>
-                <!-- functional installer download URL -->
-                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe" class="btn-secondary">Download .EXE</a>
+<!-- functional installer download URL; triggers background file fetch and top-page thank you layout -->
+                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe" class="btn-secondary" onclick="executeDownloadThanks(event)">Download .EXE</a>
                 
-
             </div>
 
-            <div class="platform-card" id="card-macos">
+            <!-- Greyed-out Alternative Platform (macOS) -->
+            <div class="platform-card is-deactivated" id="card-macos">
                 <h3>macOS</h3>
                 <p>Apple Silicon / Intel Chips</p>
-                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.dmg" class="btn-secondary">Download .DMG</a>
+                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.dmg" 
+                   class="btn-secondary" 
+                   onclick="executeDownloadThanks(event)">Download .DMG</a>
             </div>
 
-            <div class="platform-card" id="card-linux">
+            <!-- Greyed-out Alternative Platform (Linux) -->
+            <div class="platform-card is-deactivated" id="card-linux">
                 <h3>Linux</h3>
                 <p>Debian / Ubuntu / Fedora</p>
-                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.deb" class="btn-secondary">Download .DEB</a>
+                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.deb" 
+                   class="btn-secondary" 
+                   onclick="executeDownloadThanks(event)">Download .DEB</a>
             </div>
             
-       
         </div>
     </section>
 
-     <section class="beta-section" id="beta-info">
-        <h2>Stable Downloads</h2>
+    <h1 style="text-align:center; margin-top:60px; font-size:28px;">Stable Release Downloads</h1>
 
-        <h2>Download the Latest Stable Version (1.1.0)</h2>
-        <div class="beta-grid">
-            <div class="beta-card">
-                <h4>Windows 10/11</h4>
-                <p>Stable release for Windows 10 and 11.</p>
-                <a href="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.exe" class="btn-secondary">Download .EXE</a>
-            </div>
-           
-            <div class="beta-card">
-                <h4>macOS</h4>
-                <p>Stable release for macOS. (Apple Silicon)</p>
-                <a href="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.dmg" class="btn-secondary">Download .DMG</a>
-            </div>
-            <div class="beta-card">
-                <h4>Linux</h4>
-                <p>Stable release for Linux. (Ubuntu, Debian, Fedora)</p>
-                <a href="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.deb" class="btn-secondary">Download .DEB</a>
-            </div>
-        </div>
-    </section>
+   <div class="beta-grid">
+    <div class="beta-card">
+        <h4>Windows 10/11</h4>
+        <p>Stable release for Windows 10 and 11.</p>
+        <!-- Points directly to your thanks page file layout destination -->
+        <a href="download-thanks.html" 
+           data-binary="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.exe"
+           class="btn-secondary" 
+           onclick="executeStableRedirect(event)">Download .EXE</a>
+    </div>
+   
+    <div class="beta-card">
+        <h4>macOS</h4>
+        <p>Stable release for macOS. (Apple Silicon)</p>
+        <a href="download-thanks.html" 
+           data-binary="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.dmg"
+           class="btn-secondary" 
+           onclick="executeStableRedirect(event)">Download .DMG</a>
+    </div>
+    
+    <div class="beta-card">
+        <h4>Linux</h4>
+        <p>Stable release for Linux. (Ubuntu, Debian, Fedora)</p>
+        <a href="download-thanks.html" 
+           data-binary="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.deb"
+           class="btn-secondary" 
+           onclick="executeStableRedirect(event)">Download .DEB</a>
+    </div>
+</div>
+
+    <script>
+        // Dedicated routing script exclusively for stable release buttons
+        function executeStableRedirect(event) {
+            if (typeof window.IntersectionObserver === 'undefined') {
+                return true; // Let Internet Explorer process the direct link fallback normally
+            }
+
+            // 1. Prevent the primary page tab from changing context directly into GitHub's site layout
+            event.preventDefault();
+
+            // 2. Fetch the correct stable binary source link and route it to your hidden frame bridge
+            var installerUrl = event.currentTarget.getAttribute('href');
+            var downloadBridgeFrame = document.querySelector('iframe[name="download-bridge"]');
+            if (downloadBridgeFrame) {
+                downloadBridgeFrame.src = installerUrl;
+            }
+
+            // 3. Immediately redirect the active viewport tab to your local targeted destination URL
+            var targetThanksLocalPage = "file:///C:/Users/Joshua%20Howis/Documents/GitHub/Whister-BETA-/download-thanks.html";
+            
+            // Set a tiny 100ms timeout window to ensure the file stream initializes before jumping pages
+            setTimeout(function() {
+                window.location.href = targetThanksLocalPage;
+            }, 100);
+
+            return false;
+        }
+    </script>
+
 
     <!-- SMART BANGS INTERACTION PANEL -->
     <section class="section-container" id="bangs-dashboard">
@@ -558,12 +604,16 @@
     </section>
 
     <!-- CORE FEATURES GRID -->
-    <section class="section-container" id="features">
+        <!-- CORE FEATURES GRID (WITH LIVE STAGGER EFFECTS & SYMBOLS) -->
+    <section class="section-container reveal-hidden" id="features">
         <div class="section-header">
+            <span class="pill-badge">Engine Core Matrix</span>
             <h2>Engineered for Performance</h2>
             <p>Discover tools designed to completely redefine your daily browsing habits.</p>
         </div>
         <div class="features-grid">
+            
+            <!-- Shield Privacy Engine Card Module -->
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -571,6 +621,8 @@
                 <h3>Shield Privacy Engine</h3>
                 <p>Block intrusive trackers, fingerprinting scripts, and video commercials out of the box natively.</p>
             </div>
+            
+            <!-- Chromium Nitro Speed Card Module -->
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -578,6 +630,8 @@
                 <h3>Chromium Nitro Speed</h3>
                 <p>Optimized process allocation renders heavy script application frameworks up to two times faster.</p>
             </div>
+            
+            <!-- Extension Sandbox Card Module -->
             <div class="feature-card">
                 <div class="feature-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
@@ -585,8 +639,10 @@
                 <h3>Extension Sandbox</h3>
                 <p>Safely run all your favorite extensions within protected tabs without system leaks.</p>
             </div>
+            
         </div>
     </section>
+
 
       <!-- ⬇️ slider ⬇️ -->
     <section class="section-container slider-section">
@@ -701,6 +757,496 @@
     <div style="position: absolute; top: -150px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(37, 99, 235, 0.07) 0%, rgba(0,0,0,0) 70%); pointer-events: none;"></div>
 
     <style>
+        /* =======================================================
+   STEP 1: PREMIUM THEME BASE CANVAS (Ignored by IE)
+   ======================================================= */
+@supports (display: grid) {
+    html {
+        scroll-behavior: smooth;
+        background-color: #030712; /* Obsidian Space Dark */
+    }
+
+    body {
+        background-color: #030712;
+        color: #f8fafc; /* Crisp clean text */
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        margin: 0;
+        overflow-x: hidden;
+        /* Ambient subtle tech glow behind the page layout */
+        background-image: radial-gradient(circle at 50% -200px, rgba(59, 130, 246, 0.18) 0%, rgba(0,0,0,0) 65%);
+        background-repeat: no-repeat;
+    }
+}
+
+/* =======================================================
+   STEP 2: GLASS NAVIGATION BAR & GLOW HOVERS
+   ======================================================= */
+@supports (display: grid) {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 40px;
+        background: rgba(3, 7, 18, 0.75); /* Dark translucent background */
+        backdrop-filter: blur(12px); /* Premium iOS-style glass blur */
+        -webkit-backdrop-filter: blur(12px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        transition: background 0.3s ease;
+    }
+
+    .nav-left, .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+
+    /* Modern clean layout link styling */
+    .nav-links a {
+        color: #94a3b8; /* Cool titanium gray */
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        position: relative;
+        padding: 4px 0;
+        transition: color 0.25s ease;
+    }
+
+    /* Cool underline trace animation on link hover */
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #3b82f6; /* Electric Blue line */
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-links a:hover {
+        color: #f8fafc; /* Brightens up on hover */
+    }
+
+    .nav-links a:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    /* Premium Neon Download Button Accent */
+    .btn-nav-download {
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        color: #3b82f6;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-nav-download:hover {
+        background: #3b82f6;
+        color: #ffffff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 0 25px rgba(59, 130, 246, 0.45); /* Gives it a premium cyber glow */
+    }
+}
+
+/* =======================================================
+   STEP 3: METALLIC TYPOGRAPHY & HERO ENTRANCE BOUNCE
+   ======================================================= */
+@supports (display: grid) {
+    /* Set up your main hero structure padding layout */
+    .download-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 180px 40px 100px 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 60px;
+    }
+
+    /* Dramatic, high-speed fluid entry keyframe for the hero elements */
+    @keyframes kineticWhooshUp {
+        0% {
+            opacity: 0;
+            transform: translateY(60px) scale(0.96);
+            filter: blur(8px); /* Movie-style motion blur on entry */
+        }
+        60% {
+            opacity: 0.9;
+            transform: translateY(-4px) scale(1.01); /* Subtle overshoot bounce */
+            filter: blur(0px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Target the text wrapper directly to animate it instantly on load */
+    .download-content {
+        opacity: 0;
+        animation: kineticWhooshUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation-delay: 0.1s; /* Drops in right after the webpage frame loads */
+    }
+
+    /* Give the Whister title a high-end metal color look */
+    .download-content h1 {
+        font-size: 64px;
+        font-weight: 800;
+        margin: 0 0 16px 0;
+        letter-spacing: -2px;
+        line-height: 1.1;
+        /* Creates an elegant multi-tone shade across the characters */
+        background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Polish the secondary descriptive text element */
+    .download-content p {
+        font-size: 18px;
+        color: #64748b; /* Sleek metal-gray slate shade */
+        line-height: 1.6;
+        margin: 0 0 36px 0;
+        max-width: 520px;
+ 
+    }
+   /* =======================================================
+   STEP 4: NEON ACCENT BUTTON & GLOW INTERACTION
+   ======================================================= */
+@supports (display: grid) {
+    /* Base configuration for the main download controller */
+    .btn-download {
+        display: inline-block;
+        background: #3b82f6; /* Electric Blue Core */
+        color: #ffffff !important;
+        text-decoration: none !important;
+        padding: 16px 36px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 0.3px;
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25);
+        /* Handles position vectors smoothly across complex interactions */
+        transition: background-color 0.2s ease, 
+                    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                    box-shadow 0.3s ease;
+    }
+
+    /* Elastic hover response state modification */
+    .btn-download:hover {
+        background-color: #2563eb; /* Deepens slightly for mechanical feedback */
+        transform: translateY(-3px) scale(1.02); /* Pop out cleanly towards the user */
+        box-shadow: 0 12px 30px rgba(59, 130, 246, 0.45), 
+                    0 0 20px rgba(59, 130, 246, 0.2); /* Emits a strong radial cyber glow */
+    }
+
+    /* Active click down transformation compression layer */
+    .btn-download:active {
+        transform: translateY(-1px) scale(0.99); /* Depresses physically when clicked */
+        box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+    }
+}
+
+
+}
+
+/* =======================================================
+   STEP 5: PREVIEW MOCKUP WHOOSH & FLOATING CHAIN
+   ======================================================= */
+@supports (display: grid) {
+    /* Base wrapper for the preview window asset compartment */
+    .browser-mockup {
+        opacity: 0;
+        background: #0b0f19; /* Sleek slate card backdrop */
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
+                    0 0 40px rgba(59, 130, 246, 0.03);
+        
+        /* Whooshes up on load, then automatically begins the idle floating timeline loop */
+        animation: kineticWhooshUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards, 
+                   smoothIdleFloat 5s ease-in-out infinite 1.2s;
+        animation-delay: 0.25s, 0s; /* Delayed execution so text whooshes up first */
+    }
+
+    /* Continuous running physics loop tracking vertical floating position vectors */
+    @keyframes smoothIdleFloat {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px); /* Anti-gravity lift simulation */
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    /* Ensure structural child mockup components scale natively */
+    .mockup-header {
+        background: #111827;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Individual mockup interface window control dots */
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .dot.red { background: #ef4444; }
+    .dot.yellow { background: #f59e0b; }
+    .dot.green { background: #10b981; }
+
+    .mockup-url {
+        background: #030712;
+        padding: 6px 14px;
+        border-radius: 6px;
+        flex-grow: 1;
+        font-family: monospace;
+        font-size: 13px;
+        color: #94a3b8;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+ 
+   /* =======================================================
+   STEP 6: FIXED MODULE CARDS & GRAYED-OUT ALTERNATIVES
+   ======================================================= */
+@supports (display: grid) {
+    .platform-grid, .beta-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 30px;
+        margin-top: 20px;
+    }
+
+    .platform-card, .beta-card {
+        background: #0d1326; /* Space container card navy */
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 36px 32px;
+        border-radius: 12px;
+        text-align: center;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    border-color 0.3s ease, 
+                    box-shadow 0.3s ease,
+                    opacity 0.3s ease;
+    }
+
+    .platform-card h3, .beta-card h4 {
+        color: #ffffff !important;
+        font-size: 24px !important;
+        margin: 0 0 10px 0 !important;
+        font-weight: 700 !important;
+    }
+
+    .platform-card p, .beta-card p {
+        color: #94a3b8 !important;
+        font-size: 14px !important;
+        margin: 0 0 24px 0 !important;
+    }
+
+    /* THE VISIBILITY ACCENT: Active / Detected OS Button Style */
+    .btn-secondary {
+        display: block !important;
+        text-align: center !important;
+        background: #3b82f6 !important; /* Premium brand electric blue */
+        color: #ffffff !important; /* Sharp white text */
+        text-decoration: none !important;
+        padding: 14px 20px !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        font-size: 15px !important;
+        margin-top: 20px !important;
+        border: none !important;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        transition: background-color 0.2s ease, transform 0.2s ease !important;
+    }
+
+    .btn-secondary:hover {
+        background-color: #2563eb !important;
+        transform: scale(1.02) !important;
+    }
+
+    /* =======================================================
+       THE GRAYED OUT INTERFACE MODULE CLASSES
+       ======================================================= */
+    
+    /* Lowers the contrast of unused operating system cards */
+    .platform-card.is-deactivated {
+        opacity: 0.4; /* Softly dims the layout text and background */
+        border-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Overwrites the button style within muted cards to look clean and gray */
+    .platform-card.is-deactivated .btn-secondary {
+        background: #1e293b !important; /* Tech slate-gray button background */
+        color: #64748b !important; /* Muted gray text color */
+        box-shadow: none !important;
+    }
+
+    /* Restores full clarity instantly if the user explicitly hovers over it */
+    .platform-card.is-deactivated:hover {
+        opacity: 1 !important;
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-4px);
+    }
+
+    .platform-card.is-deactivated:hover .btn-secondary {
+        background: #334155 !important; /* Brightens up the gray on hover */
+        color: #ffffff !important;
+    }
+}
+
+}
+
+/* =======================================================
+   STEP 7: SCROLL REVEAL ENGINE INITIAL STATE PROPERTIES
+   ======================================================= */
+@supports (display: grid) {
+    /* The hidden base state applied to sections before they enter the screen viewport */
+    .reveal-hidden {
+        opacity: 0;
+        transform: translateY(40px); /* Positioned slightly lower down the screen canvas */
+        
+        /* Handles the fade and glide transition simultaneously with an elegant easing curve */
+        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        
+        /* Ensures layout properties stay optimized on complex graphics cards */
+        will-change: transform, opacity;
+    }
+
+    /* The active state injected by the background script once the section crosses into view */
+    .reveal-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important; /* Smoothly rises up to its correct resting position */
+    }
+}
+
+/* =======================================================
+   STEP 8 OVERRIDE: NEON FEATURE CARDS & ICON GLOWS
+   ======================================================= */
+@supports (display: grid) {
+    /* Main structural layout grid wrapper */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 30px;
+        margin-top: 40px;
+    }
+
+    /* Force all child item feature cards to stay hidden until triggered by scroll */
+    .features-grid .feature-card {
+        opacity: 0;
+        background: #0d1326; /* Dark navy panel background */
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 36px 32px;
+        border-radius: 12px;
+        position: relative;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                    border-color 0.3s ease, 
+                    box-shadow 0.3s ease;
+    }
+
+    /* Interactive hover expansion outline mechanics */
+    .features-grid .feature-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(59, 130, 246, 0.4);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* =======================================================
+   FIX FOR STEP 8: THE STAGGERED KEYFRAME PATH DEFS
+   ======================================================= */
+@supports (display: grid) {
+    
+    /* This defines the core fly-in movement required by the grid cards */
+    @keyframes structuralFlyIn {
+        0% {
+            opacity: 0;
+            /* Sweeps up from 40px down while pushing slightly from the left */
+            transform: translateY(40px) translateX(-15px) scale(0.98);
+            filter: blur(4px); /* Clean digital motion blur look */
+        }
+        70% {
+            opacity: 0.9;
+            transform: translateY(-2px) scale(1.005); /* Slight overshoot bounce */
+            filter: blur(0px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+            filter: blur(0px);
+        }
+    }
+}
+
+    /* Styled neon container block for your symbols */
+    .feature-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(59, 130, 246, 0.1); /* Translucent blue backplate tint */
+        border: 1px solid rgba(59, 130, 246, 0.25);
+        color: #3b82f6; /* Vibrant electric blue icons */
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.05);
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+        transform: scale(1.08) rotate(3deg); /* Micro-interaction pop when card is active */
+        background: rgba(59, 130, 246, 0.18);
+        color: #60a5fa;
+    }
+
+    .feature-card h3 {
+        color: #ffffff !important;
+        font-size: 20px !important;
+        margin: 0 0 12px 0 !important;
+        font-weight: 700 !important;
+    }
+
+    .feature-card p {
+        color: #94a3b8 !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin: 0 !important;
+    }
+
+    /* Trigger the cascading waterfall fly-in animations on scroll cross milestone */
+    .reveal-visible .feature-card {
+        animation: structuralFlyIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* The exact delay timing multipliers for each card node */
+    .reveal-visible .feature-card:nth-child(1) { animation-delay: 0.1s; }
+    .reveal-visible .feature-card:nth-child(2) { animation-delay: 0.25s; }
+    .reveal-visible .feature-card:nth-child(3) { animation-delay: 0.4s; }
+}
+
+
+
+
+
         /* Widen layout container up to 1400px maximum constraint */
         .wf-footer-layout {
             max-width: 1400px;
@@ -786,6 +1332,98 @@
             .wf-footer-layout::after, .wf-main-footer::after { content: "" !important; display: table !important; clear: both !important; }
             .wf-footer-column a { color: #3b82f6 !important; }
         }
+
+        </style>
+        <style>
+    /* Animated blinking typing line cursor simulation */
+    @supports (display: grid) {
+        .typing-cursor {
+            color: #3b82f6;
+            font-weight: 700;
+            margin-left: 2px;
+            animation: cursorBlink 0.8s infinite steps(2, start);
+        }
+        @keyframes cursorBlink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    }
+</style>
+
+<script>
+    // Configuration framework definitions
+    var typingPhrases = [
+        "built for productivity.",
+        "built for absolute privacy.",
+        "built for incredible speed.",
+        "built for the modern web.",
+        "built for developers and creators.",
+        "built for a better browsing experience.",
+        "Whister is built for you.",
+        "Whister is built for everyone.",
+        "Whister",
+        "built",
+        "for",
+        "Everyone.", "giving you the power to browse without limits.", "built for a safer internet.", "built for a faster browsing experience.", "built for the environment."
+
+
+    ];
+    
+    var currentPhraseIndex = 0;
+    var characterIndex = 0;
+    var isDeletingCharacters = false;
+    var typingSpeedTimer = 100; // Base typing animation delay rate in milliseconds
+
+    function runTypingLoopEngine() {
+        // Fall back quietly if loaded inside a system running Internet Explorer architecture
+        if (typeof window.IntersectionObserver === 'undefined') {
+            var staticTarget = document.getElementById('typing-text');
+            if (staticTarget) staticTarget.innerHTML = "built for productivity.";
+            return;
+        }
+
+        var textElement = document.getElementById('typing-text');
+        var displayElement = document.getElementById('mockup-display-phrase');
+        if (!textElement || !displayElement) return;
+
+        var fullPhraseText = typingPhrases[currentPhraseIndex];
+
+        if (isDeletingCharacters) {
+            // Cut text values down sequentially 
+            characterIndex--;
+            typingSpeedTimer = 40; // Speed up erasure speed for fluidity
+        } else {
+            // Build characters array text loops forward
+            characterIndex++;
+            typingSpeedTimer = 100; // Standard layout generation tempo
+        }
+
+        // Project the string fractions onto the live window spans
+        var currentTextSnippet = fullPhraseText.substring(0, characterIndex);
+        textElement.innerHTML = currentTextSnippet;
+        displayElement.innerHTML = currentTextSnippet;
+
+        // Manage processing path transitions flags
+        if (!isDeletingCharacters && characterIndex === fullPhraseText.length) {
+            // Pause dramatically at the complete phrase string sentence target
+            typingSpeedTimer = 2000; 
+            isDeletingCharacters = true;
+        } else if (isDeletingCharacters && characterIndex === 0) {
+            isDeletingCharacters = false;
+            // Advance item tracker to cycle out the phrase collection indices
+            currentPhraseIndex = (currentPhraseIndex + 1) % typingPhrases.length;
+            typingSpeedTimer = 400; // Intermission delay before drafting subsequent string sequences
+        }
+
+        setTimeout(runTypingLoopEngine, typingSpeedTimer);
+    }
+
+    // Safely fire off the animation timeline engine configuration once the document loads
+    window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(runTypingLoopEngine, 1000);
+    });
+</script>
+
     </style>
 
     <div class="wf-footer-layout">
@@ -897,6 +1535,53 @@
 </style>
 
     <script src="script.js"></script>
+
+    <!-- STEP 9: LIVE SCROLL TRACKER ENGINE -->
+<script>
+    // Failsafe execution framework wrap
+    window.addEventListener('DOMContentLoaded', function() {
+        
+        // FEATURE DETECTION: Check if the browser supports modern Intersection Observers (Chrome, Edge, Safari, Firefox)
+        if (typeof window.IntersectionObserver !== 'undefined') {
+            
+            // 1. Gather all sections carrying our initial hidden animation class
+            var hiddenElements = document.querySelectorAll('.reveal-hidden');
+            
+            // 2. Set up the observer configuration
+            var revealObserver = new IntersectionObserver(function(entries) {
+                for (var i = 0; i < entries.length; i++) {
+                    var entry = entries[i];
+                    
+                    // If the section crosses into the screen viewport (threshold milestone met)
+                    if (entry.isIntersecting) {
+                        // Inject the modern active visibility class to trigger our CSS cascade animations
+                        entry.target.className += " reveal-visible";
+                        
+                        // Disconnect the listener from this specific node so it doesn't repeat trigger
+                        revealObserver.unobserve(entry.target);
+                    }
+                }
+            }, { 
+                // Fires the layout change when at least 10% of the section card is visible on screen
+                threshold: 0.1,
+                // Expands the bottom tracking boundary slightly to preload elements just before they arrive
+                rootMargin: "0px 0px -50px 0px"
+            });
+            
+            // 3. Bind the scanner to each flagged component container
+            for (var j = 0; j < hiddenElements.length; j++) {
+                revealObserver.observe(hiddenElements[j]);
+            }
+            
+        } else {
+            // INTERNET EXPLORER FALLBACK: Instantly uncover all content zones immediately if engine is legacy
+            var ieElements = document.querySelectorAll('.reveal-hidden');
+            for (var k = 0; k < ieElements.length; k++) {
+                ieElements[k].className += " reveal-visible";
+            }
+        }
+    });
+</script>
     
 </body>
 </html>
