@@ -150,7 +150,7 @@
     </div>
 
 
-    <!-- Main Navigation Header Container -->
+        <!-- TOP NAVIGATION HEADER BAR (FOR SUB-PAGES) -->
     <header class="navbar">
         <div class="nav-left">
             <div class="logo">
@@ -161,52 +161,67 @@
                 </a>
             </div>
             <nav class="nav-links">
+                <!-- Relative links back to your homepage sections -->
                 <a href="../index.html#features">Features</a>
                 <a href="../index.html#bangs-dashboard">Bangs</a>
                 <a href="../index.html#faq">FAQ</a>
                 <a href="#" class="active">Blog</a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="external-link">
+                    GitHub
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left: 4px; vertical-align: middle;">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                    </svg>
+                </a>
             </nav>
+        </div>
+        <div class="nav-right">
+            <a href="../index.html#all-platforms" class="btn-nav-download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 6px; vertical-align: middle;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                Download
+            </a>
         </div>
     </header>
 
-    <!-- MAIN BLOG GRID SECTION -->
-    <section class="section-container blog-container" style="margin-top: 100px; padding: 0 20px;">
-        <div class="section-header" style="text-align: center; margin-bottom: 50px;">
-            <h2 style="font-size: 32px; margin-bottom: 10px;">The Whister Engine Blog</h2>
-            <p style="color: #64748b;">Updates, security records, and privacy documentation directly from the engine developers.</p>
-        </div>
 
-        <div class="blog-grid">
+    </div>
+    <div class="blog-grid">
+    
+    <!-- ARTICLE CARD 1 (UPDATED V1.2 BRAND GRAPHIC) -->
+    <article class="blog-card">
+        <div class="blog-image-wrapper" style="background-color: #000000; display: flex; align-items: center; justify-content: center; position: relative;">
+            <!-- Hidden styling layer to give a premium dark blue tech tint over the black graphic background -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg, rgba(13, 19, 38, 0.6) 0%, rgba(0,0,0,0) 100%); z-index: 2; pointer-events: none;"></div>
             
-            <!-- ARTICLE CARD 1 (WITH IMAGE CHANNELS) -->
-            <article class="blog-card">
-                <div class="blog-image-wrapper">
-                    <!-- Drop your post thumbnail graphic file link directly inside this src tag -->
-                    <img src="https://unsplash.com" alt="Core Update Graphic">
-                </div>
-                <div class="blog-card-content">
-                    <span class="blog-date">August 3, 2026</span>
-                    <h3 class="blog-title">Introducing Whister Beta v1.2</h3>
-                    <p class="blog-excerpt">Explore our updated tracking-block modules and the implementation of our newest core optimizations.</p>
-                    <a href="first-post.html" class="btn-read-article">Read Article</a>
-                </div>
-            </article>
-
-            <!-- ARTICLE CARD 2 (WITH IMAGE CHANNELS) -->
-            <article class="blog-card">
-                <div class="blog-image-wrapper">
-                    <img src="https://unsplash.com" alt="Privacy Architecture Overview">
-                </div>
-                <div class="blog-card-content">
-                    <span class="blog-date">July 28, 2026</span>
-                    <h3 class="blog-title">Deep-Dive into Privacy Bangs</h3>
-                    <p class="blog-excerpt">An extensive structural breakdown of how customized web requests bypass typical target profile trackers entirely.</p>
-                    <a href="#" class="btn-read-article">Read Article</a>
-                </div>
-            </article>
-
+            <!-- Uploaded version graphic fits cleanly inside this slot -->
+            <img src="image_aHKbIp.png" alt="Whister Beta v1.2 Core Release" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 1;">
         </div>
-    </section>
+        <div class="blog-card-content">
+            <span class="blog-date">August 3, 2026</span>
+            <h3 class="blog-title">Introducing Whister Beta v1.2</h3>
+            <p class="blog-excerpt">Explore our updated tracking-block modules and the implementation of our newest core optimizations.</p>
+            <a href="first-post.html" class="btn-read-article">Read Article</a>
+        </div>
+    </article>
+
+    <!-- ARTICLE CARD 2 -->
+    <article class="blog-card">
+        <div class="blog-image-wrapper">
+            <img src="https://unsplash.com" alt="Privacy Architecture Overview">
+        </div>
+        <div class="blog-card-content">
+            <span class="blog-date">July 28, 2026</span>
+            <h3 class="blog-title">Deep-Dive into Privacy Bangs</h3>
+            <p class="blog-excerpt">An extensive structural breakdown of how customized web requests bypass typical target profile trackers entirely.</p>
+            <a href="#" class="btn-read-article">Read Article</a>
+        </div>
+    </article>
+
+   
+
+    </div>
+
 
   <!-- NEW BULLETPROOF SITE FOOTER -->
 <footer class="wf-main-footer" style="background-color: #040710; position: relative; padding: 90px 40px 40px 40px; border-top: 1px solid rgba(59, 130, 246, 0.15); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: block; clear: both; overflow: hidden;">
