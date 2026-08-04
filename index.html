@@ -201,27 +201,122 @@
     </header>
 
     <!-- MAIN HERO / DOWNLOAD SECTION -->
-    <section class="download-container">
-        <div class="download-content">
-            <h1>Whister beta</h1>
-            <p>Experience lightning-fast speeds, built-in privacy protection, and a customizable interface designed for the modern web.</p>
-            <div class="actions">
-                <a href="#all-platforms" id="main-download-btn" class="btn-download">Download Browser</a>
-                <span class="os-detect" id="os-text">Detecting your operating system...</span>
+<section class="download-container">
+    <style>
+        /* Modern UI state modifications for the smooth transition (Ignored by IE) */
+        @supports (display: grid) {
+            .thanks-fade-in {
+                animation: thanksWhooshUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+            @keyframes thanksWhooshUp {
+                0% { opacity: 0; transform: translateY(30px); }
+                100% { opacity: 1; transform: translateY(0); }
+            }
+            .step-row {
+                display: flex; 
+                gap: 16px; 
+                margin-top: 24px; 
+                text-align: left;
+            }
+            .step-node {
+                flex: 1; 
+                background: rgba(255,255,255,0.03); 
+                padding: 16px; 
+                border-radius: 8px; 
+                border: 1px solid rgba(255,255,255,0.05);
+            }
+            .step-node strong { color: #3b82f6; display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; }
+            .step-node p { margin: 0; font-size: 13px; color: #94a3b8; line-height: 1.5; }
+        }
+        /* IE Safe Fallbacks */
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            .step-row { display: block !important; }
+            .step-node { width: 100% !important; margin-bottom: 10px !important; }
+        }
+    </style>
+
+    <!-- Main dynamic element block content panel -->
+    <div class="download-content" id="hero-content-panel">
+        <h1>Whister beta</h1>
+        <p>Experience lightning-fast speeds, built-in privacy protection, and a customizable interface designed for the modern web.</p>
+        <div class="actions">
+            <!-- Added direct file path and download attribute tags to guarantee immediate file execution -->
+            <a href="https://github.com" 
+               download="WhisterGUIInstaller.exe" 
+               id="main-download-btn" 
+               class="btn-download" 
+               onclick="executeDownloadThanks(event)">Download Browser</a>
+            <span class="os-detect" id="os-text">Detecting your operating system...</span>
+        </div>
+    </div>
+    
+    <div class="download-preview">
+        <div class="browser-mockup">
+            <div class="mockup-header">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <div class="mockup-url">https://github.com</div>
+            </div>
+            <div class="mockup-body">
+                <p>Interactive Preview Screen</p>
             </div>
         </div>
-        <div class="download-preview">
-            <div class="browser-mockup">
-                <div class="mockup-header">
-                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                    <div class="mockup-url">https://GitHub.com</div>
-                </div>
-                <div class="mockup-body">
-                    <p>Interactive Preview Screen</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
+
+<script>
+    // Seamless interaction state modifier script
+    function executeDownloadThanks(event) {
+        // 1. Let the browser fall back onto regular scroll-to anchors if accessed via Internet Explorer
+        if (typeof window.IntersectionObserver === 'undefined') {
+            return; 
+        }
+
+        // 2. Prevent default anchor link navigation so it doesn't open the GitHub web layout
+        event.preventDefault();
+
+        // 3. Programmatically force a quiet background download pipeline instance
+        var targetInstallerUrl = "https://github.com";
+        var hiddenDownloadAnchor = document.createElement('a');
+        hiddenDownloadAnchor.href = targetInstallerUrl;
+        hiddenDownloadAnchor.download = "WhisterGUIInstaller.exe";
+        hiddenDownloadAnchor.style.display = 'none';
+        
+        // Append, trigger, and clean up the hidden node element instantly
+        document.body.appendChild(hiddenDownloadAnchor);
+        hiddenDownloadAnchor.click();
+        document.body.removeChild(hiddenDownloadAnchor);
+
+        // 4. Smoothly transition the content text window layer in place
+        var contentPanel = document.getElementById('hero-content-panel');
+        if (!contentPanel) return;
+
+        contentPanel.style.opacity = '0';
+        
+        setTimeout(function() {
+            // 5. Inject the new Thank You card and onboarding sequence directly into the panel space
+            contentPanel.innerHTML = 
+                '<div class="thanks-fade-in">' +
+                    '<span style="display:inline-block; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); color:#3b82f6; padding:6px 14px; border-radius:20px; font-size:13px; font-weight:600; margin-bottom:16px;">✓ Download Initiated</span>' +
+                    '<h1 style="font-size:36px; margin:0 0 12px 0;">Thank You for Choosing Whister!</h1>' +
+                    '<p style="color:#94a3b8; margin:0; font-size:15px; line-height:1.6;">Your installation pack has started downloading. Follow the quick steps below to set up your secure engine instance.</p>' +
+                    
+                    '<div class="step-row">' +
+                        '<div class="step-node"><strong>Step 1</strong><p>Launch the downloaded setup installer binary.</p></div>' +
+                        '<div class="step-node"><strong>Step 2</strong><p>Grant permissions if prompted by your firewall.</p></div>' +
+                        '<div class="step-node"><strong>Step 3</strong><p>Enjoy built-in private tools at lightning speed.</p></div>' +
+                    '</div>' +
+                    
+                    '<div style="margin-top:24px;">' +
+                        '<a href="blog/index.html" class="btn-secondary" style="font-size:13px; display:inline-block; padding:10px 18px; text-decoration:none;">Go To Engine Blog &rarr;</a>' +
+                    '</div>' +
+                '</div>';
+            
+            contentPanel.style.opacity = '1';
+        }, 200);
+    }
+</script>
+
+
 
         <!-- ALL PLATFORMS SECTION WITH YOUR LIVE WINDOWS LINK -->
     <section class="platforms-section" id="all-platforms">
@@ -233,6 +328,8 @@
                 <p>Windows 10 / 11 (64-bit)</p>
                 <!-- Your functional installer download URL -->
                 <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe" class="btn-secondary">Download .EXE</a>
+                
+
             </div>
 
             <div class="platform-card" id="card-macos">

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Thank You for Downloading Whister</title>
+    <!-- Relative link pointing back to your main master style sheet -->
+    <link rel="stylesheet" href="style.css?v=999">
+    
+    <style>
+        /* =======================================================
+           MODERN THEME & WHOOSH INTRO (Ignored by IE)
+           ======================================================= */
+        @supports (display: grid) {
+            body {
+                background-color: #050811;
+                color: #ffffff;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            .thanks-container {
+                max-width: 800px;
+                margin: 120px auto 60px auto;
+                padding: 0 24px;
+                text-align: center;
+                opacity: 0;
+                transform: translateY(40px);
+                animation: thanksWhoosh 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+
+            @keyframes thanksWhoosh {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Status indicator badge */
+            .status-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: rgba(59, 130, 246, 0.1);
+                border: 1px solid rgba(59, 130, 246, 0.3);
+                color: #3b82f6;
+                padding: 8px 16px;
+                border-radius: 30px;
+                font-size: 14px;
+                font-weight: 500;
+                margin-bottom: 24px;
+            }
+
+            .pulse-dot {
+                width: 8px;
+                height: 8px;
+                background-color: #3b82f6;
+                border-radius: 50%;
+                animation: pulseGlow 1.5s infinite ease-in-out;
+            }
+
+            @keyframes pulseGlow {
+                0% { transform: scale(0.8); opacity: 0.5; }
+                50% { transform: scale(1.3); opacity: 1; }
+                100% { transform: scale(0.8); opacity: 0.5; }
+            }
+
+            /* Next steps panel setup */
+            .steps-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                grid-gap: 20px;
+                margin: 50px 0;
+                text-align: left;
+            }
+
+            .step-card {
+                background: #0c111d;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                border-radius: 12px;
+                padding: 24px;
+                position: relative;
+            }
+
+            .step-number {
+                font-size: 12px;
+                font-weight: 700;
+                color: #3b82f6;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 8px;
+            }
+
+            .step-card h3 {
+                margin: 0 0 10px 0;
+                font-size: 18px;
+                color: #ffffff;
+            }
+
+            .step-card p {
+                margin: 0;
+                font-size: 14px;
+                color: #94a3b8;
+                line-height: 1.6;
+            }
+
+            /* Action redirect dashboard buttons */
+            .action-box {
+                background: linear-gradient(135deg, #0a0f1d 0%, #070a14 100%);
+                border: 1px solid rgba(59, 130, 246, 0.15);
+                border-radius: 16px;
+                padding: 40px;
+                margin-top: 40px;
+            }
+
+            .btn-links-group {
+                display: flex;
+                justify-content: center;
+                gap: 16px;
+                flex-wrap: wrap;
+                margin-top: 24px;
+            }
+
+            .btn-thanks-primary {
+                background: #3b82f6;
+                color: #ffffff;
+                text-decoration: none;
+                padding: 12px 28px;
+                border-radius: 8px;
+                font-size: 15px;
+                font-weight: 600;
+                transition: background-color 0.2s ease;
+            }
+
+            .btn-thanks-primary:hover { background-color: #2563eb; }
+
+            .btn-thanks-secondary {
+                background: transparent;
+                color: #94a3b8;
+                text-decoration: none;
+                padding: 12px 28px;
+                border-radius: 8px;
+                font-size: 15px;
+                font-weight: 600;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: color 0.2s ease, border-color 0.2s ease;
+            }
+
+            .btn-thanks-secondary:hover {
+                color: #ffffff;
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        /* =======================================================
+           LEGACY INTERNET EXPLORER STRUCTURAL FALLBACK
+           ======================================================= */
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            body { background-color: #050811 !important; color: #ffffff !important; }
+            .thanks-container { max-width: 700px !important; margin: 60px auto !important; opacity: 1 !important; transform: none !important; }
+            .steps-grid { display: block !important; }
+            .step-card { width: 31% !important; float: left !important; margin-right: 2% !important; box-sizing: border-box !important; background: #0c111d !important; }
+            .thanks-container::after, .steps-grid::after { content: "" !important; display: table !important; clear: both !important; }
+            .btn-thanks-primary { color: #3b82f6 !important; background: transparent !important; text-decoration: underline !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Simplified Header Navigation back to index -->
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <a href="index.html" style="color: #3b82f6; text-decoration: none;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                        <path d="M2.5 3h3.8l3.7 12.2L13.7 3h3.6l3.7 12.2 3.7-12.2h3.8L21 21h-4l-3.7-12.2L9.6 21H5.6L2.5 3z"/>
+                    </svg>
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Return to Home</a>
+                <a href="blog/index.html">Read Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN THANK YOU DASHBOARD -->
+    <main class="thanks-container">
+        
+        <div class="status-badge">
+            <div class="pulse-dot"></div>
+            <span>Your Whister Download Has Started</span>
+        </div>
+
+        <h1 style="font-size: 42px; margin: 0 0 16px 0; font-weight: 700; letter-spacing: -0.5px;">Welcome to the Modern Web.</h1>
+        <p style="color: #64748b; font-size: 18px; margin: 0; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+            Thank you for downloading Whister. If your binary setup file didn't automatically fetch, please click the secondary troubleshooting action below.
+        </p>
+
+        <!-- INSTALLATION STEP GUIDE MATRIX -->
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">Step 01</div>
+                <h3>Open Installer</h3>
+                <p>Locate the <code>WhisterGUIInstaller</code> binary inside your system package directory or browser file tray.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">Step 02</div>
+                <h3>Grant Rights</h3>
+                <p>Confirm the security parameters when prompted by your sandbox kernel configuration framework.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">Step 03</div>
+                <h3>Launch Engine</h3>
+                <p>Run the configurations, select your privacy attributes, and begin browsing at maximum speeds natively.</p>
+            </div>
+        </div>
+
+        <!-- POST-DOWNLOAD ENGAGEMENT MODULE -->
+        <div class="action-box">
+            <h2 style="margin: 0 0 8px 0; font-size: 22px;">While you wait for your setup...</h2>
+            <p style="color: #94a3b8; font-size: 14px; margin: 0;">Explore community notes or secure manual fallback downloads if your network blocks automated scripts.</p>
+            
+            <div class="btn-links-group">
+                <a href="blog/index.html" class="btn-thanks-primary">Browse Engine Blog</a>
+                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-" target="_blank" rel="noopener noreferrer" class="btn-thanks-secondary">View GitHub Source</a>
+                <!-- Direct fallback installer link -->
+                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe" class="btn-thanks-secondary" id="manual-trigger-btn">Restart Download Manually</a>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Optional troubleshooting alert backup if a link array configuration fails
+        var manualBtn = document.getElementById('manual-trigger-btn');
+        if (manualBtn) {
+            manualBtn.onclick = function() {
+                console.log("Manual fallback binary pipeline triggered by user click.");
+            };
+        }
+    </script>
+
+</body>
+</html>
