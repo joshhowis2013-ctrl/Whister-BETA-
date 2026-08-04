@@ -200,7 +200,7 @@
         </div>
     </header>
 
-   <!-- MAIN HERO / DOWNLOAD SECTION -->
+     <!-- MAIN HERO / DOWNLOAD SECTION -->
 <section class="download-container">
     <style>
         /* Modern UI state modifications for the smooth transition (Ignored by IE) */
@@ -227,6 +227,14 @@
             }
             .step-node strong { color: #3b82f6; display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; }
             .step-node p { margin: 0; font-size: 13px; color: #94a3b8; line-height: 1.5; }
+            
+            /* Loading visual to tell the user the background stream is active */
+            .btn-download.is-loading {
+                background-color: #1e293b !important;
+                color: #94a3b8 !important;
+                pointer-events: none;
+                cursor: not-allowed;
+            }
         }
         /* IE Safe Fallbacks */
         @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
@@ -240,8 +248,8 @@
         <h1>Whister beta</h1>
         <p>Experience lightning-fast speeds, built-in privacy protection, and a customizable interface designed for the modern web.</p>
         <div class="actions">
-            <!-- href is set to an anchor link to prevent global page reload navigation -->
-            <a href="#all-platforms" id="main-download-btn" class="btn-download" onclick="executeDownloadThanks(event)">Download Browser</a>
+            <!-- Clicking this will securely fire our stream container script logic -->
+            <a href="#all-platforms" id="main-download-btn" class="btn-download" onclick="executeSilentDownload(event)">Download Browser</a>
             <span class="os-detect" id="os-text">Detecting your operating system...</span>
         </div>
     </div>
@@ -257,36 +265,60 @@
             </div>
         </div>
     </div>
-
-    <!-- HIDDEN BACKGROUND IFRAME: Triggers cross-domain downloads without page redirection -->
-    <iframe id="secret-download-frame" style="display:none; width:0; height:0; border:none;"></iframe>
 </section>
 
 <script>
-    function executeDownloadThanks(event) {
-        // 1. Let older browsers like Internet Explorer fall back to regular page scrolling
+    function executeSilentDownload(event) {
+        // 1. Fall back to standard anchors if using an ancient browser like Internet Explorer
         if (typeof window.IntersectionObserver === 'undefined') {
             return; 
         }
 
-        // 2. Stop the browser from navigating away or refreshing the tab
+        // 2. Prevent default anchor link routing jumps
         event.preventDefault();
 
-        // 3. Point the hidden background iframe directly to your live installer file path
-        var targetInstallerUrl = "https://github.com";
-        var downloadFrame = document.getElementById('secret-download-frame');
-        if (downloadFrame) {
-            downloadFrame.src = targetInstallerUrl;
-        }
-
-        // 4. Smoothly swap out the text layout panels in place
+        var downloadBtn = document.getElementById('main-download-btn');
         var contentPanel = document.getElementById('hero-content-panel');
-        if (!contentPanel) return;
+        if (!downloadBtn || !contentPanel) return;
 
+        // 3. Mark the button as loading so the user knows the background process started
+        downloadBtn.className = "btn-download is-loading";
+        downloadBtn.innerHTML = "Initiating Stream...";
+
+        // Your live GitHub release installer URL destination path
+        var githubReleaseUrl = "https://github.com";
+
+        // 4. Fetch the large installer binary file silently in the background
+        fetch(githubReleaseUrl)
+            .then(function(response) {
+                if (!response.ok) throw new Error('Network stream processing failed');
+                return response.blob(); // Convert the data packet into a secure local data blob
+            })
+            .then(function(blob) {
+                // 5. Build an internal data URI point route pointer
+                var localBlobUrl = window.URL.createObjectURL(blob);
+                var virtualAnchor = document.createElement('a');
+                virtualAnchor.href = localBlobUrl;
+                virtualAnchor.download = "WhisterGUIInstaller.exe";
+                
+                // Trigger the download natively within the local site domain envelope
+                document.body.appendChild(virtualAnchor);
+                virtualAnchor.click();
+                
+                // Instantly tear down the temporary memory address assets
+                document.body.removeChild(virtualAnchor);
+                window.URL.revokeObjectURL(localBlobUrl);
+            })
+            .catch(function(error) {
+                console.warn("Blob routing fallback triggered: ", error);
+                // Fallback: If GitHub CORS blocking flags interfere, open in an isolated background tab context
+                window.open(githubReleaseUrl, '_blank');
+            });
+
+        // 6. Transition the hero text immediately while the download stream runs
         contentPanel.style.opacity = '0';
         
         setTimeout(function() {
-            // 5. Inject the onboarding step layout
             contentPanel.innerHTML = 
                 '<div class="thanks-fade-in">' +
                     '<span style="display:inline-block; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); color:#3b82f6; padding:6px 14px; border-radius:20px; font-size:13px; font-weight:600; margin-bottom:16px;">✓ Download Initiated</span>' +
@@ -308,7 +340,6 @@
         }, 200);
     }
 </script>
-
 
 
         <!-- ALL PLATFORMS SECTION WITH YOUR LIVE WINDOWS LINK -->
