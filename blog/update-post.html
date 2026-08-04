@@ -4,63 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Introducing Whister Beta v1.2 - Blog</title>
+    <title>Deep-Dive into Privacy Bangs - Whister Blog</title>
+    <!-- Relative link pointing back up to your main styles -->
     <link rel="stylesheet" href="../style.css?v=999">
     <style>
+        body {
+            background-color: #050811;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
         .article-wrapper {
-            max-width: 720px;
-            margin: 100px auto 60px auto;
-            padding: 0 20px;
-            font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            max-width: 760px;
+            margin: 120px auto 80px auto;
+            padding: 0 24px;
         }
         .article-meta {
-            color: #b3adad;
+            color: #64748b;
             font-size: 14px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .article-title {
+            font-size: 38px;
+            font-weight: 700;
+            margin: 0 0 30px 0;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
         }
         .article-content p {
             font-size: 17px;
-            line-height: 1.7;
-            color: #e9e5e5;
+            line-height: 1.8;
+            color: #94a3b8; /* Highly legible soft text color */
             margin-bottom: 24px;
         }
         .back-link {
             display: inline-block;
-            margin-bottom: 30px;
-            color: #0076d6;
+            color: #3b82f6;
             text-decoration: none;
             font-weight: 500;
+            margin-bottom: 30px;
+            font-size: 15px;
+            transition: transform 0.2s ease;
         }
-        .back-link:hover { text-decoration: underline; }
+        .back-link:hover {
+            transform: translateX(-4px);
+        }
     </style>
 </head>
 <body>
 
+    <!-- TOP NAVIGATION HEADER BAR (Sub-page relative version) -->
     <header class="navbar">
         <div class="nav-left">
-            <div class="logo"><a href="../index.html" style="color:inherit; text-decoration:none;">W</a></div>
+            <div class="logo">
+                <a href="../index.html" style="color: #3b82f6; text-decoration: none;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                        <path d="M2.5 3h3.8l3.7 12.2L13.7 3h3.6l3.7 12.2 3.7-12.2h3.8L21 21h-4l-3.7-12.2L9.6 21H5.6L2.5 3z"/>
+                    </svg>
+                </a>
+            </div>
             <nav class="nav-links">
                 <a href="index.html">&larr; Back to Blog Feed</a>
             </nav>
         </div>
     </header>
 
+    <!-- ARTICLE CANVAS -->
     <main class="article-wrapper">
         <a href="index.html" class="back-link">&larr; All Articles</a>
         
         <header>
-            <div class="article-meta">Published on August 3, 2026 by Core Team</div>
-            <h1 style="font-size: 36px; margin-bottom: 30px; line-height: 1.2;">Introducing Whister Beta v1.2</h1>
+            <div class="article-meta">Published on August 4, 2026 by Core Team</div>
+            <h1 class="article-title">The road to whister://</h1>
         </header>
 
         <article class="article-content">
-            <p>Today we are thrilled to push out the latest revisions to our framework codebase. In this cycle, the browser engineering department focused directly on maximizing rendering pipeline speeds while reducing total memory retention flags across deep tabs.</p>
-            
-            <p>Our updated performance graphs confirm that the processing layer handles modern asynchronous tracking elements significantly better, protecting structural data parameters seamlessly.</p>
+            <!-- WRITE YOUR ARTICLE PARAGRAPHS HERE -->
+            <p>Hello, If you have used whister beta mode, you might have noticed the Whister:// protocol.</p>
+
+            <h2>What is A Custom URL Protocol for web browsers?</h2>
+
+            <p>A custom URL protocol is one of the MOST importent features of a Web browser eg Brave,Firefox,Chrome etc Have their own protocols To access their new-tab pages,settings,infos,Customization etc.</p>
+
+            <p>So</p>
         </article>
     </main>
 
-   <!-- NEW BULLETPROOF SITE FOOTER -->
+    <!-- NEW BULLETPROOF SITE FOOTER -->
 <footer class="wf-main-footer" style="background-color: #040710; position: relative; padding: 90px 40px 40px 40px; border-top: 1px solid rgba(59, 130, 246, 0.15); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: block; clear: both; overflow: hidden;">
     
     <!-- Ambient glowing tech accent behind the branding info -->
@@ -207,6 +240,5 @@
 </footer>
 
 
-    
 </body>
 </html>
