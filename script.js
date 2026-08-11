@@ -88,7 +88,7 @@ function insertBang(bangText) {
 }
 
 // ==========================================================================
-// 3. AUTOMATED BROWSER SLIDER INTERACTIVE LOGIC (PASTE NEW CODE HERE)
+// 3. AUTOMATED BROWSER SLIDER INTERACTIVE LOGIC 
 // ==========================================================================
 let currentSlideIndex = 0;
 let slideInterval;
