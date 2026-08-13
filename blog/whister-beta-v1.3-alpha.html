@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Deep-Dive into Privacy Bangs - Whister Blog</title>
+    <title>The road to whister://</title>
     <!-- Relative link pointing back up to main styles -->
     <link rel="stylesheet" href="../style.css?v=999">
     <style>
@@ -76,17 +76,125 @@
     <main class="article-wrapper">
         <a href="index.html" class="back-link">&larr; All Articles</a>
         
+
         <header>
-            <div class="article-meta">Published on July 28, 2026 by Core Team</div>
-            <h1 class="article-title">Deep-Dive into Privacy Bangs</h1>
+            <div class="article-meta">Published on August 13, 2026 by Core Team</div>
+            <h1 class="article-title">Introducing Whister 1.3 Alpha</h1>
         </header>
+       
+
 
         <article class="article-content">
             <!-- WRITE ARTICLE PARAGRAPHS HERE -->
-            <p>Bangs shortcuts are a core engine architectural component designed to change how you search the web. By parsing commands right at the network address layer, requests clear out typical tracker profile headers instantly.</p>
+            <p>Hello, welcome to the Whister 1.3 Alpha release!</p>
+
+            <h2>We are excited to announce new features for Whister 1.3 </h2>
+
+            <p>In this release, we have focused on enhancing the user experience and improving performance. Some of the key features include:</p>
+
+            <p>- Improved performance and faster load times</p>
+            <p>- Enhanced user interface with a more modern design</p>
+            <p>- Better integration with the browser's core functionalities</p>
+
+            <h2>Updated chromium version to...</h2>
+
+<section class="section-container stats-bg" id="stats">
+      <div class="stats-grid">
+        <div class="stat-item">
+            <!-- data-target holds the end number. data-suffix holds formatting symbols -->
+            <div class="stat-number" id="stat-chromium" data-target="153">153</div>
+            <div class="stat-label">Chromium Version</div>
+        </div>
+      </div>  
+</section>
+
+        <h2>Moving away from inno and switching to nullsoft install system</h2>
+
+        <p>We have decided to move away from the Inno Setup installer and switch to the Nullsoft Install System (NSIS) for our installation process. This change allows us to provide a more streamlined and efficient installation experience for our users.</p>
+
+<section class="section-container stats-bg" id="stats">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <!-- data-target holds the end number. data-suffix holds formatting symbols -->
             
-            <p>Instead of hitting a landing point that logs your system fingerprint metadata, a Bang router splits your routing path, giving you maximum privacy protection natively inside Whister browser.</p>
+        <div class="stat-item">
+            <div class="stat-number" id="stat-speed" data-target="2.4" data-suffix="x">0x</div>
+            <div class="stat-label">Faster Loading</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" id="stat-privacy" data-target="0.0" data-suffix="%">0.0%</div>
+            <div class="stat-label">Holds</div>
+        </div>
+    </div>
+</section>
+
+  
+        <script>
+    // Global flag prevents the animation from running multiple times
+    var hasAnimatedStats = false;
+
+    // Linear interpolation math to count numbers up smoothly over time
+    function animateValue(obj, start, end, duration, decimalPlaces) {
+        var startTime = null;
+        function step(currentTime) {
+            if (!startTime) startTime = currentTime;
+            var progress = Math.min((currentTime - startTime) / duration, 1);
+            var currentVal = progress * (end - start) + start;
+            var suffix = obj.getAttribute('data-suffix') || '';
+            
+            obj.innerHTML = currentVal.toFixed(decimalPlaces) + suffix;
+            
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        }
+        window.requestAnimationFrame(step);
+    }
+
+    // Finds each tracker element and feeds them their respective target metrics
+    function triggerStatsCounter() {
+        if (hasAnimatedStats) return;
+        hasAnimatedStats = true;
+
+        var chromEl = document.getElementById('stat-chromium');
+        var speedEl = document.getElementById('stat-speed');
+        var privEl = document.getElementById('stat-privacy');
+
+        if (chromEl) animateValue(chromEl, 0, parseFloat(chromEl.getAttribute('data-target')), 1500, 0);
+        if (speedEl) animateValue(speedEl, 0.0, parseFloat(speedEl.getAttribute('data-target')), 1500, 1);
+        if (privEl)  animateValue(privEl, 0.0, parseFloat(privEl.getAttribute('data-target')), 1500, 1);
+    }
+
+    // FEATURE DETECTION: Use modern IntersectionObserver if available. 
+    // Fallback: Instantly apply the numbers for Internet Explorer without breaking the JS engine.
+    if (typeof window.IntersectionObserver !== 'undefined') {
+        var statsSection = document.getElementById('stats');
+        var observer = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) {
+                triggerStatsCounter();
+                observer.disconnect(); // Clears the listener once triggered
+            }
+        }, { threshold: 0.1 });
+
+        if (statsSection) observer.observe(statsSection);
+    } else {
+        // IE Fallback Action
+        var cE = document.getElementById('stat-chromium');
+        var sE = document.getElementById('stat-speed');
+        var pE = document.getElementById('stat-privacy');
+        if (cE) cE.innerHTML = cE.getAttribute('data-target');
+        if (sE) sE.innerHTML = sE.getAttribute('data-target') + (sE.getAttribute('data-suffix') || '');
+        if (pE) pE.innerHTML = pE.getAttribute('data-target') + (pE.getAttribute('data-suffix') || '');
+    }
+</script>
         </article>
+        
+        <div class="user-avatar">CT</div>
+                <div>
+                    <h4>Core Team</h4>
+                    <span>Developer</span>
+                </div>
+            </div>
     </main>
 
     <!-- NEW BULLETPROOF SITE FOOTER -->
