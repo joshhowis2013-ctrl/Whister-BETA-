@@ -252,15 +252,17 @@
     </div>
     
     <div class="download-preview">
-        <div class="browser-mockup">
+       <div class="browser-mockup">
     <div class="mockup-header">
         <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-        <!-- This represents the address bar bar text field -->
-        <div class="mockup-url">https://whister.io<span id="typing-text"></span><span class="typing-cursor">|</span></div>
+        <!-- THE ADDRESS BAR CHANNELS -->
+        <div class="mockup-url">
+            https://whister.io<span id="typing-text"></span><span class="typing-cursor">|</span>
+        </div>
     </div>
-    <div class="mockup-body" style="display: flex; align-items: center; justify-content: center; height: 180px; background-color: #0b0f19;">
-        <!-- Large high-contrast display message matching your theme aesthetic -->
-        <h2 id="mockup-display-phrase" style="color: #ffffff; font-size: 24px; font-weight: 700; margin: 0; letter-spacing: -0.5px;"></h2>
+    <div class="mockup-body" style="display: flex; align-items: center; justify-content: center; height: 200px; background-color: #090d16; padding: 20px;">
+        <!-- LARGE CENTER TERMINAL DISPLAY -->
+        <h2 id="mockup-display-phrase" style="color: #ffffff; font-size: 26px; font-weight: 700; margin: 0; text-align: center; letter-spacing: -0.5px;"></h2>
     </div>
 </div>
 
@@ -1024,6 +1026,24 @@
         border: 1px solid rgba(255, 255, 255, 0.03);
     }
  
+    /* =======================================================
+   TYPING ENGINE ANIMATED CURSOR TRACE
+   ======================================================= */
+@supports (display: grid) {
+    .typing-cursor {
+        color: #3b82f6; /* Bright electric blue cursor */
+        font-weight: 700;
+        margin-left: 2px;
+        /* Constantly blinks back and forth smoothly */
+        animation: cyberCursorBlink 0.8s infinite steps(2, start);
+    }
+
+    @keyframes cyberCursorBlink {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+}
+
    /* =======================================================
    STEP 6: FIXED MODULE CARDS & GRAYED-OUT ALTERNATIVES
    ======================================================= */
