@@ -9,7 +9,8 @@
 # Whister-BETA-
 Whister is a fast, secure, browser with the looks (beta) 
 
-
+[![Last Updated](https://img.shields.io/badge/Last_Updated-2026--05--04-brightgreen?style=for-the-badge)](https://github.com/joshhowis2013-ctrl/Whister-BETA-/commits/main)
+ 
 </div>
 
 > [!NOTE]
