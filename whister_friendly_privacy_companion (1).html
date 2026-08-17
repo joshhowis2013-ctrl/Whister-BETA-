@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whister Privacy Companion ✌️</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            buddy: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              accent: '#38bdf8',
+              warm: '#f59e0b',
+              pink: '#ec4899',
+              purple: '#a855f7'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+   
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #4ade80 0%, #38bdf8 50%, #a855f7 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(51, 65, 85, 0.8);
+      border-radius: 9999px;
+    }
+   /* =======================================================
+   DYNAMIC ANIMATIONS & MICRO-INTERACTIONS
+   ======================================================= */
+
+/* Entrance animation for blog cards */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pulse animation for ambient background glows */
+@keyframes ambientPulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.75;
+        transform: scale(1.1);
+    }
+}
+
+/* Subtle glow shimmer for button borders */
+@keyframes borderGlow {
+    0% {
+        border-color: rgba(59, 130, 246, 0.3);
+        box-shadow: 0 0 0px rgba(59, 130, 246, 0);
+    }
+    50% {
+        border-color: rgba(59, 130, 246, 0.8);
+        box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+    }
+    100% {
+        border-color: rgba(59, 130, 246, 0.3);
+        box-shadow: 0 0 0px rgba(59, 130, 246, 0);
+    }
+}
+
+/* Staggered card entrance effects */
+.blog-card {
+    opacity: 0;
+    animation: fadeInUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.blog-grid .blog-card:nth-child(1) { animation-delay: 0.05s; }
+.blog-grid .blog-card:nth-child(2) { animation-delay: 0.15s; }
+.blog-grid .blog-card:nth-child(3) { animation-delay: 0.25s; }
+.blog-grid .blog-card:nth-child(4) { animation-delay: 0.35s; }
+.blog-grid .blog-card:nth-child(5) { animation-delay: 0.45s; }
+.blog-grid .blog-card:nth-child(6) { animation-delay: 0.55s; }
+
+/* Hover light sweep effect on buttons */
+.btn-read-article {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-read-article::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.blog-card:hover .btn-read-article::before {
+    left: 140%;
+}
+
+/* Continuous background pulse for footer ambient light */
+.wf-main-footer > div:first-of-type {
+    animation: ambientPulse 7s ease-in-out infinite;
+}
+/* Smooth entrance for the hero headline */
+.hero-title, 
+.section-header h2 {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: smoothFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Gradient shimmer sweep across the "Whister Browser" text */
+.hero-title .highlight-text {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shimmerGlow 4s linear infinite;
+}
+
+@keyframes smoothFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmerGlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-buddy-500 selection:text-slate-950 antialiased">
+
+  <!-- Header Section -->
+  <header class="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Mascot Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-buddy-500 via-buddy-accent to-purple-500 p-0.5 shadow-lg shadow-buddy-500/20 hover:scale-105 transition-transform cursor-pointer" onclick="switchTab('ai-buddy')">
+          <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+            <span class="text-xl">🐸</span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-extrabold text-base sm:text-lg leading-tight tracking-tight text-white">Whister Privacy Suite</h1>
+            <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">✌️ Active Protection</span>
+          </div>
+          <p class="text-[11px] text-slate-400 font-medium">Local privacy tools, live diagnostics & AI assistant</p>
+        </div>
+      </div>
+
+      <!-- Tab Buttons -->
+      <nav class="flex items-center space-x-1 sm:space-x-2 bg-slate-950/80 p-1 rounded-2xl border border-slate-800">
+        <button onclick="switchTab('ai-buddy')" id="tab-ai-buddy" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-buddy-600 text-white shadow-md flex items-center gap-1.5">
+          <i data-lucide="bot" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Ask</span> Buddy
+        </button>
+        <button onclick="switchTab('audit')" id="tab-audit" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center gap-1.5">
+          <i data-lucide="fingerprint" class="w-4 h-4"></i>
+          <span>Fingerprint Audit</span>
+        </button>
+        <button onclick="switchTab('tools')" id="tab-tools" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>Easy Tools</span>
+        </button>
+        <button onclick="switchTab('scorecard')" id="tab-scorecard" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center gap-1.5">
+          <i data-lucide="heart-pulse" class="w-4 h-4"></i>
+          <span>Health Score</span>
+        </button>
+        <button onclick="switchTab('blog')" id="tab-blog" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center gap-1.5">
+          <i data-lucide="newspaper" class="w-4 h-4"></i>
+          <span>Blog</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- Welcoming Friendly Hero Banner -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/40 border border-slate-800 shadow-2xl relative overflow-hidden mb-8">
+      <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-buddy-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-10 -top-10 w-64 h-64 bg-buddy-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+        <div class="space-y-3 text-center md:text-left max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-buddy-500/10 text-buddy-400 border border-buddy-500/20 text-xs font-semibold">
+            <span class="animate-pulse">✨</span> Privacy made simple, powerful & stress-free
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+            Your personal digital shield and <span class="gradient-text"> tips </span> <span class="gradient-text">Whister Browser</span> ✌️
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Audit your browser fingerprint, clean photo EXIF tags, encrypt secret notes locally, sanitize tracking URLs, or ask Whister Buddy anything about staying safe online!
+          </p>
+        </div>
+
+        <!-- Quick Interactive Health Pill -->
+        <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 flex items-center gap-4 min-w-[220px] shadow-lg hover:border-slate-700 transition">
+          <div class="relative flex items-center justify-center">
+            <svg class="w-16 h-16 transform -rotate-90">
+              <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="6" class="text-slate-800" fill="transparent" />
+              <circle id="hero-score-circle" cx="32" cy="32" r="26" stroke="currentColor" stroke-width="6" stroke-dasharray="163" stroke-dashoffset="30" class="text-buddy-500 transition-all duration-1000" fill="transparent" />
+            </svg>
+            <span id="hero-score-val" class="absolute font-extrabold text-sm text-white">100%</span>
+          </div>
+          <div>
+            <div class="text-xs font-semibold text-slate-400">Privacy Status</div>
+            <div id="hero-status-text" class="text-sm font-bold text-emerald-400">Super Safe 🌟</div>
+            <button onclick="switchTab('scorecard')" class="text-[11px] text-buddy-accent hover:underline font-medium mt-0.5 block">View Checkup &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 1: AI PRIVACY BUDDY (CHATBOT & ELI5 TRANSLATOR) -->
+    <div id="content-ai-buddy" class="space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Main Chat Box -->
+        <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col h-[600px] shadow-xl relative">
+          
+          <!-- Chat Header -->
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-4 mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-xl">
+                🐸
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-100 text-sm sm:text-base flex items-center gap-2">
+                  Whister AI Buddy
+                  <span id="ai-status-pill" class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono font-medium">✨ Ready</span>
+                </h3>
+                <p class="text-xs text-slate-400">Ask privacy & browser questions in plain, friendly English</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="exportChatTranscript()" class="text-xs text-slate-400 hover:text-slate-200 px-3 py-1.5 rounded-xl border border-slate-800 hover:bg-slate-800 transition flex items-center gap-1.5" title="Export Transcript">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Export</span>
+              </button>
+              <button onclick="clearChat()" class="text-xs text-slate-400 hover:text-slate-200 px-3 py-1.5 rounded-xl border border-slate-800 hover:bg-slate-800 transition flex items-center gap-1.5">
+                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Clear
+              </button>
+            </div>
+          </div>
+
+          <!-- Messages Container -->
+          <div id="chat-messages" class="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
+            
+            <!-- Welcome Message from Buddy -->
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl bg-buddy-500/20 text-buddy-400 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
+                🐸
+              </div>
+              <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 max-w-[85%] text-xs sm:text-sm text-slate-200 leading-relaxed shadow-sm">
+                <p class="font-bold text-buddy-400 mb-1">Hey friend! 👋</p>
+                <p>I'm your personal privacy companion! Ask me anything—like <i>"What is browser fingerprinting?"</i>, <i>"How do cookies track me?"</i>, <i>"What is DNS over HTTPS?"</i> or <i>"How do passphrases work?"</i>. I'll explain it simply with zero confusing jargon!</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Chat Input Area -->
+          <div class="mt-4 pt-3 border-t border-slate-800/80">
+            <form onsubmit="handleChatSubmit(event)" class="flex gap-2">
+              <button type="button" onclick="toggleVoiceSpeech()" id="voice-btn" class="p-3 bg-slate-950 border border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40 rounded-2xl transition flex items-center justify-center" title="Voice Input">
+                <i data-lucide="mic" class="w-4 h-4"></i>
+              </button>
+              <input id="chat-input" type="text" placeholder="Ask Buddy a privacy question... (e.g. How does Canvas fingerprinting work?)" class="flex-1 bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-xs sm:text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-buddy-500 transition">
+              <button type="submit" id="send-btn" class="bg-gradient-to-r from-buddy-600 to-buddy-accent hover:opacity-90 text-slate-950 font-bold px-5 py-3 rounded-2xl transition flex items-center justify-center gap-1.5 text-xs sm:text-sm shadow-md">
+                <span>Send</span>
+                <i data-lucide="send" class="w-4 h-4"></i>
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- Side Panel: Quick Prompts & Topic Starters -->
+        <div class="space-y-4">
+          <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 shadow-xl">
+            <h4 class="font-bold text-xs uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-amber-400"></i> Popular Questions
+            </h4>
+            <div class="space-y-2">
+              <button onclick="askQuickPrompt('Explain web cookies to me like I am 8 years old.')" class="w-full text-left p-3 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-buddy-500/50 hover:bg-slate-800/50 transition text-xs text-slate-300 font-medium flex items-center justify-between group">
+                <span>🍪 Explain cookies like I'm 8</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-buddy-400 transition"></i>
+              </button>
+              <button onclick="askQuickPrompt('Does Incognito mode hide my activity from my Wi-Fi provider?')" class="w-full text-left p-3 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-buddy-500/50 hover:bg-slate-800/50 transition text-xs text-slate-300 font-medium flex items-center justify-between group">
+                <span>🕵️ What does Incognito REALLY do?</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-buddy-400 transition"></i>
+              </button>
+              <button onclick="askQuickPrompt('What is canvas fingerprinting and how do I block it?')" class="w-full text-left p-3 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-buddy-500/50 hover:bg-slate-800/50 transition text-xs text-slate-300 font-medium flex items-center justify-between group">
+                <span>🖐️ What is canvas fingerprinting?</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-buddy-400 transition"></i>
+              </button>
+              <button onclick="askQuickPrompt('How do passphrases protect me better than standard passwords?')" class="w-full text-left p-3 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-buddy-500/50 hover:bg-slate-800/50 transition text-xs text-slate-300 font-medium flex items-center justify-between group">
+                <span>🔑 Why passphrases beat passwords</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-buddy-400 transition"></i>
+              </button>
+              <button onclick="askQuickPrompt('What is DNS over HTTPS (DoH) and why should I enable it?')" class="w-full text-left p-3 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-buddy-500/50 hover:bg-slate-800/50 transition text-xs text-slate-300 font-medium flex items-center justify-between group">
+                <span>🌐 What is DNS over HTTPS?</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-buddy-400 transition"></i>
+              </button>
+              <button onclick="askQuickPrompt('How do tracker parameters in shared links (like utm_source) track me?')" class="w-full text-left p-3 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-buddy-500/50 hover:bg-slate-800/50 transition text-xs text-slate-300 font-medium flex items-center justify-between group">
+                <span>🔗 How do tracking links work?</span>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-buddy-400 transition"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Zero Server Storage Promise Box -->
+          <div class="bg-gradient-to-br from-emerald-950/40 to-slate-900 border border-emerald-500/20 rounded-3xl p-5 shadow-xl">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="p-2 rounded-xl bg-emerald-500/10 text-emerald-400">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+              </div>
+              <h4 class="font-bold text-sm text-slate-100">100% Private Session</h4>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Your chat stays directly inside your browser memory. No text is recorded on remote tracking servers or sold to data brokers.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: BROWSER FINGERPRINT & LEAK AUDIT -->
+    <div id="content-audit" class="hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800">
+          <div>
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i data-lucide="scan-face" class="w-5 h-5 text-buddy-accent"></i> Real-Time Browser Leak & Fingerprint Test
+            </h3>
+            <p class="text-xs text-slate-400 mt-1">
+              Checks what unique technical characteristics your browser discloses to web servers without permission.
+            </p>
+          </div>
+          <button onclick="runFingerprintAudit()" class="px-4 py-2 bg-buddy-600 hover:bg-buddy-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Run Live Diagnostic
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Canvas Hash Card -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">Canvas Fingerprint Hash</span>
+              <span id="canvas-status" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">Auditing...</span>
+            </div>
+            <div id="canvas-hash" class="font-mono text-xs text-emerald-400 font-bold truncate">Generating...</div>
+            <div class="flex items-center gap-2 pt-1">
+              <canvas id="canvas-preview-box" width="120" height="24" class="rounded bg-slate-900 border border-slate-800"></canvas>
+              <p class="text-[10px] text-slate-500 leading-tight">Unique HTML5 2D rendering hash</p>
+            </div>
+          </div>
+
+          <!-- Screen & GPU Details -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">Hardware & GPU Info</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Detected</span>
+            </div>
+            <div id="gpu-info" class="font-mono text-xs text-slate-200 font-bold truncate">Detecting WebGL...</div>
+            <p class="text-[11px] text-slate-500 leading-tight">Screen resolution, hardware concurrency & GPU renderer strings.</p>
+          </div>
+
+          <!-- WebRTC Leak Status -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">WebRTC Local IP Leak Check</span>
+              <span id="webrtc-status" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Protected</span>
+            </div>
+            <div id="webrtc-info" class="font-mono text-xs text-emerald-400 font-bold truncate">No Local IP Leaked</div>
+            <p class="text-[11px] text-slate-500 leading-tight">Tests whether WebRTC APIs bypass proxies to leak internal LAN IPs.</p>
+          </div>
+
+          <!-- Global Privacy Control (GPC) -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">Global Privacy Signal (DNT/GPC)</span>
+              <span id="gpc-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400">Checking</span>
+            </div>
+            <div id="gpc-status" class="font-mono text-xs text-slate-200 font-bold">Checking header flags...</div>
+            <p class="text-[11px] text-slate-500 leading-tight">Signals to websites your opt-out preference for data selling.</p>
+          </div>
+
+          <!-- User Agent & Platform -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">User Agent String</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300">Browser Info</span>
+            </div>
+            <div id="ua-info" class="font-mono text-[11px] text-slate-300 truncate">Detecting...</div>
+            <p class="text-[11px] text-slate-500 leading-tight">Operating system version and Chromium browser engine identifiers.</p>
+          </div>
+
+          <!-- AudioContext Fingerprint -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">AudioContext Fingerprint</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20">Audited</span>
+            </div>
+            <div id="audio-hash" class="font-mono text-xs text-purple-400 font-bold truncate">Generating...</div>
+            <p class="text-[11px] text-slate-500 leading-tight">Measures tiny variations in audio processing hardware execution.</p>
+          </div>
+
+          <!-- Display Metrics -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">Display & Color Depth</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300">Screen</span>
+            </div>
+            <div id="screen-info" class="font-mono text-xs text-slate-200 font-bold">Detecting...</div>
+            <p class="text-[11px] text-slate-500 leading-tight">Resolution, color bit-depth, orientation & device pixel ratio.</p>
+          </div>
+
+          <!-- Hardware Concurrency & Memory -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">CPU Cores & Memory</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300">Hardware</span>
+            </div>
+            <div id="hardware-info" class="font-mono text-xs text-slate-200 font-bold">Detecting...</div>
+            <p class="text-[11px] text-slate-500 leading-tight">Logical CPU threads and estimated RAM capacity.</p>
+          </div>
+
+          <!-- Network & Connection Info -->
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">Network API Diagnostics</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300">Connection</span>
+            </div>
+            <div id="net-info" class="font-mono text-xs text-slate-200 font-bold">Detecting...</div>
+            <p class="text-[11px] text-slate-500 leading-tight">Network type, round-trip latency & effective bandwidth speed.</p>
+          </div>
+        </div>
+
+        <!-- Fingerprint Risk Score Box -->
+        <div class="mt-6 p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-2xl bg-buddy-500/10 text-buddy-400 border border-buddy-500/20">
+              <i data-lucide="shield-alert" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-slate-100">Browser Uniqueness Analysis</h4>
+              <p id="fingerprint-risk-desc" class="text-xs text-slate-400">Whister Browser active anti-fingerprinting noise layer active.</p>
+            </div>
+          </div>
+          <span id="risk-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            Low Tracking Surface
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: FRIENDLY PRIVACY UTILITIES -->
+    <div id="content-tools" class="hidden space-y-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Tool 1: Memorable Passphrase Weaver -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                  <i data-lucide="key-round" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-100 text-sm sm:text-base">Passphrase Weaver</h3>
+                  <span class="text-[11px] text-purple-400 font-medium">Easy to remember & ultra-strong</span>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+              Security experts recommend friendly word strings like <code class="text-emerald-400 font-mono">happy-turtle-sailing-cloud-42</code> that resist brute-force cracking while being easy to memorize.
+            </p>
+
+            <!-- Customizer Controls -->
+            <div class="space-y-3 mb-4 bg-slate-950 p-3 rounded-2xl border border-slate-800/80">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-slate-400">Words Count:</span>
+                <div class="flex gap-1">
+                  <button onclick="setWordCount(3)" class="word-cnt-btn px-2 py-1 rounded-lg text-[10px] font-bold bg-slate-800 text-slate-300">3</button>
+                  <button onclick="setWordCount(4)" class="word-cnt-btn px-2 py-1 rounded-lg text-[10px] font-bold bg-buddy-600 text-white">4</button>
+                  <button onclick="setWordCount(5)" class="word-cnt-btn px-2 py-1 rounded-lg text-[10px] font-bold bg-slate-800 text-slate-300">5</button>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-slate-400">Separator:</span>
+                <select id="passphrase-sep" onchange="generatePassphrase()" class="bg-slate-900 border border-slate-800 text-slate-200 text-xs rounded-xl px-2 py-1 focus:outline-none">
+                  <option value="-">Hyphen (-)</option>
+                  <option value=".">Dot (.)</option>
+                  <option value="_">Underscore (_)</option>
+                  <option value=" ">Space ( )</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Display Box -->
+            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-800 text-center relative group">
+              <span id="passphrase-display" class="font-mono text-sm sm:text-base font-bold text-emerald-400 tracking-wide select-all">
+                sunny-dolphin-rocket-tea-99
+              </span>
+            </div>
+
+            <!-- Strength Bar -->
+            <div class="mt-3 space-y-1">
+              <div class="flex justify-between text-[11px]">
+                <span class="text-slate-400">Password Entropy:</span>
+                <span id="strength-label" class="text-emerald-400 font-bold">Unbreakable (128 bits) 🛡️</span>
+              </div>
+              <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                <div id="strength-bar" class="h-full bg-emerald-400 rounded-full w-full transition-all duration-500"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 space-y-2">
+            <button onclick="generatePassphrase()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-90 text-white font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-md">
+              <i data-lucide="sparkles" class="w-4 h-4"></i> Generate New Passphrase
+            </button>
+            <button onclick="copyPassphrase()" class="w-full py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition flex items-center justify-center gap-2 border border-slate-700">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy to Clipboard
+            </button>
+          </div>
+        </div>
+
+        <!-- Tool 2: Friendly Photo EXIF Scrub -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                  <i data-lucide="image-minus" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-100 text-sm sm:text-base">Photo Location Cleaner</h3>
+                  <span class="text-[11px] text-sky-400 font-medium">Remove hidden GPS & device metadata</span>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-5 leading-relaxed">
+              Photos contain hidden camera metadata, exact GPS coordinates, and timestamps. Strip them with 1 click right inside your browser RAM!
+            </p>
+
+            <!-- Dropzone -->
+            <div id="friendly-drop-zone" onclick="document.getElementById('photo-input').click()" class="border-2 border-dashed border-slate-700 hover:border-sky-400 rounded-2xl p-6 text-center cursor-pointer transition bg-slate-950/60 group">
+              <input type="file" id="photo-input" accept="image/*" class="hidden" onchange="handleFriendlyImage(event)">
+              <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-400 flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+              </div>
+              <p class="text-xs font-bold text-slate-200">Click or Drop Photo Here</p>
+              <p class="text-[10px] text-slate-400 mt-1">Processed 100% inside your RAM</p>
+            </div>
+
+            <!-- Preview Card -->
+            <div id="photo-result-container" class="hidden mt-4 p-3 bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-between">
+              <div class="flex items-center gap-3 overflow-hidden">
+                <img id="photo-thumb" class="w-12 h-12 rounded-xl object-cover border border-slate-700" src="" alt="Thumbnail">
+                <div class="truncate">
+                  <p id="photo-filename" class="text-xs font-bold truncate text-slate-200">photo.jpg</p>
+                  <p class="text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
+                    <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> GPS Data Removed!
+                  </p>
+                </div>
+              </div>
+              <a id="download-cleaned-photo" download="friendly_safe_photo.png" class="p-2.5 bg-buddy-600 hover:bg-buddy-500 text-white rounded-xl transition text-xs font-bold flex items-center gap-1 shadow">
+                <i data-lucide="download" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+            <span>Server Uploads:</span>
+            <span class="text-emerald-400 font-bold font-mono">0 Bytes (Zero Risk)</span>
+          </div>
+        </div>
+
+        <!-- Tool 3: Friendly Encrypted Note Sharer -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                  <i data-lucide="lock" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-100 text-sm sm:text-base">Magic Secret Note</h3>
+                  <span class="text-[11px] text-amber-400 font-medium">Local AES-256 Text Vault</span>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+              Encrypt sensitive text or passwords with WebCrypto PBKDF2 + AES-GCM before sending or saving.
+            </p>
+
+            <div class="space-y-3">
+              <input type="password" id="secret-pass" placeholder="Enter secret password..." class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-100 focus:outline-none focus:border-amber-500 transition">
+              <textarea id="secret-text" rows="3" placeholder="Type secret message or note here..." class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-100 focus:outline-none focus:border-amber-500 transition resize-none"></textarea>
+            </div>
+          </div>
+
+          <div class="mt-4 space-y-2">
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="encryptFriendlyNote()" class="py-2.5 px-3 rounded-xl bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 border border-amber-500/30 text-xs font-bold transition flex items-center justify-center gap-1">
+                <i data-lucide="lock" class="w-3.5 h-3.5"></i> Encrypt
+              </button>
+              <button onclick="decryptFriendlyNote()" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition flex items-center justify-center gap-1">
+                <i data-lucide="key" class="w-3.5 h-3.5"></i> Decrypt
+              </button>
+            </div>
+            <p id="note-status" class="text-[10px] text-slate-400 text-center font-mono">Ready to seal your note 🔐</p>
+          </div>
+        </div>
+
+        <!-- Tool 4: Tracking Link Sanitizer -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <i data-lucide="link-2-off" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-100 text-sm sm:text-base">URL Tracking Cleaner</h3>
+                  <span class="text-[11px] text-emerald-400 font-medium">Strip UTM & ad parameters</span>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+              Remove invasive tracking parameters like <code class="text-emerald-400">utm_source</code>, <code class="text-emerald-400">fbclid</code>, and <code class="text-emerald-400">gclid</code> before sharing links.
+            </p>
+
+            <div class="space-y-3">
+              <input type="text" id="dirty-url-input" placeholder="Paste URL (e.g. https://example.com?utm_source=fb&fbclid=123)" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-100 focus:outline-none focus:border-emerald-500 transition">
+              <div id="clean-url-box" class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs font-mono text-slate-400 break-all min-h-[42px] flex items-center">
+                Clean URL will appear here...
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 space-y-2">
+            <button onclick="sanitizeUrlInput()" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs transition flex items-center justify-center gap-1.5 shadow">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Strip Tracking Tags
+            </button>
+          </div>
+        </div>
+
+        <!-- Tool 5: WebCrypto Text Hasher -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-pink-500/10 text-pink-400 border border-pink-500/20">
+                  <i data-lucide="binary" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-100 text-sm sm:text-base">SHA-256 Text Hasher</h3>
+                  <span class="text-[11px] text-pink-400 font-medium">Verify file or message integrity</span>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+              Calculate standard cryptographic SHA-256 checksums for text or strings directly in your browser.
+            </p>
+
+            <div class="space-y-3">
+              <input type="text" id="hash-text-input" placeholder="Type text to hash..." oninput="calculateSha256()" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-100 focus:outline-none focus:border-pink-500 transition">
+              <div id="hash-output-box" class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-[11px] font-mono text-pink-400 break-all min-h-[42px] flex items-center">
+                SHA-256 hash output...
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 space-y-2">
+            <button onclick="copyHashResult()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition flex items-center justify-center gap-1.5 border border-slate-700">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Checksum
+            </button>
+          </div>
+        </div>
+
+        <!-- Tool 6: Quick Privacy Checklist & Tips -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-xl">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                  <i data-lucide="compass" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-100 text-sm sm:text-base">Daily Safe Habits</h3>
+                  <span class="text-[11px] text-indigo-400 font-medium">Pro privacy tips</span>
+                </div>
+              </div>
+            </div>
+            <ul class="space-y-2 text-xs text-slate-300">
+              <li class="flex items-start gap-2">
+                <span class="text-buddy-400 font-bold">1.</span>
+                <span>Use strong 4-word passphrases instead of complex short passwords.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-buddy-400 font-bold">2.</span>
+                <span>Clean location EXIF tags before sharing smartphone photos online.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-buddy-400 font-bold">3.</span>
+                <span>Sanitize tracking links (`utm_source`) before forwarding URLs.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-buddy-400 font-bold">4.</span>
+                <span>Enable Global Privacy Control (GPC) in your Whister settings.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-800">
+            <button onclick="switchTab('scorecard')" class="w-full text-center text-xs text-buddy-accent hover:underline font-bold">
+              Take Full Privacy Checkup &rarr;
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TAB 4: GAMIFIED PRIVACY HEALTH SCORECARD -->
+    <div id="content-scorecard" class="hidden space-y-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Main Health Gauge Card -->
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col items-center justify-between text-center relative overflow-hidden">
+          <div class="absolute -top-12 -right-12 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="w-full flex items-center justify-between pb-4 border-b border-slate-800">
+            <h3 class="font-bold text-sm text-slate-200 flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> Privacy Scorecard
+            </h3>
+            <span class="px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-buddy-500/10 text-buddy-400 border border-buddy-500/20">Live Audit</span>
+          </div>
+
+          <div class="my-6 relative flex items-center justify-center">
+            <svg class="w-44 h-44 transform -rotate-90">
+              <circle cx="88" cy="88" r="68" stroke="currentColor" stroke-width="12" class="text-slate-800" fill="transparent" />
+              <circle id="score-circle-main" cx="88" cy="88" r="68" stroke="currentColor" stroke-width="12" stroke-dasharray="427" stroke-dashoffset="0" class="text-buddy-500 transition-all duration-1000" fill="transparent" />
+            </svg>
+            <div class="absolute flex flex-col items-center">
+              <span id="score-val-main" class="text-4xl font-extrabold text-white tracking-tight">100</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">out of 100</span>
+            </div>
+          </div>
+
+          <div class="w-full space-y-2">
+            <h4 id="score-badge-title" class="text-lg font-bold text-emerald-400 mb-1">Great Job! Super Safe 🌟</h4>
+            <p class="text-xs text-slate-400 leading-relaxed max-w-xs mx-auto">
+              Your Whister Browser is well-fortified against tracking profiles, hardware leaks, and unsafe data sharing.
+            </p>
+            <button onclick="downloadHealthReport()" class="w-full mt-3 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-xs transition flex items-center justify-center gap-2">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i> Download Health Audit Report
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Habits Checklist -->
+        <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+              <div>
+                <h3 class="font-bold text-base text-slate-100">Interactive Privacy Checklist</h3>
+                <p class="text-xs text-slate-400 mt-0.5">Toggle your active protection habits to calculate your live security score</p>
+              </div>
+              <button onclick="updatePrivacyScore()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition flex items-center gap-1.5">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Recalculate
+              </button>
+            </div>
+
+            <div class="space-y-3">
+
+              <!-- Check item 1 -->
+              <label class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition group">
+                <input type="checkbox" checked onchange="updatePrivacyScore()" class="habit-check mt-1 w-4 h-4 rounded border-slate-700 text-buddy-500 focus:ring-buddy-500 focus:ring-offset-slate-950">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-buddy-400 transition">
+                    <span>1. Enable Whister Tracker Blocker & Ad Guard</span>
+                    <span class="text-emerald-400 font-mono">+25 pts</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Blocks third-party tracking cookies, telemetry scripts, and invasive ad nodes.</p>
+                </div>
+              </label>
+
+              <!-- Check item 2 -->
+              <label class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition group">
+                <input type="checkbox" checked onchange="updatePrivacyScore()" class="habit-check mt-1 w-4 h-4 rounded border-slate-700 text-buddy-500 focus:ring-buddy-500 focus:ring-offset-slate-950">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-buddy-400 transition">
+                    <span>2. Strip Photo GPS EXIF Metadata Before Uploading</span>
+                    <span class="text-emerald-400 font-mono">+20 pts</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Strips hidden camera coordinates and location tags using our local Photo Cleaner tool.</p>
+                </div>
+              </label>
+
+              <!-- Check item 3 -->
+              <label class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition group">
+                <input type="checkbox" checked onchange="updatePrivacyScore()" class="habit-check mt-1 w-4 h-4 rounded border-slate-700 text-buddy-500 focus:ring-buddy-500 focus:ring-offset-slate-950">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-buddy-400 transition">
+                    <span>3. Use Memorable 4-Word Passphrases</span>
+                    <span class="text-emerald-400 font-mono">+20 pts</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Replaces easily crackable short passwords with high-entropy word combinations.</p>
+                </div>
+              </label>
+
+              <!-- Check item 4 -->
+              <label class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition group">
+                <input type="checkbox" id="check-dnt" checked onchange="updatePrivacyScore()" class="habit-check mt-1 w-4 h-4 rounded border-slate-700 text-buddy-500 focus:ring-buddy-500 focus:ring-offset-slate-950">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-buddy-400 transition">
+                    <span>4. Broadcast Global Privacy Control (GPC / DNT)</span>
+                    <span class="text-emerald-400 font-mono">+17 pts</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Sends legally binding opt-out header flags to web servers to prevent data resale.</p>
+                </div>
+              </label>
+
+              <!-- Check item 5 -->
+              <label class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition group">
+                <input type="checkbox" checked onchange="updatePrivacyScore()" class="habit-check mt-1 w-4 h-4 rounded border-slate-700 text-buddy-500 focus:ring-buddy-500 focus:ring-offset-slate-950">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between text-xs font-bold text-slate-200 group-hover:text-buddy-400 transition">
+                    <span>5. Sanitize URL Tracking Tags Before Sharing Links</span>
+                    <span class="text-emerald-400 font-mono">+18 pts</span>
+                  </div>
+                  <p class="text-[11px] text-slate-400 mt-0.5">Cleans `utm_source` and `fbclid` tags using our URL Sanitizer tool.</p>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+            <span class="text-xs text-slate-400">Need help improving your score?</span>
+            <button onclick="switchTab('ai-buddy')" class="text-xs font-bold text-buddy-accent hover:underline flex items-center gap-1">
+              <span>Ask Whister Buddy</span> &rarr;
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TAB 5: BROWSER BLOG & PRIVACY GUIDES -->
+    <div id="content-blog" class="hidden space-y-6">
+      
+      <!-- Blog Header & Controls -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold mb-2">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Whister Knowledge Base
+          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Whister Privacy & Tech Insights</h3>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">Deep dives, security advisories, and privacy guides written in plain English.</p>
+        </div>
+
+        <!-- Filter Tags -->
+        <div class="flex flex-wrap gap-1.5 bg-slate-950 p-1.5 rounded-2xl border border-slate-800">
+          <button onclick="filterBlogCategory('all')" class="blog-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white transition">All</button>
+          <button onclick="filterBlogCategory('privacy')" class="blog-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold text-slate-400 hover:text-slate-200 transition">Privacy 101</button>
+          <button onclick="filterBlogCategory('security')" class="blog-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold text-slate-400 hover:text-slate-200 transition">Security</button>
+          <button onclick="filterBlogCategory('tech')" class="blog-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold text-slate-400 hover:text-slate-200 transition">Browser Tech</button>
+        </div>
+      </div>
+
+      <!-- Blog Grid Container -->
+      <div id="blog-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+    </div>
+
+    <!-- Article Reader Modal -->
+    <div id="blog-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
+        
+        <!-- Modal Header -->
+        <div class="p-6 border-b border-slate-800/80 flex items-center justify-between bg-slate-950/50">
+          <div class="flex items-center gap-2">
+            <span id="modal-category" class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20">Privacy 101</span>
+            <span id="modal-date" class="text-xs text-slate-400 font-medium">August 17, 2026</span>
+          </div>
+          <button onclick="closeBlogModal()" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Modal Content (Scrollable) -->
+        <div class="p-6 overflow-y-auto space-y-4 custom-scrollbar">
+          <h2 id="modal-title" class="text-xl sm:text-2xl font-bold text-white leading-tight">Article Title</h2>
+          <div id="modal-author-row" class="flex items-center gap-3 text-xs text-slate-400 pb-2 border-b border-slate-800">
+            <span>By Whister Privacy Team 🐸</span>
+            <span>•</span>
+            <span id="modal-read-time">4 min read</span>
+          </div>
+          <div id="modal-body" class="text-slate-300 text-sm leading-relaxed space-y-4 pt-2">
+            <!-- Article Body Content -->
+          </div>
+        </div>
+
+        <!-- Modal Footer Actions -->
+        <div class="p-4 bg-slate-950 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
+          <button id="ask-buddy-article-btn" onclick="" class="px-4 py-2.5 rounded-xl bg-buddy-600 hover:bg-buddy-500 text-white font-bold text-xs transition flex items-center gap-2 shadow">
+            <span>🐸 Ask Buddy About This Article</span>
+          </button>
+          <button onclick="closeBlogModal()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition">
+            Close Article
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Friendly Toast Container for Notifications -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. Navigation & Tab Switcher
+    function switchTab(tabId) {
+      const tabs = ['ai-buddy', 'audit', 'tools', 'scorecard', 'blog'];
+      tabs.forEach(t => {
+        const content = document.getElementById('content-' + t);
+        const tabBtn = document.getElementById('tab-' + t);
+        if (content) {
+          content.classList.toggle('hidden', t !== tabId);
+        }
+        if (tabBtn) {
+          if (t === tabId) {
+            tabBtn.className = "tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs font-semibold transition-all bg-buddy-600 text-white shadow-md flex items-center gap-1.5";
+          } else {
+            tabBtn.className = "tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-slate-200 transition-all flex items-center gap-1.5";
+          }
+        }
+      });
+
+      if (tabId === 'blog') {
+        renderBlogGrid();
+      }
+    }
+
+    // Helper: Toast Notifications
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.className = "bg-slate-900 border border-slate-700 text-slate-100 text-xs px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2 pointer-events-auto transition-all transform duration-300 translate-y-2 opacity-0";
+      toast.innerHTML = `<span class="text-buddy-400">🐸</span> <span>${escapeHtml(message)}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Helper: Confetti Launcher
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 60,
+          origin: { y: 0.7 }
+        });
+      }
+    }
+
+    // 2. Gemini 3 Flash Privacy Companion Chat Integration & Smart Local Fallback
+    let chatHistory = [];
+    let isRecordingSpeech = false;
+    let recognition = null;
+
+    async function handleChatSubmit(event) {
+      if (event) event.preventDefault();
+      const inputEl = document.getElementById('chat-input');
+      const query = inputEl.value.trim();
+      if (!query) return;
+
+      appendMessage('user', query);
+      inputEl.value = '';
+
+      const typingId = appendTypingIndicator();
+
+      try {
+        const apiKey = ""; // Supplied automatically by runtime environment
+        let aiResponse = "";
+
+        if (apiKey && apiKey.length > 5) {
+          const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+          const systemPrompt = `You are "Whister Buddy", a warm, friendly privacy companion frog 🐸 for Whister Browser. Explain web privacy, security, passwords, fingerprinting, cookies, DNS over HTTPS, and online safety in plain English without technical jargon. Use emojis and clean markdown formatting.`;
+
+          const payload = {
+            contents: [
+              ...chatHistory.map(item => ({
+                role: item.role === 'user' ? 'user' : 'model',
+                parts: [{ text: item.text }]
+              })),
+              { role: 'user', parts: [{ text: query }] }
+            ],
+            systemInstruction: { parts: [{ text: systemPrompt }] }
+          };
+
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            aiResponse = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+          }
+        }
+
+        // If no API response or API failed/unauthenticated, use Smart Privacy Knowledge Base
+        if (!aiResponse) {
+          aiResponse = getSmartLocalResponse(query);
+        }
+
+        removeTypingIndicator(typingId);
+        appendMessage('buddy', aiResponse);
+        
+        chatHistory.push({ role: 'user', text: query });
+        chatHistory.push({ role: 'model', text: aiResponse });
+
+      } catch (err) {
+        removeTypingIndicator(typingId);
+        const fallback = getSmartLocalResponse(query);
+        appendMessage('buddy', fallback);
+      }
+    }
+
+    // Speech Recognition Toggle
+    function toggleVoiceSpeech() {
+      const btn = document.getElementById('voice-btn');
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+        showToast('Speech recognition not supported in this browser.');
+        return;
+      }
+
+      if (isRecordingSpeech) {
+        if (recognition) recognition.stop();
+        isRecordingSpeech = false;
+        btn.classList.remove('text-rose-400', 'animate-pulse');
+        showToast('Voice input stopped.');
+        return;
+      }
+
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onstart = function() {
+        isRecordingSpeech = true;
+        btn.classList.add('text-rose-400', 'animate-pulse');
+        showToast('Listening... Speak your question! 🎤');
+      };
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('chat-input').value = transcript;
+        showToast(`Captured: "${transcript}"`);
+        handleChatSubmit();
+      };
+
+      recognition.onerror = function() {
+        showToast('Speech recognition error.');
+      };
+
+      recognition.onend = function() {
+        isRecordingSpeech = false;
+        btn.classList.remove('text-rose-400', 'animate-pulse');
+      };
+
+      recognition.start();
+    }
+
+    // Smart Local Privacy AI Knowledge Base (Zero-latency fallback)
+    function getSmartLocalResponse(query) {
+      const q = query.toLowerCase();
+
+      if (q.includes('cookie')) {
+        return `### 🍪 Understanding Web Cookies\n\nThink of cookies like **digital sticky notes** that websites attach to your browser!\n\n* **First-Party Cookies:** Essential notes (e.g. keeping you logged in or remembering your shopping cart).\n* **Third-Party Cookies:** Tracking notes left by ad networks to follow you from site to site.\n\n**Whister Recommendation:** Enable Whister's built-in tracker blocker to automatically discard third-party tracking cookies! ✌️🐸`;
+      } 
+      
+      if (q.includes('fingerprint') || q.includes('canvas')) {
+        return `### 🖐️ What is Browser Fingerprinting?\n\nEven without cookies, websites can create a **unique digital fingerprint** of your device by combining details like:\n\n1. Screen resolution & color depth\n2. Installed fonts & system language\n3. WebGL GPU rendering hardware signature\n4. AudioContext variations\n\nCheck out the **Fingerprint Audit tab** above to see your live canvas and audio hash! 🌟`;
+      }
+
+      if (q.includes('incognito') || q.includes('private')) {
+        return `### 🕵️ The Truth About Incognito Mode\n\nIncognito/Private mode is great, but it has specific limits!\n\n**What Incognito DOES do:**\n* Doesn't save search history or cookies on your device.\n* Logs you out of accounts when closed.\n\n**What Incognito DOES NOT do:**\n* Hide your browsing from your Wi-Fi provider or ISP.\n* Hide your IP address from websites you visit.\n\nTo hide your network footprint, combine private tabs with HTTPS and strict privacy flags! 🔒✨`;
+      }
+
+      if (q.includes('passphrase') || q.includes('password')) {
+        return `### 🔑 Why Passphrases Beat Standard Passwords!\n\nTraditional passwords like <code>Tr0ub4d&3</code> are hard to remember and vulnerable to automated dictionary attacks.\n\nA **passphrase** joins multiple random words (e.g. <code>sunny-dolphin-rocket-tea-99</code>):\n\n* **Easier to memorize** for humans\n* **Vastly higher entropy** (nearly impossible for supercomputers to guess)\n\nTry our **Passphrase Weaver** tool in the Easy Tools tab! 🐸✨`;
+      }
+
+      if (q.includes('webrtc') || q.includes('ip') || q.includes('leak')) {
+        return `### 🌐 WebRTC & Local IP Privacy\n\n**WebRTC** is a technology browsers use for real-time video/audio chats. However, misconfigured browsers can accidentally reveal your internal network IP address to websites!\n\nWhister Browser protects you by insulating WebRTC peer connections from leaking local subnet IP ranges. 🛡️`;
+      }
+
+      if (q.includes('exif') || q.includes('photo') || q.includes('picture')) {
+        return `### 📸 Hidden Photo Metadata (EXIF)\n\nWhen you take a photo with your phone, it embeds invisible metadata:\n\n* Exact GPS latitude & longitude coordinates\n* Camera model, lens settings & timestamp\n\nUse our **Photo Location Cleaner** tool in the Easy Tools tab to strip all GPS tags in 1 click before posting pictures online! 🖼️✨`;
+      }
+
+      if (q.includes('dns') || q.includes('doh') || q.includes('https')) {
+        return `### 🌐 DNS over HTTPS (DoH) Explained\n\nNormally, when you type a website URL, your DNS requests travel in **plain text**, allowing your ISP or Wi-Fi router to keep a log of every site you visit.\n\n**DNS over HTTPS** encrypts these lookups inside secure HTTPS traffic so eavesdroppers can't see which domains you are visiting! 🔒`;
+      }
+
+      if (q.includes('url') || q.includes('utm') || q.includes('link') || q.includes('tag')) {
+        return `### 🔗 URL Tracking Parameters\n\nWhen you click links on social media or emails, companies append tracking tags like <code>utm_source=facebook</code> or <code>fbclid=12345</code>.\n\nThese tags link your personal session across different sites. Use our **URL Tracking Cleaner** in the Easy Tools tab to strip them cleanly! ✂️`;
+      }
+
+      return `### 🐸 Whister Privacy Tip!\n\nGreat question! Staying safe online comes down to simple daily habits:\n\n1. **Block Trackers:** Stop third-party scripts from building ad profiles.\n2. **Clean Photo EXIF:** Remove location coordinates before sharing pictures.\n3. **Use Strong Passphrases:** Combine 4+ random words for passwords.\n4. **Sanitize Links:** Strip UTM tags before sharing URLs with friends.\n\nFeel free to explore our **Fingerprint Audit** and **Easy Tools** tabs above to put these into action! ✌️🌟`;
+    }
+
+    function askQuickPrompt(promptText) {
+      switchTab('ai-buddy');
+      document.getElementById('chat-input').value = promptText;
+      handleChatSubmit();
+    }
+
+    function parseMarkdown(text) {
+      let html = text
+        .replace(/### (.*?)\n/g, '<h3 class="font-extrabold text-sm text-emerald-400 mt-2 mb-1">$1</h3>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800 text-emerald-400 font-mono text-[11px]">$1</code>')
+        .replace(/\n\* (.*?)/g, '<br>• $1')
+        .replace(/\n\d+\. (.*?)/g, '<br>1. $1')
+        .replace(/\n/g, '<br>');
+      return html;
+    }
+
+    function appendMessage(sender, text) {
+      const container = document.getElementById('chat-messages');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = "flex items-start gap-3";
+
+      if (sender === 'user') {
+        msgDiv.innerHTML = `
+          <div class="ml-auto bg-buddy-600 text-white rounded-2xl rounded-tr-none p-4 max-w-[85%] text-xs sm:text-sm leading-relaxed shadow-sm">
+            ${escapeHtml(text)}
+          </div>
+          <div class="w-8 h-8 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+            You
+          </div>
+        `;
+      } else {
+        const formattedText = parseMarkdown(text);
+        const msgId = 'msg-' + Date.now();
+        msgDiv.innerHTML = `
+          <div class="w-8 h-8 rounded-xl bg-buddy-500/20 text-buddy-400 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
+            🐸
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl rounded-tl-none p-4 max-w-[85%] text-xs sm:text-sm text-slate-200 leading-relaxed shadow-sm space-y-2">
+            <div class="flex items-center justify-between border-b border-slate-900 pb-1.5 mb-1">
+              <span class="font-bold text-buddy-400 text-xs">Whister Buddy</span>
+              <button onclick="speakMessage('${msgId}')" class="text-[10px] text-slate-400 hover:text-buddy-accent flex items-center gap-1 transition px-1.5 py-0.5 rounded hover:bg-slate-900">
+                <i data-lucide="volume-2" class="w-3 h-3"></i> Read Aloud
+              </button>
+            </div>
+            <div id="${msgId}" class="chat-text-content">${formattedText}</div>
+          </div>
+        `;
+      }
+
+      container.appendChild(msgDiv);
+      container.scrollTop = container.scrollHeight;
+      lucide.createIcons();
+    }
+
+    // Text-to-Speech (Read Aloud)
+    function speakMessage(msgId) {
+      const el = document.getElementById(msgId);
+      if (!el) return;
+      const text = el.innerText;
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.1;
+        window.speechSynthesis.speak(utterance);
+        showToast('Reading message aloud 🔊');
+      } else {
+        showToast('Text-to-speech not supported on this browser');
+      }
+    }
+
+    function appendTypingIndicator() {
+      const container = document.getElementById('chat-messages');
+      const id = 'typing-' + Date.now();
+      const div = document.createElement('div');
+      div.id = id;
+      div.className = "flex items-start gap-3";
+      div.innerHTML = `
+        <div class="w-8 h-8 rounded-xl bg-buddy-500/20 text-buddy-400 flex items-center justify-center text-sm font-bold flex-shrink-0">
+          🐸
+        </div>
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-3 text-xs text-slate-400 flex items-center gap-2">
+          <span>Buddy is thinking...</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-buddy-400 animate-bounce"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-buddy-400 animate-bounce [animation-delay:0.2s]"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-buddy-400 animate-bounce [animation-delay:0.4s]"></span>
+        </div>
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      return id;
+    }
+
+    function removeTypingIndicator(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    function clearChat() {
+      chatHistory = [];
+      const container = document.getElementById('chat-messages');
+      container.innerHTML = `
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-xl bg-buddy-500/20 text-buddy-400 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
+            🐸
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 max-w-[85%] text-xs sm:text-sm text-slate-200 leading-relaxed shadow-sm">
+            <p class="font-bold text-buddy-400 mb-1">Fresh start! ✨</p>
+            <p>Chat history cleared. What privacy topic would you like to explore next?</p>
+          </div>
+        </div>
+      `;
+      showToast('Chat history reset');
+    }
+
+    function exportChatTranscript() {
+      if (chatHistory.length === 0) {
+        showToast('No chat history to export yet!');
+        return;
+      }
+      let content = "Whister AI Companion Chat Transcript\n";
+      content += "====================================\n\n";
+      chatHistory.forEach(item => {
+        content += `[${item.role === 'user' ? 'USER' : 'WHISTER BUDDY'}]:\n${item.text}\n\n`;
+      });
+
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'whister_privacy_chat.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Transcript downloaded!');
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+      });
+    }
+
+    // 3. Live Fingerprint Diagnostics
+    function runFingerprintAudit() {
+      // Canvas Hash Generator & Canvas Preview
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 120;
+        canvas.height = 24;
+        const ctx = canvas.getContext('2d');
+        ctx.textBaseline = "top";
+        ctx.font = "12px 'Arial'";
+        ctx.fillStyle = "#f60";
+        ctx.fillRect(10, 2, 40, 16);
+        ctx.fillStyle = "#069";
+        ctx.fillText("Whister🐸", 2, 4);
+        const dataUrl = canvas.toDataURL();
+        
+        // Render preview canvas in UI
+        const previewBox = document.getElementById('canvas-preview-box');
+        if (previewBox) {
+          const pctx = previewBox.getContext('2d');
+          pctx.drawImage(canvas, 0, 0);
+        }
+
+        let hash = 0;
+        for (let i = 0; i < dataUrl.length; i++) {
+          hash = ((hash << 5) - hash) + dataUrl.charCodeAt(i);
+          hash |= 0;
+        }
+        document.getElementById('canvas-hash').innerText = "Hash: " + Math.abs(hash).toString(16);
+        document.getElementById('canvas-status').innerText = "Generated";
+        document.getElementById('canvas-status').className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+      } catch (e) {
+        document.getElementById('canvas-hash').innerText = "Blocked / Spoofed";
+      }
+
+      // GPU & Hardware info
+      try {
+        const glCanvas = document.createElement('canvas');
+        const gl = glCanvas.getContext('webgl') || glCanvas.getContext('experimental-webgl');
+        if (gl) {
+          const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+          const renderer = debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : "Generic WebGL";
+          document.getElementById('gpu-info').innerText = renderer;
+        } else {
+          document.getElementById('gpu-info').innerText = "WebGL Disabled";
+        }
+      } catch (e) {
+        document.getElementById('gpu-info').innerText = "GPU Info Concealed";
+      }
+
+      // Display & Screen info
+      document.getElementById('screen-info').innerText = `${window.screen.width}x${window.screen.height} (${window.screen.colorDepth}-bit, ratio ${window.devicePixelRatio || 1})`;
+
+      // CPU Cores & Memory
+      const threads = navigator.hardwareConcurrency || 'Unknown';
+      const memory = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : 'Standard';
+      document.getElementById('hardware-info').innerText = `${threads} Logical Cores / RAM: ${memory}`;
+
+      // Network info
+      if (navigator.connection) {
+        const conn = navigator.connection;
+        document.getElementById('net-info').innerText = `${conn.effectiveType || '4g'} (${conn.rtt || 50}ms RTT / ${conn.downlink || 10}Mbps)`;
+      } else {
+        document.getElementById('net-info').innerText = "Standard Broadband Link";
+      }
+
+      // User Agent String
+      document.getElementById('ua-info').innerText = navigator.userAgent;
+
+      // Global Privacy Control Check
+      const isDNT = navigator.doNotTrack === "1" || navigator.globalPrivacyControl;
+      const gpcBadge = document.getElementById('gpc-badge');
+      const gpcStatus = document.getElementById('gpc-status');
+      if (isDNT) {
+        gpcBadge.innerText = "Enabled";
+        gpcBadge.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+        gpcStatus.innerText = "Opt-Out Signal Active 🛡️";
+      } else {
+        gpcBadge.innerText = "Inactive";
+        gpcBadge.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20";
+        gpcStatus.innerText = "DNT Signal Unset";
+      }
+
+      // AudioContext Fingerprint
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx) {
+          const actx = new AudioCtx();
+          document.getElementById('audio-hash').innerText = "Sample Rate: " + actx.sampleRate + "Hz";
+          actx.close();
+        } else {
+          document.getElementById('audio-hash').innerText = "Audio API Blocked";
+        }
+      } catch (e) {
+        document.getElementById('audio-hash').innerText = "Audio Processing Protected";
+      }
+
+      showToast('Live diagnostics complete!');
+    }
+
+    // 4. Memorable Passphrase Weaver Tool
+    const friendlyWords = [
+      'sunny', 'happy', 'turtle', 'dolphin', 'rocket', 'cloud', 'panda', 'orbit',
+      'galaxy', 'coffee', 'breeze', 'feather', 'guitar', 'velvet', 'beacon', 'starlight',
+      'meadow', 'whisper', 'forest', 'harbor', 'island', 'puzzle', 'journey', 'canvas'
+    ];
+
+    let selectedWordCount = 4;
+
+    function setWordCount(count) {
+      selectedWordCount = count;
+      const btns = document.querySelectorAll('.word-cnt-btn');
+      btns.forEach(b => {
+        if (parseInt(b.innerText) === count) {
+          b.className = "word-cnt-btn px-2 py-1 rounded-lg text-[10px] font-bold bg-buddy-600 text-white";
+        } else {
+          b.className = "word-cnt-btn px-2 py-1 rounded-lg text-[10px] font-bold bg-slate-800 text-slate-300";
+        }
+      });
+      generatePassphrase();
+    }
+
+    function generatePassphrase() {
+      const sep = document.getElementById('passphrase-sep').value || '-';
+      let words = [];
+      for (let i = 0; i < selectedWordCount; i++) {
+        words.push(friendlyWords[Math.floor(Math.random() * friendlyWords.length)]);
+      }
+      const num = Math.floor(Math.random() * 90) + 10;
+      const phrase = words.join(sep) + sep + num;
+
+      document.getElementById('passphrase-display').innerText = phrase;
+
+      // Entropy calculation
+      const entropy = Math.round(selectedWordCount * Math.log2(friendlyWords.length) + Math.log2(90));
+      document.getElementById('strength-label').innerText = `Unbreakable (~${entropy} bits entropy) 🛡️`;
+
+      showToast('New friendly passphrase woven! 🔐');
+    }
+
+    function copyPassphrase() {
+      const text = document.getElementById('passphrase-display').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Copied to clipboard! 📋');
+      });
+    }
+
+    // 5. Photo Metadata Cleaner (Canvas Scrub)
+    function handleFriendlyImage(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+
+          canvas.toBlob(function(blob) {
+            const cleanUrl = URL.createObjectURL(blob);
+            document.getElementById('photo-thumb').src = cleanUrl;
+            document.getElementById('photo-filename').innerText = file.name;
+            document.getElementById('download-cleaned-photo').href = cleanUrl;
+            document.getElementById('photo-result-container').classList.remove('hidden');
+            
+            showToast('GPS & Metadata successfully removed! 📸✨');
+            triggerConfetti();
+          }, 'image/png');
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // 6. Encrypted Secret Note (WebCrypto AES-256)
+    async function deriveNoteKey(passphrase, salt) {
+      const enc = new TextEncoder();
+      const keyMaterial = await window.crypto.subtle.importKey(
+        "raw", enc.encode(passphrase), "PBKDF2", false, ["deriveKey"]
+      );
+      return window.crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt: salt, iterations: 100000, hash: "SHA-256" },
+        keyMaterial,
+        { name: "AES-GCM", length: 256 },
+        false,
+        ["encrypt", "decrypt"]
+      );
+    }
+
+    async function encryptFriendlyNote() {
+      const pass = document.getElementById('secret-pass').value;
+      const text = document.getElementById('secret-text').value;
+      const status = document.getElementById('note-status');
+
+      if (!pass || !text) {
+        status.innerText = "Please provide both a password and text!";
+        status.className = "text-[10px] text-amber-400 text-center font-mono font-bold";
+        return;
+      }
+
+      try {
+        const enc = new TextEncoder();
+        const salt = window.crypto.getRandomValues(new Uint8Array(16));
+        const iv = window.crypto.getRandomValues(new Uint8Array(12));
+        const key = await deriveNoteKey(pass, salt);
+
+        const encrypted = await window.crypto.subtle.encrypt(
+          { name: "AES-GCM", iv: iv }, key, enc.encode(text)
+        );
+
+        const combined = new Uint8Array(salt.length + iv.length + encrypted.byteLength);
+        combined.set(salt, 0);
+        combined.set(iv, salt.length);
+        combined.set(new Uint8Array(encrypted), salt.length + iv.length);
+
+        const b64 = btoa(String.fromCharCode(...combined));
+        document.getElementById('secret-text').value = b64;
+        status.innerText = "Sealed with AES-256 Encryption! 🔒";
+        status.className = "text-[10px] text-emerald-400 text-center font-mono font-bold";
+        showToast('Secret note encrypted locally!');
+      } catch (err) {
+        status.innerText = "Encryption error.";
+        status.className = "text-[10px] text-rose-400 text-center font-mono";
+      }
+    }
+
+    async function decryptFriendlyNote() {
+      const pass = document.getElementById('secret-pass').value;
+      const b64 = document.getElementById('secret-text').value;
+      const status = document.getElementById('note-status');
+
+      if (!pass || !b64) {
+        status.innerText = "Enter password & encrypted blob to unseal!";
+        status.className = "text-[10px] text-amber-400 text-center font-mono font-bold";
+        return;
+      }
+
+      try {
+        const combined = new Uint8Array(atob(b64).split('').map(c => c.charCodeAt(0)));
+        const salt = combined.slice(0, 16);
+        const iv = combined.slice(16, 28);
+        const data = combined.slice(28);
+
+        const key = await deriveNoteKey(pass, salt);
+        const decrypted = await window.crypto.subtle.decrypt(
+          { name: "AES-GCM", iv: iv }, key, data
+        );
+
+        const dec = new TextDecoder();
+        document.getElementById('secret-text').value = dec.decode(decrypted);
+        status.innerText = "Note Unsealed Successfully! 🔓";
+        status.className = "text-[10px] text-emerald-400 text-center font-mono font-bold";
+        showToast('Secret note unsealed!');
+      } catch (err) {
+        status.innerText = "Incorrect password or corrupted note.";
+        status.className = "text-[10px] text-rose-400 text-center font-mono font-bold";
+      }
+    }
+
+    // 7. URL Sanitizer Tool
+    function sanitizeUrlInput() {
+      const input = document.getElementById('dirty-url-input').value.trim();
+      const outputBox = document.getElementById('clean-url-box');
+
+      if (!input) {
+        outputBox.innerText = "Please enter a valid URL!";
+        return;
+      }
+
+      try {
+        const url = new URL(input.startsWith('http') ? input : 'https://' + input);
+        const trackingParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid', 'msclkid', 'ref', 'source'];
+        
+        trackingParams.forEach(param => url.searchParams.delete(param));
+
+        const clean = url.toString();
+        outputBox.innerHTML = `<span class="text-emerald-400 font-bold">${clean}</span>`;
+        navigator.clipboard.writeText(clean);
+        showToast('Cleaned URL copied to clipboard! ✂️');
+      } catch (err) {
+        outputBox.innerText = "Invalid URL format.";
+      }
+    }
+
+    // 8. SHA-256 Hasher
+    async function calculateSha256() {
+      const text = document.getElementById('hash-text-input').value;
+      const box = document.getElementById('hash-output-box');
+
+      if (!text) {
+        box.innerText = "SHA-256 hash output...";
+        return;
+      }
+
+      const msgUint8 = new TextEncoder().encode(text);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+      box.innerText = hashHex;
+    }
+
+    function copyHashResult() {
+      const text = document.getElementById('hash-output-box').innerText;
+      if (text && !text.includes('output')) {
+        navigator.clipboard.writeText(text);
+        showToast('Checksum copied!');
+      }
+    }
+
+    // 9. Interactive Scorecard Logic
+    function updatePrivacyScore() {
+      const checkboxes = document.querySelectorAll('.habit-check');
+      let score = 0;
+      
+      const values = [25, 20, 20, 17, 18];
+      checkboxes.forEach((cb, index) => {
+        if (cb.checked) {
+          score += values[index] || 20;
+        }
+      });
+
+      score = Math.min(100, Math.max(0, score));
+
+      const mainScoreEl = document.getElementById('score-val-main');
+      const heroScoreEl = document.getElementById('hero-score-val');
+      if (mainScoreEl) mainScoreEl.innerText = score;
+      if (heroScoreEl) heroScoreEl.innerText = score + '%';
+
+      const mainOffset = 427 - (427 * score) / 100;
+      const heroOffset = 163 - (163 * score) / 100;
+
+      const mainCircle = document.getElementById('score-circle-main');
+      const heroCircle = document.getElementById('hero-score-circle');
+      if (mainCircle) mainCircle.style.strokeDashoffset = mainOffset;
+      if (heroCircle) heroCircle.style.strokeDashoffset = heroOffset;
+
+      const titleEl = document.getElementById('score-badge-title');
+      const heroText = document.getElementById('hero-status-text');
+
+      if (score >= 80) {
+        if (titleEl) {
+          titleEl.innerText = "Great Job! Super Safe 🌟";
+          titleEl.className = "text-lg font-bold text-emerald-400 mb-1";
+        }
+        if (heroText) {
+          heroText.innerText = "Super Safe 🌟";
+          heroText.className = "text-sm font-bold text-emerald-400";
+        }
+      } else if (score >= 50) {
+        if (titleEl) {
+          titleEl.innerText = "Good Start! Room to Grow 👍";
+          titleEl.className = "text-lg font-bold text-amber-400 mb-1";
+        }
+        if (heroText) {
+          heroText.innerText = "Protected 👍";
+          heroText.className = "text-sm font-bold text-amber-400";
+        }
+      } else {
+        if (titleEl) {
+          titleEl.innerText = "Let's Boost Your Privacy! 🛡️";
+          titleEl.className = "text-lg font-bold text-rose-400 mb-1";
+        }
+        if (heroText) {
+          heroText.innerText = "Needs Attention 🛡️";
+          heroText.className = "text-sm font-bold text-rose-400";
+        }
+      }
+    }
+
+    function downloadHealthReport() {
+      const scoreEl = document.getElementById('score-val-main');
+      const score = scoreEl ? scoreEl.innerText : '100';
+      const content = `WHISTER PRIVACY SUITE - HEALTH AUDIT REPORT
+Generated: ${new Date().toLocaleString()}
+Overall Privacy Score: ${score}/100
+
+Active Protections Checklist:
+- Whister Tracker Blocker: Enabled
+- Photo EXIF Stripping: Active
+- Passphrase Weaver: Active
+- Global Privacy Control (GPC): Active
+- HTTPS Strict Socket Link: Active
+
+Keep up the great habits!
+Whister Privacy Companion ✌️🐸
+`;
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Whister_Privacy_Health_Report.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Health report downloaded!');
+    }
+
+    // 10. Whister Blog Data & Interactive Article Viewer
+    const blogArticles = [
+      {
+        id: 'fingerprint-2026',
+        category: 'privacy',
+        categoryName: 'Privacy 101',
+        date: 'August 14, 2026',
+        readTime: '4 min read',
+        title: 'Why Fingerprint Protection Matters More Than Ever in 2026',
+        excerpt: 'As third-party cookies fade away, data brokers are turning to canvas hashing and WebGL rendering to identify you. Here is how Whister shields your identity.',
+        content: `
+          <p>For decades, third-party cookies were the primary mechanism used by advertising networks to track user browsing across websites. However, with privacy regulations and modern browsers blocking third-party cookies by default, tracking technology has shifted to a far more insidious method: <strong>Browser Fingerprinting</strong>.</p>
+          
+          <h3 class="font-bold text-white text-base mt-4 mb-2">What is Browser Fingerprinting?</h3>
+          <p>When your browser visits a website, it communicates various technical characteristics required to render pages properly—such as your screen resolution, color depth, installed system fonts, GPU renderer string, and WebGL capabilities.</p>
+          
+          <p>When combined, these individual signals form a unique identifier (a "fingerprint") that can uniquely distinguish your computer from millions of others with over 99% accuracy.</p>
+
+          <h3 class="font-bold text-white text-base mt-4 mb-2">How Whister Shields Your Device</h3>
+          <p>Whister Browser introduces active noise injection into HTML5 canvas and WebGL rendering pipelines, creating subtle variations in generated hashes whenever tracking scripts attempt to read hardware properties. This renders fingerprint-based tracking unreliable for ad networks without degrading your visual web browsing experience.</p>
+        `
+      },
+      {
+        id: 'passphrases-vs-passwords',
+        category: 'security',
+        categoryName: 'Security',
+        date: 'August 10, 2026',
+        readTime: '3 min read',
+        title: 'Passphrases vs. Passwords: The Science of High Entropy',
+        excerpt: 'Short complex passwords like "Tr0ub4d&3" are hard to remember and easily cracked. Learn why 4-word random passphrases are virtually unbreakable.',
+        content: `
+          <p>Most password security policies historically forced users to invent complex combinations of uppercase letters, numbers, and special symbols. Unfortunately, this resulted in hard-to-remember strings like <code>P@ssw0rd2024!</code> that automated dictionary attack tools crack in seconds.</p>
+
+          <h3 class="font-bold text-white text-base mt-4 mb-2">The Power of Entropy</h3>
+          <p>Cryptographic security is measured in <em>bits of entropy</em>—the degree of randomness in a key. A passphrase made of four completely random dictionary words (e.g., <code>sunny-dolphin-rocket-tea</code>) yields approximately 70-100 bits of entropy.</p>
+
+          <p>Because supercomputers must guess every word combination rather than individual letters, cracking a 4-word passphrase would require billions of computational calculations spanning hundreds of years!</p>
+
+          <p>Use our built-in <strong>Passphrase Weaver</strong> tool under the Easy Tools tab to generate high-entropy passphrases effortlessly.</p>
+        `
+      },
+      {
+        id: 'url-tracking-tags',
+        category: 'privacy',
+        categoryName: 'Privacy 101',
+        date: 'August 02, 2026',
+        readTime: '3 min read',
+        title: 'How URL Tracking Parameters (utm_source) Follow You Online',
+        excerpt: 'Ever noticed extra symbols in URLs when sharing links from social media? Discover how URL parameters cross-link your identities and how to strip them.',
+        content: `
+          <p>When you copy a link from social media platforms or news newsletters, you often notice long parameter strings appended to the end of the URL, such as <code>?utm_source=facebook&fbclid=IwAR2...</code>.</p>
+
+          <h3 class="font-bold text-white text-base mt-4 mb-2">What Do These Tags Do?</h3>
+          <p>These tags allow market analytics platforms to identify exactly who shared a link, which platform it originated from, and which user clicked on it. When you forward these raw links to your friends, ad networks link your personal graph with theirs.</p>
+
+          <h3 class="font-bold text-white text-base mt-4 mb-2">One-Click URL Sanitization</h3>
+          <p>Whister includes an automated URL Sanitizer that automatically strips known tracking parameters (including <code>utm_*</code>, <code>fbclid</code>, <code>gclid</code>, and <code>msclkid</code>) whenever you copy or share links.</p>
+        `
+      },
+      {
+        id: 'doh-explained',
+        category: 'tech',
+        categoryName: 'Browser Tech',
+        date: 'July 28, 2026',
+        readTime: '5 min read',
+        title: 'Understanding DNS over HTTPS (DoH) for Absolute Network Privacy',
+        excerpt: 'Domain Name System queries usually travel across the internet in plain text. Here is how DoH encrypts your DNS lookups from public Wi-Fi eavesdroppers.',
+        content: `
+          <p>Every time you type a web address like <code>whister.org</code> into your browser bar, your computer performs a Domain Name System (DNS) query to resolve that domain name into an IP address.</p>
+
+          <h3 class="font-bold text-white text-base mt-4 mb-2">The Unencrypted DNS Problem</h3>
+          <p>Traditionally, DNS queries are sent completely unencrypted over UDP port 53. This means your Internet Service Provider (ISP), network administrators, and attackers on public Wi-Fi networks can see every website domain you connect to, even if the site itself uses HTTPS.</p>
+
+          <h3 class="font-bold text-white text-base mt-4 mb-2">How DNS over HTTPS Fixes This</h3>
+          <p>DNS over HTTPS (DoH) wraps your domain lookup requests inside encrypted HTTPS sessions on port 443. Eavesdroppers on your local network see only encrypted traffic streams, preserving your online browsing privacy.</p>
+        `
+      }
+    ];
+
+    let currentCategory = 'all';
+
+    function renderBlogGrid() {
+      const container = document.getElementById('blog-grid-container');
+      if (!container) return;
+
+      const filtered = currentCategory === 'all' 
+        ? blogArticles 
+        : blogArticles.filter(a => a.category === currentCategory);
+
+      container.innerHTML = filtered.map(article => `
+        <div class="blog-card bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden hover:border-blue-500/40 hover:-translate-y-1.5 transition-all duration-300 shadow-xl flex flex-col justify-between group">
+          <div>
+            <!-- Cover Art Placeholder with Hover Zoom -->
+            <div class="w-full h-44 bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950/60 p-5 flex flex-col justify-between relative overflow-hidden border-b border-slate-800/80">
+              <div class="flex items-center justify-between relative z-10">
+                <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20">${article.categoryName}</span>
+                <span class="text-[11px] text-slate-400 font-medium">${article.readTime}</span>
+              </div>
+              <div class="text-3xl relative z-10 group-hover:scale-110 transition-transform duration-300">
+                ${article.category === 'privacy' ? '🛡️' : article.category === 'security' ? '🔑' : '🌐'}
+              </div>
+              <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all pointer-events-none"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6 space-y-2">
+              <span class="text-xs font-semibold text-slate-500 block">${article.date}</span>
+              <h4 class="text-base sm:text-lg font-bold text-white group-hover:text-blue-400 transition-colors leading-snug">${article.title}</h4>
+              <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">${article.excerpt}</p>
+            </div>
+          </div>
+
+          <!-- Card Action Button -->
+          <div class="px-6 pb-6 pt-2">
+            <button onclick="openBlogArticle('${article.id}')" class="btn-read-article w-full py-2.5 px-4 rounded-xl border border-slate-700/80 hover:border-blue-500 text-slate-200 hover:text-blue-400 bg-slate-950/50 hover:bg-blue-500/5 text-xs font-bold transition flex items-center justify-center gap-2">
+              <span>Read Full Article</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function filterBlogCategory(cat) {
+      currentCategory = cat;
+      const btns = document.querySelectorAll('.blog-cat-btn');
+      btns.forEach(b => {
+        if (b.innerText.toLowerCase().includes(cat) || (cat === 'all' && b.innerText === 'All')) {
+          b.className = "blog-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 text-white transition";
+        } else {
+          b.className = "blog-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold text-slate-400 hover:text-slate-200 transition";
+        }
+      });
+      renderBlogGrid();
+    }
+
+    function openBlogArticle(id) {
+      const article = blogArticles.find(a => a.id === id);
+      if (!article) return;
+
+      document.getElementById('modal-category').innerText = article.categoryName;
+      document.getElementById('modal-date').innerText = article.date;
+      document.getElementById('modal-title').innerText = article.title;
+      document.getElementById('modal-read-time').innerText = article.readTime;
+      document.getElementById('modal-body').innerHTML = article.content;
+
+      const askBtn = document.getElementById('ask-buddy-article-btn');
+      askBtn.onclick = function() {
+        closeBlogModal();
+        askQuickPrompt(`Tell me more about this topic from the blog: "${article.title}"`);
+      };
+
+      document.getElementById('blog-modal').classList.remove('hidden');
+    }
+
+    function closeBlogModal() {
+      document.getElementById('blog-modal').classList.add('hidden');
+    }
+
+    // Auto check DNT on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const dnt = (navigator.doNotTrack === "1" || navigator.globalPrivacyControl);
+      const dntCb = document.getElementById('check-dnt');
+      if (dntCb) {
+        dntCb.checked = dnt;
+      }
+      updatePrivacyScore();
+      runFingerprintAudit();
+    });
+  </script>
+  <!-- NEW BULLETPROOF SITE FOOTER -->
+<footer class="wf-main-footer" style="background-color: #040710; position: relative; padding: 90px 40px 40px 40px; border-top: 1px solid rgba(59, 130, 246, 0.15); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: block; clear: both; overflow: hidden;">
+    
+    <!-- Ambient glowing tech accent behind the branding info -->
+    <div style="position: absolute; top: -150px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(37, 99, 235, 0.07) 0%, rgba(0,0,0,0) 70%); pointer-events: none;"></div>
+
+    <style>
+        /* Widen layout container up to 1400px maximum constraint */
+        .wf-footer-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Specialized narrow dimensions for the brand profile column */
+        .wf-footer-info {
+            flex: 1.5 1 280px;
+            margin-bottom: 40px;
+            padding-right: 40px;
+            box-sizing: border-box;
+        }
+        
+        /* Sleek modular structural allocation blocks */
+        .wf-footer-column {
+            flex: 1 1 180px;
+            margin-bottom: 40px;
+            box-sizing: border-box;
+        }
+        
+        /* Premium tech headers */
+        .wf-main-footer h4 {
+            color: #ffffff !important;
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            margin: 0 0 24px 0 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1.5px !important;
+            opacity: 0.9;
+        }
+        
+        /* Clean links with high-contrast neutral typography */
+        .wf-footer-column a {
+            display: block !important;
+            color: #94a3b8 !important; /* Soft legible aluminum gray */
+            text-decoration: none !important;
+            font-size: 14px !important;
+            margin-bottom: 16px !important;
+            padding: 0 !important;
+            transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            font-weight: 400 !important;
+        }
+        
+        /* Vibrant, glow-style hover animation tracking */
+        .wf-footer-column a:hover {
+            color: #3b82f6 !important; /* Pops with Whister's signature electric blue */
+            transform: translateX(4px) !important; /* Elegant subtle micro-slide interaction */
+            text-decoration: none !important;
+        }
+
+        .wf-footer-copyright {
+            max-width: 1400px;
+            margin: 40px auto 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .wf-footer-copyright p {
+            color: #475569 !important;
+            font-size: 13px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            letter-spacing: 0.3px;
+        }
+
+        /* Internet Explorer Layout Fallbacks */
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            .wf-footer-layout { display: block !important; }
+            .wf-footer-info { width: 28% !important; float: left !important; }
+            .wf-footer-column { width: 17% !important; float: left !important; }
+            .wf-footer-layout::after, .wf-main-footer::after { content: "" !important; display: table !important; clear: both !important; }
+            .wf-footer-column a { color: #3b82f6 !important; }
+        }
+    </style>
+
+    <div class="wf-footer-layout">
+        <!-- Column 1: Brand Info Box -->
+        <div class="wf-footer-info">
+            <div class="logo" style="color: #3b82f6; margin-bottom: 24px;">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" style="display: block;">
+                    <path d="M2.5 3h3.8l3.7 12.2L13.7 3h3.6l3.7 12.2 3.7-12.2h3.8L21 21h-4l-3.7-12.2L9.6 21H5.6L2.5 3z"/>
+                </svg>
+            </div>
+            <p class="brand-text" style="color: #64748b; font-size: 14px; line-height: 1.7; margin: 0; padding: 0; font-weight: 400;">
+                Building a faster, decentralized, and private internet environment for everyone.
+            </p>
+        </div>
+        
+        <!-- Column 2: Product link directory -->
+        <div class="wf-footer-column">
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="#all-platforms">Download</a>
+            <a href="#">Security</a>
+        </div>
+        
+        <!-- Column 3: Navigation list paths -->
+        <div class="wf-footer-column">
+            <h4>Navigation</h4>
+            <a href="#bangs-dashboard">Bangs Index</a>
+            <a href="#stats">Live Metrics</a>
+            <a href="#beta-info">Stable Builds</a>
+        </div>
+        
+        <!-- Column 4: Documentation details -->
+        <div class="wf-footer-column">
+            <h4>Resources</h4>
+            <a href="#">Developer API</a>
+            <a href="#">Release Notes</a>
+            <a href="#">Open Source</a>
+        </div>
+        
+        <!-- Column 5: Corporate data protection nodes -->
+        <div class="wf-footer-column">
+            <h4>Company</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Support</a>
+        </div>
+    </div>
+    
+    <div class="wf-footer-copyright">
+        <p>&copy; 2026 Whister Software. All rights reserved.</p>
+        <p style="color: #94a3b8; font-size: 12px; letter-spacing: 0.5px;">Crafted with care by the Whister Team</p>
+        <p style="color: #35bb40 !important; font-weight: 500; font-size: 12px !important; letter-spacing: 1px; text-transform: uppercase;">Whister Buddy <span>&#169;</span></p>
+    </div>
+</footer>
+</body>
+</html>
