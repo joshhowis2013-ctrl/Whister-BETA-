@@ -394,6 +394,7 @@
     }
 </script>
 
+    
 
 <!-- ALL PLATFORMS SECTION WITH SCROLL REVEALS, HIGHLIGHTED CARDS & LIVE WINDOWS LINK -->
     <section class="platforms-section reveal-hidden" id="all-platforms">
@@ -518,7 +519,107 @@
     </section>
 
     
+<div class="comparison-layout-container">
+    <!-- Left Side: Large Interactive Slider -->
+    <div class="img-slider-wrapper" id="sliderWrapper">
+        <img src="whister compared to edge.png" alt="Image B" id="baseImage" class="image-base">
+        
+        <div class="image-overlay" id="imageOverlay">
+            <img src="edge.png" alt="Image A" id="overlayImage">
+        </div>
+        
+        <div class="slider-handle" id="sliderHandle">
+            <div class="slider-line"></div>
+            <div class="slider-button">↔</div>
+        </div>
+    </div>
 
+    <!-- Right Side: Styled Dropdown Control Panel with Blur -->
+    <div class="control-panel">
+        <div class="control-content">
+            <h3>Browser Comparison</h3>
+            <p>Select a browser view to compare rendering results.</p>
+            
+            <div class="select-wrapper">
+                <label for="comparisonSelect">View Mode</label>
+                <select id="comparisonSelect">
+                    <option value="set1">Edge vs Whister (Default)</option>
+                    <option value="set2">Whister vs Chrome</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="img-comparision-container">
+    <!-- Dropdown to switch comparison sets -->
+    <div class="comparison-selector">
+        <label for="comparisonSelect">Compare: </label>
+        <select id="comparisonSelect">
+            <option value="set1">Screenshot A vs B (Whister)</option>
+            <option value="set2">Screenshot A vs B (Chrome)</option>
+        </select>
+    </div>
+
+    <!-- The Compact Slider -->
+    <div class="img-slider-wrapper" id="sliderWrapper">
+        <img src="images/image2.png" alt="Image B" id="baseImage" class="image-base">
+        
+        <div class="image-overlay" id="imageOverlay">
+            <img src="images/image1.png" alt="Image A" id="overlayImage">
+        </div>
+        
+        <div class="slider-handle" id="sliderHandle">
+            <div class="slider-line"></div>
+            <div class="slider-button">↔</div>
+        </div>
+    </div>
+</div>
+<script>
+const wrapper = document.getElementById('sliderWrapper');
+const overlay = document.getElementById('imageOverlay');
+const handle = document.getElementById('sliderHandle');
+
+let isDragging = false;
+
+// Enable dragging on mouse or touch
+handle.addEventListener('mousedown', () => isDragging = true);
+window.addEventListener('mouseup', () => isDragging = false);
+
+handle.addEventListener('touchstart', () => isDragging = true);
+window.addEventListener('touchend', () => isDragging = false);
+
+// Track movement across the wrapper
+function trackMovement(clientX) {
+    const rect = wrapper.getBoundingClientRect();
+    let positionX = clientX - rect.left;
+
+    // Keep the slider within the image boundaries
+    if (positionX < 0) positionX = 0;
+    if (positionX > rect.width) positionX = rect.width;
+
+    // Calculate percentage
+    const percentage = (positionX / rect.width) * 100;
+
+    // Move handle and adjust clipping mask
+    handle.style.left = `${percentage}%`;
+    overlay.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+}
+
+window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    trackMovement(e.clientX);
+});
+
+window.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    trackMovement(e.touches[0].clientX);
+});
+
+// Allow clicking anywhere on the wrapper to jump the slider there
+wrapper.addEventListener('click', (e) => {
+    trackMovement(e.clientX);
+});
+ </script>
   <!-- METRIC USAGE DATA STRIP OVERVIEW -->
 <section class="section-container stats-bg" id="stats">
     <div class="stats-grid">

@@ -178,10 +178,72 @@
     0% { background-position: 0% center; }
     100% { background-position: 200% center; }
 }
+
+        /* =======================================================
+           INTERNET EXPLORER FALLBACK & ADAPTIVE STYLING BLOCKS 
+           ======================================================= */
+
+        /* Targeted styling filter strictly executed by Internet Explorer 10 and 11 */
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            body {
+                background-color: #f4f7f9 !important;
+            }
+            
+            /* Displays the warning banner ONLY in real Internet Explorer */
+            .ie-browser-alert {
+                display: block !important;
+                background-color: #fff3cd !important;
+                color: #856404 !important;
+                padding: 15px !important;
+                text-align: center !important;
+                font-family: Arial, sans-serif !important;
+                border-bottom: 2px solid #ffeeba !important;
+                font-size: 14px !important;
+                position: relative !important;
+                z-index: 99999 !important;
+            }
+            .ie-browser-alert a {
+                color: #0056b3 !important;
+                text-decoration: underline !important;
+                font-weight: bold !important;
+            }
+            
+            /* IE-Only grid layouts: Fallback to floats safely without breaking modern grid code */
+            .platform-grid, .beta-grid, .stats-grid {
+                display: block !important;
+            }
+            .platform-card, .beta-card {
+                width: 30% !important;
+                float: left !important;
+                margin-right: 3% !important;
+                box-sizing: border-box !important;
+            }
+            .stat-item {
+                width: 33% !important;
+                float: left !important;
+                box-sizing: border-box !important;
+            }
+            /* Clearfix hack to contain the floated components above */
+            .platforms-section::after, .beta-section::after, .stats-grid::after {
+                content: "" !important;
+                display: table !important;
+                clear: both !important;
+            }
+        }
+    
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-buddy-500 selection:text-slate-950 antialiased">
-
+  <!-- This warning block stays hidden on modern browsers and auto-triggers inside IE via CSS -->
+    <div class="ie-browser-alert" style="display: none;">
+        Internet Explorer is no longer supported. As a result, This website has fallbacked to a IE compatable layout Which means some features of this site may not work correctly. Please consider switching to a modern browser for the best experience. We recommend using
+        <a href="https://microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Edge IE Mode</a>.
+    </div>
+    
+    <div class="ie-browser-alert" style="display: none;">
+     On an leagcy Operating System? No worries (even though we dont recommend it) You can download Supermium! Because we dont support older os's then windows 8.1 and older
+        <a href="https://microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Edge IE Mode</a>.
+    </div>
   <!-- Header Section -->
   <header class="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
