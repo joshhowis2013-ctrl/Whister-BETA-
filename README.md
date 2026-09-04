@@ -19,3 +19,5 @@ Whister is a fast, secure, browser with the looks (beta)
 
 # Website
 https://joshhowis2013-ctrl.github.io/Whister-BETA-/
+
+# beta
