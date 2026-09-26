@@ -188,7 +188,7 @@
                 <a href="#bangs-dashboard">Bangs</a>
                 <a href="#faq">FAQ</a>
                 <a href="blog/index.html">Blog</a>
-                <a href="newsletter.html">Join Newsletter</a>
+                <a href="#newsletter">Join Newsletter</a>
                 <a href="whister_friendly_privacy_companion (1).html">Whister Privacy Suite</a>
                 <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-" target="_blank" rel="noopener noreferrer" class="external-link">
                     GitHub
@@ -859,6 +859,321 @@ wrapper.addEventListener('click', (e) => {
             <p><a href="#all-platforms" class="btn-download">Download Whister Now</a></p>
         </div>
         
+    </section>
+
+    <section class="section-container atmos-promo" aria-labelledby="atmos-promo-title">
+        <style>
+            .atmos-promo {
+                display: grid;
+                grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+                align-items: center;
+                gap: 36px;
+            }
+
+            .atmos-promo-copy {
+                max-width: 420px;
+            }
+
+            .atmos-promo-eyebrow {
+                display: inline-block;
+                margin-bottom: 12px;
+                color: #67e8f9;
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+
+            .atmos-promo-copy h2 {
+                margin: 0 0 12px;
+                font-size: 2rem;
+            }
+
+            .atmos-promo-copy p {
+                margin: 0 0 22px;
+                color: #aab6c8;
+                line-height: 1.7;
+            }
+
+            .atmos-promo-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 12px 18px;
+                color: #fff;
+                background: #087f9b;
+                border-radius: 6px;
+                font-weight: 700;
+                text-decoration: none;
+                transition: background-color 0.2s ease, transform 0.2s ease;
+            }
+
+            .atmos-promo-link:hover {
+                background: #0e7490;
+                transform: translateY(-2px);
+            }
+
+            .atmos-preview {
+                width: 100%;
+                aspect-ratio: 1.38 / 1;
+                min-height: 300px;
+                overflow: hidden;
+                background: #101b3c;
+                border: 1px solid rgba(148, 163, 184, 0.24);
+                border-radius: 8px;
+                box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+            }
+
+            .atmos-preview img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            @media (max-width: 800px) {
+                .atmos-promo {
+                    grid-template-columns: 1fr;
+                    gap: 24px;
+                }
+
+                .atmos-preview {
+                    min-height: 360px;
+                }
+            }
+        </style>
+
+        <div class="atmos-promo-copy">
+            <span class="atmos-promo-eyebrow">Another project from our team</span>
+            <h2 id="atmos-promo-title">Meet Atmos Web</h2>
+            <p>Check current conditions, forecasts, and detailed weather insights in a clean, interactive dashboard.</p>
+            <a class="atmos-promo-link" href="https://joshhowis2013-ctrl.github.io/atmos-web/" target="_blank" rel="noopener noreferrer">Explore Atmos Web <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="atmos-preview">
+            <img src="atmos-preview.png" alt="Atmos Web weather dashboard displaying current conditions in London" loading="lazy">
+        </div>
+    </section>
+
+    <section class="section-container" id="newsletter">
+        <style>
+            .home-newsletter-layout {
+                display: grid;
+                grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+                align-items: center;
+                gap: 40px;
+                padding: 32px;
+                background: rgba(12, 17, 29, 0.92);
+                border: 1px solid rgba(148, 163, 184, 0.18);
+                border-top: 2px solid #3b82f6;
+                border-radius: 8px;
+            }
+
+            .home-newsletter-copy .pill-badge {
+                margin-bottom: 14px;
+            }
+
+            .home-newsletter-copy h2 {
+                margin: 0 0 12px;
+                font-size: 1.8rem;
+            }
+
+            .home-newsletter-copy p {
+                margin: 0;
+                color: #aab6c8;
+                line-height: 1.65;
+            }
+
+            #mlb2-46388045.ml-form-embedContainer {
+                display: block !important;
+                width: 100% !important;
+            }
+
+            #mlb2-46388045 .ml-form-align-center {
+                display: block !important;
+                text-align: left !important;
+            }
+
+            #mlb2-46388045 .ml-form-embedWrapper.embedForm {
+                display: block !important;
+                width: 100%;
+                max-width: none;
+                background: transparent;
+                border: 0;
+            }
+
+            #mlb2-46388045 .ml-form-embedBody,
+            #mlb2-46388045 .ml-form-successBody {
+                padding: 0 !important;
+            }
+
+            #mlb2-46388045 .ml-form-fieldRow {
+                margin: 0 0 16px !important;
+            }
+
+            #mlb2-46388045 .ml-form-fieldRow input[type="email"] {
+                width: 100% !important;
+                min-height: 48px;
+                padding: 12px 14px !important;
+                color: #f8fafc !important;
+                background: #070b14 !important;
+                border: 1px solid #354155 !important;
+                border-radius: 6px !important;
+                font: inherit !important;
+                box-sizing: border-box !important;
+            }
+
+            #mlb2-46388045 .ml-form-fieldRow input[type="email"]::placeholder {
+                color: #94a3b8;
+            }
+
+            #mlb2-46388045 .ml-form-checkboxRow {
+                float: none !important;
+                margin: 0 0 16px !important;
+            }
+
+            #mlb2-46388045 .ml-form-checkboxRow .home-newsletter-consent {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                min-height: auto;
+                padding: 0;
+            }
+
+            #mlb2-46388045 .ml-form-checkboxRow input[type="checkbox"] {
+                position: static !important;
+                z-index: auto !important;
+                width: 17px;
+                height: 17px;
+                margin: 2px 0 0 !important;
+                opacity: 1 !important;
+                accent-color: #3b82f6;
+                flex: 0 0 auto;
+            }
+
+            #mlb2-46388045 .ml-form-checkboxRow .label-description,
+            #mlb2-46388045 .ml-form-checkboxRow .label-description p {
+                margin: 0 !important;
+                color: #aab6c8 !important;
+                font-size: 0.9rem !important;
+                line-height: 1.5 !important;
+            }
+
+            #mlb2-46388045 .ml-form-recaptcha {
+                clear: both;
+                float: none !important;
+                margin: 0 0 16px;
+            }
+
+            #mlb2-46388045 .ml-form-embedSubmit {
+                float: none !important;
+                margin: 0 !important;
+                width: 100%;
+            }
+
+            #mlb2-46388045 .ml-form-embedSubmit button {
+                width: 100% !important;
+                min-height: 48px;
+                padding: 12px 18px !important;
+                color: #fff !important;
+                background: #2563eb !important;
+                border: 0 !important;
+                border-radius: 6px !important;
+                font: inherit !important;
+                font-weight: 700 !important;
+                cursor: pointer;
+            }
+
+            #mlb2-46388045 .ml-form-embedSubmit button:hover {
+                background: #3b82f6 !important;
+            }
+
+            #mlb2-46388045 .ml-form-successContent h4 {
+                margin: 0 0 8px;
+                color: #f8fafc;
+                font-size: 1.4rem;
+            }
+
+            #mlb2-46388045 .ml-form-successContent p {
+                margin: 0;
+                color: #aab6c8;
+                line-height: 1.6;
+            }
+
+            .home-newsletter-sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+
+            @media (max-width: 700px) {
+                .home-newsletter-layout {
+                    grid-template-columns: 1fr;
+                    gap: 26px;
+                    padding: 24px 20px;
+                }
+            }
+        </style>
+
+        <div class="home-newsletter-layout">
+            <div class="home-newsletter-copy">
+                <span class="pill-badge">Whister updates</span>
+                <h2>Whister, in your inbox.</h2>
+                <p>Get occasional product news, release announcements, and privacy tips. Unsubscribe whenever you like.</p>
+            </div>
+
+            <div id="mlb2-46388045" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-46388045">
+                <div class="ml-form-align-center">
+                    <div class="ml-form-embedWrapper embedForm">
+                        <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                            <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2662758/forms/199683029547878222/subscribe" data-code="" method="post" target="_blank">
+                                <div class="ml-form-formContent">
+                                    <div class="ml-form-fieldRow ml-last-item">
+                                        <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                            <label class="home-newsletter-sr-only" for="home-newsletter-email">Email address</label>
+                                            <input id="home-newsletter-email" aria-label="Email address" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="you@example.com" autocomplete="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="ml-form-checkboxRow ml-validate-required">
+                                    <label class="checkbox home-newsletter-consent">
+                                        <input type="checkbox" required>
+                                        <span class="label-description"><span>I agree to receive email updates from Whister.</span></span>
+                                    </label>
+                                </div>
+
+                                <div class="ml-form-recaptcha ml-validate-required">
+                                    <script src="https://www.google.com/recaptcha/api.js"></script>
+                                    <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
+                                </div>
+
+                                <input type="hidden" name="ml-submit" value="1">
+                                <input type="hidden" name="anticsrf" value="true">
+                                <div class="ml-form-embedSubmit">
+                                    <button type="submit">Join Newsletter</button>
+                                    <button disabled="disabled" style="display: none;" type="button" class="loading">
+                                        <span class="home-newsletter-sr-only">Loading...</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="ml-form-successBody row-success" style="display: none;">
+                            <div class="ml-form-successContent">
+                                <h4>You're on the list!</h4>
+                                <p>Thanks for signing up. Watch your inbox for Whister updates.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
      <!-- NEW BULLETPROOF SITE FOOTER -->
@@ -1711,6 +2026,18 @@ wrapper.addEventListener('click', (e) => {
             }
         }
     });
+</script>
+
+<script>
+    function ml_webform_success_46388045() {
+        var $ = ml_jQuery || jQuery;
+        $('.ml-subscribe-form-46388045 .row-success').show();
+        $('.ml-subscribe-form-46388045 .row-form').hide();
+    }
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+<script>
+    fetch('https://assets.mailerlite.com/jsonp/2662758/forms/199683029547878222/takel');
 </script>
     
 </body>
