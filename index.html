@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="chromium/win/chromium.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Whister</title>
     <link rel="stylesheet" href="style.css?v=999">
@@ -2040,5 +2041,198 @@ wrapper.addEventListener('click', (e) => {
     fetch('https://assets.mailerlite.com/jsonp/2662758/forms/199683029547878222/takel');
 </script>
     
+<style>
+    @media (max-width: 600px) {
+        body {
+            gap: 52px;
+            overflow-x: hidden;
+            padding: 112px 12px 48px;
+        }
+
+        .navbar {
+            display: grid !important;
+            grid-template-columns: minmax(0, 1fr) auto;
+            grid-template-rows: auto auto;
+            gap: 8px 12px;
+            height: auto;
+            padding: 8px 14px !important;
+        }
+
+        .navbar .nav-left {
+            display: contents;
+        }
+
+        .navbar .logo {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            grid-column: 1 / -1;
+            grid-row: 2;
+            gap: 16px;
+            width: 100%;
+            min-width: 0;
+            overflow-x: auto;
+            padding: 2px 0;
+            scrollbar-width: none;
+            white-space: nowrap;
+        }
+
+        .navbar .nav-links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .navbar .nav-links a {
+            flex: 0 0 auto;
+            font-size: 12px;
+        }
+
+        .navbar .nav-right {
+            grid-column: 2;
+            grid-row: 1;
+            margin: 0;
+        }
+
+        .btn-nav-download {
+            padding: 8px 11px !important;
+            font-size: 13px !important;
+        }
+
+        .download-container {
+            max-width: 100%;
+            grid-template-columns: minmax(0, 1fr) !important;
+            gap: 28px !important;
+            padding: 36px 4px 16px !important;
+            text-align: center;
+        }
+
+        .download-content h1 {
+            font-size: clamp(36px, 11vw, 48px) !important;
+            letter-spacing: 0 !important;
+        }
+
+        .download-content p {
+            margin: 0 auto 24px;
+            font-size: 16px;
+        }
+
+        .actions {
+            align-items: center;
+        }
+
+        .download-preview,
+        .browser-mockup {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin: 0;
+        }
+
+        .browser-mockup {
+            opacity: 1;
+            animation: none;
+            transform: none;
+        }
+
+        .mockup-url {
+            flex: 1;
+            min-width: 0;
+            max-width: none;
+            margin-left: 4px;
+            overflow: hidden;
+            padding: 6px 8px;
+            font-size: 11px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .mockup-body {
+            height: 160px !important;
+            min-width: 0;
+            padding: 12px !important;
+        }
+
+        #mockup-display-phrase {
+            font-size: clamp(16px, 5vw, 22px) !important;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    @media (max-width: 360px) {
+        body {
+            padding-right: 8px;
+            padding-left: 8px;
+        }
+
+        .features-grid {
+            width: 100%;
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .feature-card {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .feature-large {
+            grid-column: auto;
+            grid-row: auto;
+        }
+
+        .platform-grid,
+        .beta-grid {
+            grid-template-columns: minmax(0, 1fr) !important;
+        }
+
+        .platform-card,
+        .beta-card {
+            width: 100%;
+            min-width: 0;
+            padding: 24px 16px !important;
+        }
+
+        .comparison-layout-container {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            margin: 24px 0;
+            padding: 10px;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .comparison-layout-container .img-slider-wrapper,
+        .comparison-layout-container .control-panel {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        .home-newsletter-layout {
+            width: 100%;
+            min-width: 0;
+            grid-template-columns: minmax(0, 1fr);
+            padding: 16px 12px;
+        }
+
+        .home-newsletter-layout > *,
+        .home-newsletter-copy {
+            min-width: 0;
+        }
+
+        #mlb2-46388045 .ml-form-recaptcha {
+            width: 245px;
+            height: 62px;
+            overflow: hidden;
+        }
+
+        #mlb2-46388045 .g-recaptcha {
+            transform: scale(.78);
+            transform-origin: top left;
+        }
+    }
+</style>
 </body>
 </html>
