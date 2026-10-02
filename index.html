@@ -209,6 +209,155 @@
         </div>
     </header>
 
+    <style>
+        .browser-status-notice {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            max-width: 1100px;
+            width: calc(100% - 48px);
+            margin: 104px auto -120px;
+            padding: 18px 22px;
+            background: linear-gradient(110deg, rgba(103, 232, 249, 0.13), rgba(13, 19, 38, 0.96) 48%);
+            border: 1px solid rgba(103, 232, 249, 0.32);
+            border-left: 4px solid #67e8f9;
+            border-radius: 8px;
+        }
+
+        .browser-status-copy {
+            min-width: 0;
+        }
+
+        .browser-status-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+            color: #67e8f9;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .browser-status-dot {
+            width: 8px;
+            height: 8px;
+            flex: 0 0 8px;
+            border-radius: 50%;
+            background: #67e8f9;
+            box-shadow: 0 0 12px rgba(103, 232, 249, 0.7);
+            animation: browser-status-pulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes browser-status-pulse {
+            50% {
+                opacity: 0.4;
+                transform: scale(0.78);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .browser-status-dot {
+                animation: none;
+            }
+        }
+
+        .browser-status-notice h2 {
+            margin: 0 0 4px;
+            color: #f8fafc;
+            font-size: 18px;
+        }
+
+        .browser-status-notice p {
+            margin: 0;
+            color: #aab6c8;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .rebuild-progress-label {
+            display: block;
+            margin: 12px 0 7px;
+            color: #cbd5e1;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .rebuild-progress-track {
+            height: 5px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.2);
+        }
+
+        .rebuild-progress-indicator {
+            display: block;
+            width: 34%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #3b82f6, #67e8f9);
+            animation: rebuild-progress-sweep 2.4s ease-in-out infinite;
+        }
+
+        @keyframes rebuild-progress-sweep {
+            0% { transform: translateX(-110%); }
+            55%, 100% { transform: translateX(310%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .rebuild-progress-indicator {
+                width: 48%;
+                animation: none;
+            }
+        }
+
+        .browser-status-link {
+            flex: 0 0 auto;
+            color: #67e8f9;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .browser-status-link:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 600px) {
+            .browser-status-notice {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+                width: calc(100% - 24px);
+                margin: 116px auto -52px;
+                padding: 16px;
+            }
+
+            .browser-status-notice h2 {
+                font-size: 16px;
+            }
+
+            .browser-status-notice p {
+                font-size: 13px;
+            }
+        }
+    </style>
+
+    <aside class="browser-status-notice" role="note" aria-labelledby="browser-status-title">
+        <div class="browser-status-copy">
+            <span class="browser-status-label"><span class="browser-status-dot" aria-hidden="true"></span>Important browser update</span>
+            <h2 id="browser-status-title">The current Whister download is an early experimental build.</h2>
+            <p>We’ve started rebuilding Whister from the ground up. The new version is in development, and there’s no release date yet.</p>
+            <span class="rebuild-progress-label">Development progress · In progress</span>
+            <div class="rebuild-progress-track" role="progressbar" aria-label="Whister rebuild progress" aria-valuetext="Development is in progress; no completion percentage is available.">
+                <span class="rebuild-progress-indicator"></span>
+            </div>
+        </div>
+        <a class="browser-status-link" href="blog/rebuilding-whister.html">Read the rebuild update <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+
 <!-- MAIN HERO / DOWNLOAD SECTION -->
 
     <section class="download-container">
@@ -627,7 +776,7 @@ wrapper.addEventListener('click', (e) => {
     <div class="stats-grid">
         <div class="stat-item">
             <!-- data-target holds the end number. data-suffix holds formatting symbols -->
-            <div class="stat-number" id="stat-chromium" data-target="152">0</div>
+            <div class="stat-number" id="stat-chromium" data-target="157.0.8084.0">0</div>
             <div class="stat-label">Chromium Version</div>
         </div>
         <div class="stat-item">
@@ -1594,6 +1743,53 @@ wrapper.addEventListener('click', (e) => {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-gap: 30px;
         margin-top: 40px;
+        position: relative;
+        isolation: isolate;
+    }
+
+    .features-grid::before {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        content: "";
+        opacity: 0.45;
+        pointer-events: none;
+        background-image:
+            linear-gradient(rgba(103, 232, 249, 0.09) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(103, 232, 249, 0.09) 1px, transparent 1px);
+        background-size: 36px 36px;
+        mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+        animation: feature-grid-drift 42s linear infinite;
+    }
+
+    @keyframes feature-grid-drift {
+        to { background-position: 36px 36px; }
+    }
+
+    #features .section-header h2 {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 12px;
+    }
+
+    #features .section-header h2::after {
+        position: absolute;
+        right: 50%;
+        bottom: 0;
+        width: 64px;
+        height: 2px;
+        content: "";
+        background: linear-gradient(90deg, #3b82f6, #67e8f9);
+        transform: translateX(50%) scaleX(0);
+        transform-origin: center;
+    }
+
+    #features.reveal-visible .section-header h2::after {
+        animation: feature-title-trace 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    }
+
+    @keyframes feature-title-trace {
+        to { transform: translateX(50%) scaleX(1); }
     }
 
     /* Force all child item feature cards to stay hidden until triggered by scroll */
@@ -1604,9 +1800,35 @@ wrapper.addEventListener('click', (e) => {
         padding: 36px 32px;
         border-radius: 12px;
         position: relative;
+        overflow: hidden;
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                     border-color 0.3s ease, 
                     box-shadow 0.3s ease;
+    }
+
+    .features-grid .feature-card::after {
+        position: absolute;
+        top: 0;
+        left: -60%;
+        width: 42%;
+        height: 1px;
+        content: "";
+        pointer-events: none;
+        background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.9), transparent);
+        opacity: 0;
+    }
+
+    .reveal-visible .feature-card::after {
+        animation: feature-card-sheen 4.8s ease-in-out 1s infinite;
+    }
+
+    .reveal-visible .feature-card:nth-child(2)::after { animation-delay: 1.7s; }
+    .reveal-visible .feature-card:nth-child(3)::after { animation-delay: 2.4s; }
+
+    @keyframes feature-card-sheen {
+        0%, 18% { left: -60%; opacity: 0; }
+        28% { opacity: 0.8; }
+        52%, 100% { left: 120%; opacity: 0; }
     }
 
     /* Interactive hover expansion outline mechanics */
@@ -1658,6 +1880,18 @@ wrapper.addEventListener('click', (e) => {
         transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
     }
 
+    .reveal-visible .feature-card .feature-icon {
+        animation: feature-icon-signal 3.6s ease-in-out 0.8s infinite;
+    }
+
+    .reveal-visible .feature-card:nth-child(2) .feature-icon { animation-delay: 1.4s; }
+    .reveal-visible .feature-card:nth-child(3) .feature-icon { animation-delay: 2s; }
+
+    @keyframes feature-icon-signal {
+        0%, 72%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.05); }
+        84% { box-shadow: 0 0 22px rgba(103, 232, 249, 0.3); }
+    }
+
     .feature-card:hover .feature-icon {
         transform: scale(1.08) rotate(3deg); /* Micro-interaction pop when card is active */
         background: rgba(59, 130, 246, 0.18);
@@ -1687,6 +1921,28 @@ wrapper.addEventListener('click', (e) => {
     .reveal-visible .feature-card:nth-child(1) { animation-delay: 0.1s; }
     .reveal-visible .feature-card:nth-child(2) { animation-delay: 0.25s; }
     .reveal-visible .feature-card:nth-child(3) { animation-delay: 0.4s; }
+
+    @media (prefers-reduced-motion: reduce) {
+        #features.reveal-hidden,
+        #features .feature-card {
+            opacity: 1 !important;
+            transform: none !important;
+            filter: none !important;
+            transition: none !important;
+            animation: none !important;
+        }
+
+        .features-grid::before,
+        #features .section-header h2::after,
+        #features .feature-card::after,
+        #features .feature-icon {
+            animation: none !important;
+        }
+
+        #features .section-header h2::after {
+            transform: translateX(50%) scaleX(1);
+        }
+    }
 }
 
 
@@ -2042,6 +2298,54 @@ wrapper.addEventListener('click', (e) => {
 </script>
     
 <style>
+    body {
+        isolation: isolate;
+    }
+
+    body::before,
+    body::after {
+        position: fixed;
+        z-index: -1;
+        pointer-events: none;
+        content: "";
+    }
+
+    body::before {
+        inset: 72px 0 0;
+        opacity: 0.12;
+        background-image:
+            linear-gradient(rgba(103, 232, 249, 0.12) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(103, 232, 249, 0.12) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 78%, transparent);
+        animation: ambient-grid-drift 48s linear infinite;
+    }
+
+    body::after {
+        top: 72px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        opacity: 0.28;
+        background: linear-gradient(90deg, transparent 4%, rgba(103, 232, 249, 0.7) 50%, transparent 96%);
+        animation: ambient-scanline 24s linear infinite;
+    }
+
+    @keyframes ambient-grid-drift {
+        to { background-position: 64px 64px; }
+    }
+
+    @keyframes ambient-scanline {
+        to { transform: translateY(calc(100vh - 72px)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        body::before,
+        body::after {
+            animation: none;
+        }
+    }
+
     @media (max-width: 600px) {
         body {
             gap: 52px;
