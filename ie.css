@@ -1,0 +1,80 @@
+/* Internet Explorer 11 fallback. The media query below only matches IE, so other browsers ignore this file. */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  html, body { background: #07080f; color: #e8ecf5; font-family: "Segoe UI", Arial, sans-serif; font-size: 16px; line-height: 1.6; }
+  body::before, #intro { display: none; }
+  a { color: #67e8f9; }
+  h1, h2, h3, h4 { color: #e8ecf5; }
+  h1 { font-size: 44px; }
+  h2 { font-size: 32px; }
+  p, li { color: #b4bfd3; }
+  code { background: #171a2a; color: #c9d4ee; }
+
+  .ie-browser-alert { display: block; padding: 12px 20px; background: #3b1d70; color: #fff; text-align: center; font-size: 14px; }
+  .ie-browser-alert a { color: #fff; font-weight: bold; }
+
+  /* Reveal effects never run in IE, so keep everything visible. */
+  .reveal-hidden, .feature-card { opacity: 1; }
+
+  .navbar { position: static; display: block; padding: 12px 24px; background: #0d0e18; border-bottom: 1px solid #23263a; overflow: hidden; }
+  .nav-left { float: left; display: block; }
+  .logo, .logo a { display: inline-block; color: #fff; font-weight: bold; text-decoration: none; }
+  .nav-links { display: inline-block; margin-left: 20px; }
+  .nav-links a { display: inline-block; padding: 7px 12px; color: #94a3b8; text-decoration: none; }
+  .nav-cta { float: right; margin-top: 4px; padding: 9px 20px; background: #7c2cf5; color: #fff; text-decoration: none; font-weight: bold; }
+
+  .section-container, .download-container, .blog-container, .thanks-container { max-width: 1120px; margin: 0 auto; padding: 56px 24px; overflow: hidden; }
+  .section-header { max-width: 680px; margin: 0 auto 36px; text-align: center; }
+  .section-header p { color: #94a3b8; }
+  .pill-badge { display: inline-block; padding: 5px 14px; border: 1px solid #6b3fd0; background: #24123f; color: #c4a8ff; font-size: 12px; text-transform: uppercase; }
+
+  .btn-download, .btn-secondary, .btn-thanks-primary, .btn-thanks-secondary, .btn-read-article { display: inline-block; padding: 12px 24px; border: 1px solid #7c2cf5; background: #7c2cf5; color: #fff; font-weight: bold; text-decoration: none; }
+  .btn-secondary, .btn-thanks-secondary { background: transparent; border-color: #3b3f58; }
+
+  .browser-status-notice { width: auto; max-width: 1072px; margin: 24px auto 0; padding: 20px; border: 1px solid #23263a; background: #14122a; overflow: hidden; }
+  .browser-status-label { color: #c4a8ff; font-size: 12px; text-transform: uppercase; }
+  .rebuild-progress-track { height: 6px; background: #2a2d3f; }
+  .rebuild-progress-indicator { background: #7c2cf5; }
+  .rebuild-milestones { padding: 0; list-style: none; color: #94a3b8; font-size: 12px; }
+  .rebuild-milestones li { display: inline-block; margin-right: 14px; }
+
+  .download-content { float: left; width: 52%; }
+  .download-preview { float: right; width: 44%; }
+  .browser-mockup { border: 1px solid #23263a; background: #11131f; animation: none; }
+  .mockup-header { padding: 12px; background: #171a2a; }
+  .mockup-body { padding: 28px; background: #0d0e18; min-height: 200px; text-align: center; }
+
+  .platform-card, .beta-card, .feature-card, .stat-item, .step-card, .blog-card { display: inline-block; vertical-align: top; width: 31%; margin: 1%; padding: 22px; border: 1px solid #23263a; background: #11131f; text-align: left; }
+  .blog-card { width: 47%; padding: 0; }
+  .blog-card-content, .blog-image-wrapper { padding: 20px; }
+  .stat-item { text-align: center; }
+  .stat-number { font-size: 40px; font-weight: bold; color: #c4a8ff; }
+  .platform-card.is-deactivated { opacity: .55; }
+  .platform-grid, .beta-grid, .features-grid, .stats-grid, .steps-grid, .blog-grid { display: block; max-width: none; }
+
+  .search-bar-mock { border: 1px solid #23263a; background: #11131f; padding: 8px 12px; }
+  #browser-search-input { width: 70%; border: 0; background: transparent; color: #e8ecf5; }
+  #browser-search-btn { padding: 10px 20px; border: 0; background: #7c2cf5; color: #fff; }
+  .legend-pill { display: inline-block; margin: 4px; padding: 6px 14px; border: 1px solid #23263a; background: #11131f; color: #94a3b8; }
+
+  .nt-mock, .img-slider-wrapper { border: 1px solid #23263a; background: #11131f; }
+  .nt-body { padding: 40px 24px; text-align: center; background: #0d0e18; }
+
+  .faq-item { margin-bottom: 12px; border: 1px solid #23263a; background: #11131f; }
+  .faq-item summary { display: block; padding: 16px 20px; font-weight: bold; }
+  .faq-item .chevron { display: none; }
+  .faq-content { padding: 0 20px 16px; }
+
+  .atmos-promo-copy { float: left; width: 45%; }
+  .atmos-preview { float: right; width: 50%; }
+  .home-newsletter-layout { padding: 28px; border: 1px solid #23263a; background: #11131f; overflow: hidden; }
+  .home-newsletter-copy { float: left; width: 42%; }
+  #mlb2-46388045 { float: right; width: 52%; }
+  .cta-panel, .action-box { padding: 36px; border: 1px solid #3b2a6e; background: #11131f; text-align: center; }
+
+  .wf-main-footer { margin-top: 40px; padding: 48px 24px 24px; border-top: 1px solid #23263a; background: #05060c; overflow: hidden; }
+  .wf-footer-info, .wf-footer-column { float: left; width: 22%; margin-right: 3%; }
+  .wf-footer-column a { display: block; padding: 4px 0; color: #94a3b8; text-decoration: none; }
+  .wf-footer-copyright { clear: both; padding-top: 20px; color: #64748b; font-size: 13px; }
+
+  .article-wrapper { max-width: 760px; margin: 48px auto; padding: 0 24px; }
+}

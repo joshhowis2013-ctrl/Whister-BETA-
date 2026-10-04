@@ -554,6 +554,55 @@ body {
 /* ==========================================================================
    5. BROWSER FEATURE HIGHLIGHT MODULES
    ========================================================================== */
+   .testimonial-card {
+    background: radial-gradient(circle at top left, rgba(59, 82, 223, 0.08), transparent);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 50px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.testimonial-text {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #e2e8f0;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.testimonial-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: left;
+}
+
+.user-avatar {
+    width: 44px;
+    height: 44px;
+    background-color: var(--accent-blue);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.testimonial-user h4 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.testimonial-user span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
 .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

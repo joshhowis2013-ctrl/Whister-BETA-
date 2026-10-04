@@ -2,2541 +2,386 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="chromium/win/chromium.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Whister</title>
-    <link rel="stylesheet" href="style.css?v=999">
-</head>
-<body>
-<style>
-        /* =======================================================
-            TARGETED HERO INTRO WHOOSH WITH COLOR TRANSITION
-            ======================================================= */
-        @supports (display: grid) {
-            
-            @keyframes contentWhoosh {
-                0% {
-                    opacity: 0;
-                    transform: translateY(100px) scale(0.95);
-                    filter: blur(4px);
-                    color: #38bdf8; /* Color woosh start */
-                }
-                60% {
-                    opacity: 0.9;
-                    transform: translateY(-8px) scale(1.01);
-                    color: #818cf8; /* Mid-point highlight */
-                }
-                100% {
-                    opacity: 1;
-                    transform: translateY(0) scale(1);
-                    filter: blur(0px);
-                    color: inherit; /* Returns to default color */
-                }
-            }
-
-            @keyframes mockupWhoosh {
-                0% {
-                    opacity: 0;
-                    transform: translateY(150px) scale(0.9);
-                    filter: blur(6px);
-                    border-color: #38bdf8;
-                }
-                70% {
-                    opacity: 0.9;
-                    transform: translateY(-12px) scale(1.02);
-                    border-color: #818cf8;
-                }
-                100% {
-                    opacity: 1;
-                    transform: translateY(0) scale(1);
-                    filter: blur(0px);
-                    border-color: inherit; /* Returns to default border color */
-                }
-            }
-
-            @keyframes gentleFloat {
-                0% { transform: translateY(0); }
-                50% { transform: translateY(-12px); }
-                100% { transform: translateY(0); }
-            }
-
-            @keyframes pulseAttention {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.03); }
-                100% { transform: scale(1); }
-            }
-            
-            /* Staggered sequential entry (one by one) */
-            .download-content {
-                opacity: 0;
-                animation: contentWhoosh 0.8s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
-                animation-delay: 0.1s;
-            }
-
-            .browser-mockup {
-                opacity: 0;
-                animation: 
-                    mockupWhoosh 1s cubic-bezier(0.16, 1, 0.3, 1) forwards, 
-                    gentleFloat 4.5s ease-in-out infinite 1.1s;
-                animation-delay: 0.4s; /* Starts after content to go one by one */
-                transition: transform 0.3s ease;
-            }
-
-            .btn-download {
-                transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            }
-            
-            .btn-download:hover {
-                animation: pulseAttention 1s ease-in-out infinite;
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            }
-
-            .platform-card, .beta-card, .legend-pill {
-                transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
-            }
-
-            .platform-card:hover, .beta-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            }
-
-            .legend-pill:hover {
-                transform: scale(1.05);
-                cursor: pointer;
-            }
-        }
-    
-        /* =======================================================
-           INTERNET EXPLORER FALLBACK & ADAPTIVE STYLING BLOCKS 
-           ======================================================= */
-
-        /* Targeted styling filter strictly executed by Internet Explorer 10 and 11 */
-        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-            body {
-                background-color: #f4f7f9 !important;
-            }
-            
-            /* Displays the warning banner ONLY in real Internet Explorer */
-            .ie-browser-alert {
-                display: block !important;
-                background-color: #fff3cd !important;
-                color: #856404 !important;
-                padding: 15px !important;
-                text-align: center !important;
-                font-family: Arial, sans-serif !important;
-                border-bottom: 2px solid #ffeeba !important;
-                font-size: 14px !important;
-                position: relative !important;
-                z-index: 99999 !important;
-            }
-            .ie-browser-alert a {
-                color: #0056b3 !important;
-                text-decoration: underline !important;
-                font-weight: bold !important;
-            }
-            
-            /* IE-Only grid layouts: Fallback to floats safely without breaking modern grid code */
-            .platform-grid, .beta-grid, .stats-grid {
-                display: block !important;
-            }
-            .platform-card, .beta-card {
-                width: 30% !important;
-                float: left !important;
-                margin-right: 3% !important;
-                box-sizing: border-box !important;
-            }
-            .stat-item {
-                width: 33% !important;
-                float: left !important;
-                box-sizing: border-box !important;
-            }
-            /* Clearfix hack to contain the floated components above */
-            .platforms-section::after, .beta-section::after, .stats-grid::after {
-                content: "" !important;
-                display: table !important;
-                clear: both !important;
-            }
-        }
-    </style>
+    <meta name="description" content="Whister is a private, Chromium-based browser with its own new tab, settings and setup. Choose your search engine, keep your data yours.">
+    <meta name="theme-color" content="#07080f">
+    <title>Download Whister </title>
+    <link rel="icon" type="image/png" href="whister-logo.png">
+    <link rel="stylesheet" href="whister.css?v=2">
+    <link rel="stylesheet" href="ie.css?v=2">
+    <script src="whister.js?v=2"></script>
 </head>
 <body>
 
-    <!-- This warning block stays hidden on modern browsers and auto-triggers inside IE via CSS -->
-    <div class="ie-browser-alert" style="display: none;">
-        Internet Explorer is no longer supported. For the security and speed required to download Whister, please use a modern browser or open this page inside 
-        <a href="https://microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Edge IE Mode</a>.
+    <div class="ie-browser-alert" role="alert">
+        Internet Explorer is no longer supported, so this page is shown in a simplified form. For the full experience, open it in a modern browser such as Microsoft Edge.
+        <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe">Download Whister directly</a>
     </div>
 
-</head>
-<body>
-
-    <!-- This warning block stays hidden on modern browsers and auto-triggers inside IE via CSS -->
-    <div class="ie-browser-alert" style="display: none;">
-        Internet Explorer is no longer supported. For the security and speed required to download Whister, please use a modern browser or open this page inside 
-        <a href="https://microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Edge IE Mode</a>.
+    <!-- Intro splash: once per tab session. Click or press a key to skip. -->
+    <div id="intro" aria-hidden="true">
+        <div class="intro-logo"><img src="whister-logo.png" alt=""></div>
+        <div class="intro-title" id="intro-title">Whister beta</div>
+        <div class="intro-sub">Fast &middot; Private &middot; Yours</div>
+        <div class="intro-bar"></div>
+        <div class="intro-skip">Click anywhere to skip</div>
     </div>
 
-    <!-- TOP NAVIGATION HEADER BAR -->
     <header class="navbar">
         <div class="nav-left">
             <div class="logo">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-                    <path d="M2.5 3h3.8l3.7 12.2L13.7 3h3.6l3.7 12.2 3.7-12.2h3.8L21 21h-4l-3.7-12.2L9.6 21H5.6L2.5 3z"/>
-                </svg>
+                <a href="index.html" aria-label="Whister home"><img src="whister-logo.png" width="30" height="30" alt="">Whister</a>
             </div>
-            <nav class="nav-links">
+            <nav class="nav-links" aria-label="Main navigation">
                 <a href="#features">Features</a>
+                <a href="#newtab">New tab</a>
                 <a href="#bangs-dashboard">Bangs</a>
                 <a href="#faq">FAQ</a>
                 <a href="blog/index.html">Blog</a>
-                <a href="#newsletter">Join Newsletter</a>
-                <a href="whister_friendly_privacy_companion (1).html">Whister Privacy Suite</a>
-                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-" target="_blank" rel="noopener noreferrer" class="external-link">
-                    GitHub
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left: 4px; vertical-align: middle;">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
-                    </svg>
-                </a>
+                <a href="#newsletter">Newsletter</a>
+                <a href="whister_friendly_privacy_companion%20(1).html">Privacy Suite</a>
             </nav>
         </div>
-        <div class="nav-right">
-            <a href="#all-platforms" class="btn-nav-download">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 6px; vertical-align: middle;">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                </svg>
-                Download
-            </a>
-        </div>
+        <a class="nav-cta" href="#all-platforms">Download</a>
     </header>
 
-    <style>
-        .browser-status-notice {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            max-width: 1100px;
-            width: calc(100% - 48px);
-            margin: 104px auto -120px;
-            padding: 18px 22px;
-            background: linear-gradient(110deg, rgba(103, 232, 249, 0.13), rgba(13, 19, 38, 0.96) 48%);
-            border: 1px solid rgba(103, 232, 249, 0.32);
-            border-left: 4px solid #67e8f9;
-            border-radius: 8px;
-        }
-
-        .browser-status-copy {
-            min-width: 0;
-        }
-
-        .browser-status-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 4px;
-            color: #67e8f9;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .browser-status-dot {
-            width: 8px;
-            height: 8px;
-            flex: 0 0 8px;
-            border-radius: 50%;
-            background: #67e8f9;
-            box-shadow: 0 0 12px rgba(103, 232, 249, 0.7);
-            animation: browser-status-pulse 1.8s ease-in-out infinite;
-        }
-
-        @keyframes browser-status-pulse {
-            50% {
-                opacity: 0.4;
-                transform: scale(0.78);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .browser-status-dot {
-                animation: none;
-            }
-        }
-
-        .browser-status-notice h2 {
-            margin: 0 0 4px;
-            color: #f8fafc;
-            font-size: 18px;
-        }
-
-        .browser-status-notice p {
-            margin: 0;
-            color: #aab6c8;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .rebuild-progress-label {
-            display: block;
-            margin: 12px 0 7px;
-            color: #cbd5e1;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .rebuild-progress-track {
-            height: 5px;
-            overflow: hidden;
-            border-radius: 999px;
-            background: rgba(148, 163, 184, 0.2);
-        }
-
-        .rebuild-progress-indicator {
-            display: block;
-            width: 34%;
-            height: 100%;
-            border-radius: inherit;
-            background: linear-gradient(90deg, #3b82f6, #67e8f9);
-            animation: rebuild-progress-sweep 2.4s ease-in-out infinite;
-        }
-
-        @keyframes rebuild-progress-sweep {
-            0% { transform: translateX(-110%); }
-            55%, 100% { transform: translateX(310%); }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .rebuild-progress-indicator {
-                width: 48%;
-                animation: none;
-            }
-        }
-
-        .browser-status-link {
-            flex: 0 0 auto;
-            color: #67e8f9;
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        .browser-status-link:hover {
-            color: #ffffff;
-        }
-
-        @media (max-width: 600px) {
-            .browser-status-notice {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 10px;
-                width: calc(100% - 24px);
-                margin: 116px auto -52px;
-                padding: 16px;
-            }
-
-            .browser-status-notice h2 {
-                font-size: 16px;
-            }
-
-            .browser-status-notice p {
-                font-size: 13px;
-            }
-        }
-    </style>
-
-    <aside class="browser-status-notice" role="note" aria-labelledby="browser-status-title">
-        <div class="browser-status-copy">
-            <span class="browser-status-label"><span class="browser-status-dot" aria-hidden="true"></span>Important browser update</span>
-            <h2 id="browser-status-title">The current Whister download is an early experimental build.</h2>
-            <p>We’ve started rebuilding Whister from the ground up. The new version is in development, and there’s no release date yet.</p>
-            <span class="rebuild-progress-label">Development progress · In progress</span>
-            <div class="rebuild-progress-track" role="progressbar" aria-label="Whister rebuild progress" aria-valuetext="Development is in progress; no completion percentage is available.">
-                <span class="rebuild-progress-indicator"></span>
+    <main>
+        <aside class="browser-status-notice" role="note" aria-labelledby="browser-status-title">
+            <div class="browser-status-copy">
+                <span class="browser-status-label"><span class="browser-status-dot" aria-hidden="true"></span>Whister Beta 1</span>
+                <h2 id="browser-status-title">Beta 1 is almost ready. The current download is still the early experimental build.</h2>
+                <p>The rebuilt Whister now has its own new tab, settings, setup screen and installer. The installer is pushed but still in the early stages.(not in this website, you can find it on a github) We&rsquo;re finishing testing and fixing crashes before the download goes up on Our website.</p>
+                <span class="rebuild-progress-label">Beta 1 progress &middot; 5 of 6 milestones &middot; 85%</span>
+                <div class="rebuild-progress-track" role="progressbar" aria-label="Whister Beta 1 progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85" aria-valuetext="85 percent: 5 of 6 milestones complete">
+                    <span class="rebuild-progress-indicator"></span>
+                </div>
+                <ul class="rebuild-milestones">
+                    <li class="done">Browser rebuilt and branded</li>
+                    <li class="done">New tab page</li>
+                    <li class="done">Settings and search engine</li>
+                    <li class="done">First-run setup screen</li>
+                    <li class="done">Windows installer</li>
+                    <li>Stability testing</li>
+                </ul>
             </div>
-        </div>
-        <a class="browser-status-link" href="blog/rebuilding-whister.html">Read the rebuild update <span aria-hidden="true">&rarr;</span></a>
-    </aside>
+            <a class="browser-status-link" href="blog/beta-1.html">Read the Beta 1 update <span aria-hidden="true">&rarr;</span></a>
+        </aside>
 
-<!-- MAIN HERO / DOWNLOAD SECTION -->
-
-    <section class="download-container">
-    <style>
-        /* Modern UI state modifications for the smooth transition (Ignored by IE) */
-        @supports (display: grid) {
-            .thanks-fade-in {
-                animation: thanksWhooshUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            }
-            @keyframes thanksWhooshUp {
-                0% { opacity: 0; transform: translateY(30px); }
-                100% { opacity: 1; transform: translateY(0); }
-            }
-            .step-row {
-                display: flex; 
-                gap: 16px; 
-                margin-top: 24px; 
-                text-align: left;
-            }
-            .step-node {
-                flex: 1; 
-                background: rgba(255,255,255,0.03); 
-                padding: 16px; 
-                border-radius: 8px; 
-                border: 1px solid rgba(255,255,255,0.05);
-            }
-            .step-node strong { color: #3b82f6; display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; }
-            .step-node p { margin: 0; font-size: 13px; color: #94a3b8; line-height: 1.5; }
-        }
-        /* IE Safe Fallbacks */
-        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-            .step-row { display: block !important; }
-            .step-node { width: 100% !important; margin-bottom: 10px !important; }
-        }
-    </style>
-
-    <!-- Main dynamic element block content panel -->
-    <div class="download-content" id="hero-content-panel">
-        <h1>Whister beta</h1>
-        <p>Experience lightning-fast speeds, built-in privacy protection, and a customizable interface designed for the modern web.</p>
-        <div class="actions">
-            <!-- Points to the real download link, but target="download-bridge" prevents it from redirecting this page -->
-            <a href="https://github.com" 
-               target="download-bridge"
-               id="main-download-btn" 
-               class="btn-download" 
-               onclick="executeDownloadThanks()">Download Browser</a>
-            <span class="os-detect" id="os-text">Detecting your operating system...</span>
-        </div>
-    </div>
-    
-    <div class="download-preview">
-       <div class="browser-mockup">
-    <div class="mockup-header">
-        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-        <!-- THE ADDRESS BAR CHANNELS -->
-        <div class="mockup-url">
-            https://whister.io<span id="typing-text"></span><span class="typing-cursor">|</span>
-        </div>
-    </div>
-    <div class="mockup-body" style="display: flex; align-items: center; justify-content: center; height: 200px; background-color: #090d16; padding: 20px;">
-        <!-- LARGE CENTER TERMINAL DISPLAY -->
-        <h2 id="mockup-display-phrase" style="color: #ffffff; font-size: 26px; font-weight: 700; margin: 0; text-align: center; letter-spacing: -0.5px;"></h2>
-    </div>
-</div>
-
-    </div>
-
-    <!-- Hidden native frame window context used to capture the download file stream behind the scenes -->
-    <iframe name="download-bridge" style="display:none; width:0; height:0; border:none;"></iframe>
-</section>
-
-<script>
-    function executeDownloadThanks() {
-        // 1. Let older browsers like Internet Explorer fall back to regular page scrolling
-        if (typeof window.IntersectionObserver === 'undefined') {
-            return true; 
-        }
-
-        var contentPanel = document.getElementById('hero-content-panel');
-        if (!contentPanel) return true;
-
-        // 2. Clear out the old content and transition the text layers smoothly
-        contentPanel.style.opacity = '0';
-        
-        setTimeout(function() {
-            // 3. Inject the onboarding step layout right into the hero panel
-            contentPanel.innerHTML = 
-                '<div class="thanks-fade-in">' +
-                    '<span style="display:inline-block; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); color:#3b82f6; padding:6px 14px; border-radius:20px; font-size:13px; font-weight:600; margin-bottom:16px;">✓ Download Initiated</span>' +
-                    '<h1 style="font-size:36px; margin:0 0 12px 0;">Thank You for Choosing Whister!</h1>' +
-                    '<p style="color:#94a3b8; margin:0; font-size:15px; line-height:1.6;">Your installation pack has started downloading. Follow the quick steps below to set up your secure engine instance.</p>' +
-                    
-                    '<div class="step-row">' +
-                        '<div class="step-node"><strong>Step 1</strong><p>Launch the downloaded setup installer binary.</p></div>' +
-                        '<div class="step-node"><strong>Step 2</strong><p>Grant permissions if prompted by your firewall.</p></div>' +
-                        '<div class="step-node"><strong>Step 3</strong><p>Enjoy built-in private tools at lightning speed.</p></div>' +
-                    '</div>' +
-                    
-                    '<div style="margin-top:24px;">' +
-                        '<a href="blog/index.html" class="btn-secondary" style="font-size:13px; display:inline-block; padding:10px 18px; text-decoration:none;">Go To Engine Blog &rarr;</a>' +
-                    '</div>' +
-                '</div>';
-            
-            contentPanel.style.opacity = '1';
-        }, 200);
-
-        // 4. Return true so the browser naturally executes the link directly into our hidden iframe window
-        return true;
-    }
-</script>
-
-
-<script>
-    function executeSilentDownload(event) {
-        // 1. Fall back to standard anchors if using an ancient browser like Internet Explorer
-        if (typeof window.IntersectionObserver === 'undefined') {
-            return; 
-        }
-
-        // 2. Prevent default anchor link routing jumps
-        event.preventDefault();
-
-        var downloadBtn = document.getElementById('main-download-btn');
-        var contentPanel = document.getElementById('hero-content-panel');
-        if (!downloadBtn || !contentPanel) return;
-
-        // 3. Mark the button as loading so the user knows the background process started
-        downloadBtn.className = "btn-download is-loading";
-        downloadBtn.innerHTML = "Initiating Stream...";
-
-        // Your live GitHub release installer URL destination path
-        var githubReleaseUrl = "https://github.com";
-
-        // 4. Fetch the large installer binary file silently in the background
-        fetch(githubReleaseUrl)
-            .then(function(response) {
-                if (!response.ok) throw new Error('Network stream processing failed');
-                return response.blob(); // Convert the data packet into a secure local data blob
-            })
-            .then(function(blob) {
-                // 5. Build an internal data URI point route pointer
-                var localBlobUrl = window.URL.createObjectURL(blob);
-                var virtualAnchor = document.createElement('a');
-                virtualAnchor.href = localBlobUrl;
-                virtualAnchor.download = "WhisterGUIInstaller.exe";
-                
-                // Trigger the download natively within the local site domain envelope
-                document.body.appendChild(virtualAnchor);
-                virtualAnchor.click();
-                
-                // Instantly tear down the temporary memory address assets
-                document.body.removeChild(virtualAnchor);
-                window.URL.revokeObjectURL(localBlobUrl);
-            })
-            .catch(function(error) {
-                console.warn("Blob routing fallback triggered: ", error);
-                // Fallback: If GitHub CORS blocking flags interfere, open in an isolated background tab context
-                window.open(githubReleaseUrl, '_blank');
-            });
-
-        // 6. Transition the hero text immediately while the download stream runs
-        contentPanel.style.opacity = '0';
-        
-        setTimeout(function() {
-            contentPanel.innerHTML = 
-                '<div class="thanks-fade-in">' +
-                    '<span style="display:inline-block; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); color:#3b82f6; padding:6px 14px; border-radius:20px; font-size:13px; font-weight:600; margin-bottom:16px;">✓ Download Initiated</span>' +
-                    '<h1 style="font-size:36px; margin:0 0 12px 0;">Thank You for Choosing Whister!</h1>' +
-                    '<p style="color:#94a3b8; margin:0; font-size:15px; line-height:1.6;">Your installation pack has started downloading. Follow the quick steps below to set up your secure engine instance.</p>' +
-                    
-                    '<div class="step-row">' +
-                        '<div class="step-node"><strong>Step 1</strong><p>Launch the downloaded setup installer binary.</p></div>' +
-                        '<div class="step-node"><strong>Step 2</strong><p>Grant permissions if prompted by your firewall.</p></div>' +
-                        '<div class="step-node"><strong>Step 3</strong><p>Enjoy built-in private tools at lightning speed.</p></div>' +
-                    '</div>' +
-                    
-                    '<div style="margin-top:24px;">' +
-                        '<a href="blog/index.html" class="btn-secondary" style="font-size:13px; display:inline-block; padding:10px 18px; text-decoration:none;">Go To Engine Blog &rarr;</a>' +
-                    '</div>' +
-                '</div>';
-            
-            contentPanel.style.opacity = '1';
-        }, 200);
-    }
-</script>
-
-    
-
-<!-- ALL PLATFORMS SECTION WITH SCROLL REVEALS, HIGHLIGHTED CARDS & LIVE WINDOWS LINK -->
-    <section class="platforms-section reveal-hidden" id="all-platforms">
-        <h2>Choose Your Platform</h2>
-        <div class="platform-grid">
-            
-            <!-- Active / Detected OS (Windows) -->
-            <div class="platform-card" id="card-windows">
-                <h3>Windows</h3>
-                <p>Windows 10 / 11 (64-bit)</p>
-<!-- functional installer download URL; triggers background file fetch and top-page thank you layout -->
-                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe" class="btn-secondary" onclick="executeDownloadThanks(event)">Download .EXE</a>
-                
-            </div>
-
-            <!-- Greyed-out Alternative Platform (macOS) -->
-            <div class="platform-card is-deactivated" id="card-macos">
-                <h3>macOS</h3>
-                <p>Apple Silicon / Intel Chips</p>
-                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.dmg" 
-                   class="btn-secondary" 
-                   onclick="executeDownloadThanks(event)">Download .DMG</a>
-            </div>
-
-            <!-- Greyed-out Alternative Platform (Linux) -->
-            <div class="platform-card is-deactivated" id="card-linux">
-                <h3>Linux</h3>
-                <p>Debian / Ubuntu / Fedora</p>
-                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.deb" 
-                   class="btn-secondary" 
-                   onclick="executeDownloadThanks(event)">Download .DEB</a>
-            </div>
-            
-        </div>
-    </section>
-
-    <h1 style="text-align:center; margin-top:60px; font-size:28px;">Stable Release Downloads</h1>
-
-   <div class="beta-grid">
-    <div class="beta-card">
-        <h4>Windows 10/11</h4>
-        <p>Stable release for Windows 10 and 11.</p>
-        <!-- Points directly to your thanks page file layout destination -->
-        <a href="download-thanks.html" 
-           data-binary="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.exe"
-           class="btn-secondary" 
-           onclick="executeStableRedirect(event)">Download .EXE</a>
-    </div>
-   
-    <div class="beta-card">
-        <h4>macOS</h4>
-        <p>Stable release for macOS. (Apple Silicon)</p>
-        <a href="download-thanks.html" 
-           data-binary="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.dmg"
-           class="btn-secondary" 
-           onclick="executeStableRedirect(event)">Download .DMG</a>
-    </div>
-    
-    <div class="beta-card">
-        <h4>Linux</h4>
-        <p>Stable release for Linux. (Ubuntu, Debian, Fedora)</p>
-        <a href="download-thanks.html" 
-           data-binary="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.deb"
-           class="btn-secondary" 
-           onclick="executeStableRedirect(event)">Download .DEB</a>
-    </div>
-</div>
-
-    <script>
-        // Dedicated routing script exclusively for stable release buttons
-        function executeStableRedirect(event) {
-            if (typeof window.IntersectionObserver === 'undefined') {
-                return true; // Let Internet Explorer process the direct link fallback normally
-            }
-
-            // 1. Prevent the primary page tab from changing context directly into GitHub's site layout
-            event.preventDefault();
-
-            // 2. Fetch the correct stable binary source link and route it to your hidden frame bridge
-            var installerUrl = event.currentTarget.getAttribute('href');
-            var downloadBridgeFrame = document.querySelector('iframe[name="download-bridge"]');
-            if (downloadBridgeFrame) {
-                downloadBridgeFrame.src = installerUrl;
-            }
-
-            // 3. Immediately redirect the active viewport tab to your local targeted destination URL
-            var targetThanksLocalPage = "file:///C:/Users/Joshua%20Howis/Documents/GitHub/Whister-BETA-/download-thanks.html";
-            
-            // Set a tiny 100ms timeout window to ensure the file stream initializes before jumping pages
-            setTimeout(function() {
-                window.location.href = targetThanksLocalPage;
-            }, 100);
-
-            return false;
-        }
-    </script>
-
-
-    <!-- SMART BANGS INTERACTION PANEL -->
-    <section class="section-container" id="bangs-dashboard">
-        <div class="section-header">
-            <span class="pill-badge">Built-In Smart Engine</span>
-            <h2>Navigate instantly with Bangs shortcuts</h2>
-            <p>Type commands directly into your address line to access individual sub-networks without waiting.</p>
-        </div>
-        <div class="search-box-wrapper">
-            <div class="search-bar-mock">
-                <span class="search-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                </span>
-                <input type="text" id="browser-search-input" placeholder="Type !yt tutorial, !w design, or !g code..." autocomplete="off">
-                <button id="browser-search-btn">Execute Search</button>
-            </div>
-            <div class="bangs-legend">
-                <div class="legend-pill" onclick="insertBang('!yt ')"><strong>!yt</strong> YouTube</div>
-                <div class="legend-pill" onclick="insertBang('!w ')"><strong>!w</strong> Wikipedia</div>
-                <div class="legend-pill" onclick="insertBang('!g ')"><strong>!g</strong> Google</div>
-                <div class="legend-pill" onclick="insertBang('!gh ')"><strong>!gh</strong> GitHub</div>
-                <div class="legend-pill" onclick="insertBang('!r ')"><strong>!r</strong> Reddit</div>
-            </div>
-        </div>
-    </section>
-
-    
-<div class="comparison-layout-container">
-    <!-- Left Side: Large Interactive Slider -->
-    <div class="img-slider-wrapper" id="sliderWrapper">
-        <img src="whister compared to edge.png" alt="Image B" id="baseImage" class="image-base">
-        
-        <div class="image-overlay" id="imageOverlay">
-            <img src="edge.png" alt="Image A" id="overlayImage">
-        </div>
-        
-        <div class="slider-handle" id="sliderHandle">
-            <div class="slider-line"></div>
-            <div class="slider-button">↔</div>
-        </div>
-    </div>
-
-    <!-- Right Side: Styled Dropdown Control Panel with Blur -->
-    <div class="control-panel">
-        <div class="control-content">
-            <h3>Browser Comparison</h3>
-            <p>Select a browser view to compare rendering results.</p>
-            
-            <div class="select-wrapper">
-                <label for="comparisonSelect">View Mode</label>
-                <select id="comparisonSelect">
-                    <option value="set1">Edge vs Whister (Default)</option>
-                    <option value="set2">Whister vs Chrome</option>
-                </select>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="img-comparision-container">
-    <!-- Dropdown to switch comparison sets -->
-    <div class="comparison-selector">
-        <label for="comparisonSelect">Compare: </label>
-        <select id="comparisonSelect">
-            <option value="set1">Screenshot A vs B (Whister)</option>
-            <option value="set2">Screenshot A vs B (Chrome)</option>
-        </select>
-    </div>
-
-    <!-- The Compact Slider -->
-    <div class="img-slider-wrapper" id="sliderWrapper">
-        <img src="images/image2.png" alt="Image B" id="baseImage" class="image-base">
-        
-        <div class="image-overlay" id="imageOverlay">
-            <img src="images/image1.png" alt="Image A" id="overlayImage">
-        </div>
-        
-        <div class="slider-handle" id="sliderHandle">
-            <div class="slider-line"></div>
-            <div class="slider-button">↔</div>
-        </div>
-    </div>
-</div>
-<script>
-const wrapper = document.getElementById('sliderWrapper');
-const overlay = document.getElementById('imageOverlay');
-const handle = document.getElementById('sliderHandle');
-
-let isDragging = false;
-
-// Enable dragging on mouse or touch
-handle.addEventListener('mousedown', () => isDragging = true);
-window.addEventListener('mouseup', () => isDragging = false);
-
-handle.addEventListener('touchstart', () => isDragging = true);
-window.addEventListener('touchend', () => isDragging = false);
-
-// Track movement across the wrapper
-function trackMovement(clientX) {
-    const rect = wrapper.getBoundingClientRect();
-    let positionX = clientX - rect.left;
-
-    // Keep the slider within the image boundaries
-    if (positionX < 0) positionX = 0;
-    if (positionX > rect.width) positionX = rect.width;
-
-    // Calculate percentage
-    const percentage = (positionX / rect.width) * 100;
-
-    // Move handle and adjust clipping mask
-    handle.style.left = `${percentage}%`;
-    overlay.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
-}
-
-window.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    trackMovement(e.clientX);
-});
-
-window.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    trackMovement(e.touches[0].clientX);
-});
-
-// Allow clicking anywhere on the wrapper to jump the slider there
-wrapper.addEventListener('click', (e) => {
-    trackMovement(e.clientX);
-});
- </script>
-  <!-- METRIC USAGE DATA STRIP OVERVIEW -->
-<section class="section-container stats-bg" id="stats">
-    <div class="stats-grid">
-        <div class="stat-item">
-            <!-- data-target holds the end number. data-suffix holds formatting symbols -->
-            <div class="stat-number" id="stat-chromium" data-target="157.0.8084.0">0</div>
-            <div class="stat-label">Chromium Version</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" id="stat-speed" data-target="2.4" data-suffix="x">0x</div>
-            <div class="stat-label">Faster Page Loading</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" id="stat-privacy" data-target="0.0" data-suffix="%">0.0%</div>
-            <div class="stat-label">Data Monitored or Sold</div>
-        </div>
-    </div>
-</section>
-
-
-    <script>
-    // Global flag prevents the animation from running multiple times
-    var hasAnimatedStats = false;
-
-    // Linear interpolation math to count numbers up smoothly over time
-    function animateValue(obj, start, end, duration, decimalPlaces) {
-        var startTime = null;
-        function step(currentTime) {
-            if (!startTime) startTime = currentTime;
-            var progress = Math.min((currentTime - startTime) / duration, 1);
-            var currentVal = progress * (end - start) + start;
-            var suffix = obj.getAttribute('data-suffix') || '';
-            
-            obj.innerHTML = currentVal.toFixed(decimalPlaces) + suffix;
-            
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        }
-        window.requestAnimationFrame(step);
-    }
-
-    // Finds each tracker element and feeds them their respective target metrics
-    function triggerStatsCounter() {
-        if (hasAnimatedStats) return;
-        hasAnimatedStats = true;
-
-        var chromEl = document.getElementById('stat-chromium');
-        var speedEl = document.getElementById('stat-speed');
-        var privEl = document.getElementById('stat-privacy');
-
-        if (chromEl) animateValue(chromEl, 0, parseFloat(chromEl.getAttribute('data-target')), 1500, 0);
-        if (speedEl) animateValue(speedEl, 0.0, parseFloat(speedEl.getAttribute('data-target')), 1500, 1);
-        if (privEl)  animateValue(privEl, 0.0, parseFloat(privEl.getAttribute('data-target')), 1500, 1);
-    }
-
-    // FEATURE DETECTION: Use modern IntersectionObserver if available. 
-    // Fallback: Instantly apply the numbers for Internet Explorer without breaking the JS engine.
-    if (typeof window.IntersectionObserver !== 'undefined') {
-        var statsSection = document.getElementById('stats');
-        var observer = new IntersectionObserver(function(entries) {
-            if (entries[0].isIntersecting) {
-                triggerStatsCounter();
-                observer.disconnect(); // Clears the listener once triggered
-            }
-        }, { threshold: 0.1 });
-
-        if (statsSection) observer.observe(statsSection);
-    } else {
-        // IE Fallback Action
-        var cE = document.getElementById('stat-chromium');
-        var sE = document.getElementById('stat-speed');
-        var pE = document.getElementById('stat-privacy');
-        if (cE) cE.innerHTML = cE.getAttribute('data-target');
-        if (sE) sE.innerHTML = sE.getAttribute('data-target') + (sE.getAttribute('data-suffix') || '');
-        if (pE) pE.innerHTML = pE.getAttribute('data-target') + (pE.getAttribute('data-suffix') || '');
-    }
-</script>
-
-    <!-- USER FEEDBACK / REVIEW LAYOUT PANEL -->
-    <section class="section-container">
-        <div class="testimonial-card">
-            <p class="testimonial-text">"Whister is A fast and easy to use browser and it keeps my data private."</p>
-            <div class="testimonial-user">
-                <div class="user-avatar">USR</div>
-                <div>
-                    <h4>A Whister user</h4>
-                    <span>User of Whister</span>
+        <!-- HERO -->
+        <section class="download-container">
+            <div class="download-content" id="hero-content-panel">
+                <span class="pill-badge">Private &middot; Chromium-based &middot; Yours</span>
+                <h1>A browser that feels <em>like yours.</em></h1>
+                <p>Whister is a privacy-focused browser with its own new tab, its own settings and a search engine you choose. No sign-in, no fuss.</p>
+                <div class="actions">
+                    <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe" id="main-download-btn" class="btn-download">Download Whister</a>
+                    <span class="os-detect" id="os-text">Detecting your operating system...</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- CORE FEATURES GRID -->
-        <!-- CORE FEATURES GRID (WITH LIVE STAGGER EFFECTS & SYMBOLS) -->
-    <section class="section-container reveal-hidden" id="features">
-        <div class="section-header">
-            <span class="pill-badge">Engine Core Matrix</span>
-            <h2>Engineered for Performance</h2>
-            <p>Discover tools designed to completely redefine your daily browsing habits.</p>
-        </div>
-        <div class="features-grid">
-            
-            <!-- Shield Privacy Engine Card Module -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <h3>Shield Privacy Engine</h3>
-                <p>Block intrusive trackers, fingerprinting scripts, and video commercials out of the box natively.</p>
-            </div>
-            
-            <!-- Chromium Nitro Speed Card Module -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                </div>
-                <h3>Chromium Nitro Speed</h3>
-                <p>Optimized process allocation renders heavy script application frameworks up to two times faster.</p>
-            </div>
-            
-            <!-- Extension Sandbox Card Module -->
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                </div>
-                <h3>Extension Sandbox</h3>
-                <p>Safely run all your favorite extensions within protected tabs without system leaks.</p>
-            </div>
-            
-        </div>
-    </section>
-
-
-      <!-- ⬇️ slider ⬇️ -->
-    <section class="section-container slider-section">
-        <div class="slider-viewport">
-            
-            <!-- SLIDE 1 (Active) -->
-            <div class="browser-slide active-slide">
-                <h2 class="slide-greeting">Good evening</h2>
-                <div class="slide-time">07:18 PM</div>
-                
-                <div class="slide-search-wrapper">
-                    <input type="text" class="slide-search-mock" placeholder="Search securely with DuckDuckGo..." disabled>
-                </div>
-                
-                <div class="slide-weather-pill">
-                    <span class="temp-display">18°C</span>
-                    <div class="weather-meta">
-                        <span class="condition-text">Clear Sky</span>
-                        <span class="area-text">Local Area</span>
+            <div class="download-preview" aria-hidden="true">
+                <div class="browser-mockup">
+                    <div class="mockup-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        <div class="mockup-url">whister://<span id="typing-text"></span><span class="typing-cursor">|</span></div>
+                    </div>
+                    <div class="mockup-body">
+                        <h2 id="mockup-display-phrase"></h2>
                     </div>
                 </div>
             </div>
+            <iframe name="download-bridge" title="Download helper" style="display:none;width:0;height:0;border:0;"></iframe>
+        </section>
 
-            <!-- SLIDE 2 (Hidden by Default) -->
-            <div class="browser-slide">
-                <h2 class="slide-greeting">Stay Private</h2>
-                <div class="slide-time">Built-in Shield</div>
-                
-                <div class="slide-search-wrapper">
-                    <p class="slide-caption-text">"Block intrusive ad scripts, native trackers, and invisible cookies completely out of the box."</p>
+        <!-- PLATFORMS -->
+        <section class="section-container reveal-hidden" id="all-platforms">
+            <div class="section-header">
+                <span class="pill-badge">Downloads</span>
+                <h2>Choose your platform</h2>
+                <p>Whister is Windows-only for now. macOS and Linux are on the roadmap.</p>
+            </div>
+            <div class="platform-grid">
+                <div class="platform-card" id="card-windows">
+                    <h3>Windows</h3>
+                    <p>Windows 10 / 11 (64-bit)</p>
+                    <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe" class="btn-secondary" data-download="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe">Download .EXE</a>
                 </div>
-                
-                <div class="slide-weather-pill">
-                    <span class="temp-display">0.0%</span>
-                    <div class="weather-meta">
-                        <span class="condition-text">Data Tracked</span>
-                        <span class="area-text">Secure Core</span>
-                    </div>
+                <div class="platform-card is-deactivated" id="card-macos">
+                    <h3>macOS</h3>
+                    <p>Apple Silicon / Intel</p>
+                    <span class="soon">Coming later</span>
+                </div>
+                <div class="platform-card is-deactivated" id="card-linux">
+                    <h3>Linux</h3>
+                    <p>Debian / Ubuntu / Fedora</p>
+                    <span class="soon">Coming later</span>
                 </div>
             </div>
 
-        </div>
-
-        <!-- Navigation Control Dots -->
-        <div class="slider-dots">
-            <span class="dot-indicator active-dot" onclick="switchSlide(0)"></span>
-            <span class="dot-indicator" onclick="switchSlide(1)"></span>
-        </div>
-    </section>
-    <!-- ⬆️ END  -->
-
-
-    <!-- CHROME ACCORDION FREQUENTLY ASKED QUESTIONS SECTION -->
-    <section class="section-container" id="faq">
-        <div class="section-header">
-             <h2>Frequently Asked Questions</h2>
-             <p>Everything you need to know about our modern privacy web browser architecture.</p>
-        </div>
-        <div class="faq-wrapper">
-         <details class="faq-item" open>
-            <summary>
-                <span>Is Whister completely free to use?</span>
-                <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-content">
-                <p>Yes! Our browser is open-source and entirely free to download and use. We never track your behavior, display advertising layers, or sell your search matrices to advertising networks.</p>
+            <h3 class="sub-title">Stable release</h3>
+            <div class="beta-grid">
+                <div class="beta-card">
+                    <h4>Windows 10/11</h4>
+                    <p>The last stable release for Windows 10 and 11.</p>
+                    <a href="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.exe" class="btn-secondary" data-download="https://github.com/joshhowis2013-ctrl/Whister/releases/download/NEW/WhisterGUIInstaller.exe">Download .EXE</a>
+                </div>
             </div>
-        </details>
-        <details class="faq-item">
-            <summary>
-                <span>Can I import my data from Chrome or Brave?</span>
-                <svg class="chevron" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-content">
-                <p>Absolutely. During your initial startup installation wizard, you can port over all active cache configurations, saved profiles, credentials, bookmarks, and extensions with a single click.</p>
+        </section>
+
+        <!-- FEATURES -->
+        <section class="section-container reveal-hidden" id="features">
+            <div class="section-header">
+                <span class="pill-badge">What you get</span>
+                <h2>Built for people, not trackers</h2>
+                <p>Whister starts from Chromium and takes out what you didn&rsquo;t ask for.</p>
             </div>
-        </details>
-        <details class="faq-item">
-            <summary>
-                <span>How does the built-in Bang engine work?</span>
-                <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="faq-content">
-                <p>By entering a prefix parameter keyword sequence like <code>!yt</code> or <code>!gh</code> inside your search input bar field, the internal system bypasses generic indices and opens up deep search landing layouts safely inside new windows.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <h3>Privacy first</h3>
+                    <p>Google services are stripped out of the settings, and uBlock Origin ships built in to block ads and trackers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                    <h3>Your search engine</h3>
+                    <p>Pick your default search engine in setup or settings. Nothing is forced on you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg></div>
+                    <h3>A new tab with personality</h3>
+                    <p>A calm start page with a greeting, the time, local weather and search, built into the browser.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></div>
+                    <h3>Settings that make sense</h3>
+                    <p>Whister&rsquo;s own settings: theme, text size, startup, privacy and autofill, each on its own page.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                    <h3>Quick setup</h3>
+                    <p>A four-step welcome picks your search engine, privacy choices and startup behaviour in under a minute.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                    <h3>Chromium underneath</h3>
+                    <p>Built on a current Chromium engine, so sites work the way you expect and extensions stay available.</p>
+                </div>
             </div>
-        </details>
-    </div>
-</section>
-  
-    <section class="section-container" id="What-are-you-waiting-for">
-        <div class="section-header">
-            <h2>What are you waiting for?</h2>
-            <p>Download Whister today and experience a faster, safer, and more private browsing experience.</p>
+        </section>
+
+        <!-- NEW TAB MOCK -->
+        <section class="section-container reveal-hidden" id="newtab">
+            <div class="section-header">
+                <span class="pill-badge">The new tab</span>
+                <h2>Start every tab calmly</h2>
+                <p>A greeting, the time, the weather and your search, nothing else.</p>
+            </div>
+            <div class="nt-mock" aria-hidden="true">
+                <div class="nt-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="nt-tab">New tab</span></div>
+                <div class="nt-body">
+                    <h3 class="nt-greeting">Good evening</h3>
+                    <div class="nt-time">7:18 PM</div>
+                    <div class="nt-search">Search the web <b>Your engine</b></div>
+                    <div class="nt-weather"><strong>18&deg;C</strong><span>Clear sky<br>Local area</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANGS -->
+        <section class="section-container reveal-hidden" id="bangs-dashboard">
+            <div class="section-header">
+                <span class="pill-badge">Try it</span>
+                <h2>Jump straight to a site with Bangs</h2>
+                <p>Start a search with a shortcut like <code>!yt</code> or <code>!gh</code> to go right to the source. Try it below.</p>
+            </div>
+            <div class="search-box-wrapper">
+                <div class="search-bar-mock">
+                    <span class="search-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+                    <input type="text" id="browser-search-input" placeholder="Try: !yt lofi beats, !w chromium, !gh whister" autocomplete="off" aria-label="Try a bang search">
+                    <button id="browser-search-btn" type="button">Search</button>
+                </div>
+                <div class="bangs-legend">
+                    <button class="legend-pill" type="button" data-bang="!yt" style="font:inherit;"><strong>!yt</strong> YouTube</button>
+                    <button class="legend-pill" type="button" data-bang="!w" style="font:inherit;"><strong>!w</strong> Wikipedia</button>
+                    <button class="legend-pill" type="button" data-bang="!g" style="font:inherit;"><strong>!g</strong> Google</button>
+                    <button class="legend-pill" type="button" data-bang="!gh" style="font:inherit;"><strong>!gh</strong> GitHub</button>
+                    <button class="legend-pill" type="button" data-bang="!r" style="font:inherit;"><strong>!r</strong> Reddit</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARISON -->
+        <section class="section-container reveal-hidden" id="compare">
+            <div class="section-header">
+                <span class="pill-badge">Side by side</span>
+                <h2>See the difference</h2>
+                <p>Drag the handle to compare Edge with Whister.</p>
+            </div>
+            <div class="img-slider-wrapper" id="sliderWrapper">
+                <img src="whister%20compared%20to%20edge.png" alt="Whister browser window" id="baseImage">
+                <div class="image-overlay" id="imageOverlay">
+                    <img src="edge.png" alt="Microsoft Edge browser window" id="overlayImage">
+                </div>
+                <div class="slider-handle" id="sliderHandle">
+                    <div class="slider-line"></div>
+                    <div class="slider-button" aria-hidden="true">&harr;</div>
+                </div>
+            </div>
+            <p class="compare-caption">Left: Edge. Right: Whister.</p>
+        </section>
 
             
-        </div>
-    </section>
 
-    <section class="section-container" id="download-cta">
-        <div class="section-header">
-            <h2>Get Started Now</h2>
-            
-            <p><a href="#all-platforms" class="btn-download">Download Whister Now</a></p>
-        </div>
-        
-    </section>
-
-    <section class="section-container atmos-promo" aria-labelledby="atmos-promo-title">
-        <style>
-            .atmos-promo {
-                display: grid;
-                grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-                align-items: center;
-                gap: 36px;
-            }
-
-            .atmos-promo-copy {
-                max-width: 420px;
-            }
-
-            .atmos-promo-eyebrow {
-                display: inline-block;
-                margin-bottom: 12px;
-                color: #67e8f9;
-                font-size: 0.8rem;
-                font-weight: 700;
-                text-transform: uppercase;
-            }
-
-            .atmos-promo-copy h2 {
-                margin: 0 0 12px;
-                font-size: 2rem;
-            }
-
-            .atmos-promo-copy p {
-                margin: 0 0 22px;
-                color: #aab6c8;
-                line-height: 1.7;
-            }
-
-            .atmos-promo-link {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 12px 18px;
-                color: #fff;
-                background: #087f9b;
-                border-radius: 6px;
-                font-weight: 700;
-                text-decoration: none;
-                transition: background-color 0.2s ease, transform 0.2s ease;
-            }
-
-            .atmos-promo-link:hover {
-                background: #0e7490;
-                transform: translateY(-2px);
-            }
-
-            .atmos-preview {
-                width: 100%;
-                aspect-ratio: 1.38 / 1;
-                min-height: 300px;
-                overflow: hidden;
-                background: #101b3c;
-                border: 1px solid rgba(148, 163, 184, 0.24);
-                border-radius: 8px;
-                box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
-            }
-
-            .atmos-preview img {
-                display: block;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            @media (max-width: 800px) {
-                .atmos-promo {
-                    grid-template-columns: 1fr;
-                    gap: 24px;
-                }
-
-                .atmos-preview {
-                    min-height: 360px;
-                }
-            }
-        </style>
-
-        <div class="atmos-promo-copy">
-            <span class="atmos-promo-eyebrow">Another project from our team</span>
-            <h2 id="atmos-promo-title">Meet Atmos Web</h2>
-            <p>Check current conditions, forecasts, and detailed weather insights in a clean, interactive dashboard.</p>
-            <a class="atmos-promo-link" href="https://joshhowis2013-ctrl.github.io/atmos-web/" target="_blank" rel="noopener noreferrer">Explore Atmos Web <span aria-hidden="true">↗</span></a>
-        </div>
-
-        <div class="atmos-preview">
-            <img src="atmos-preview.png" alt="Atmos Web weather dashboard displaying current conditions in London" loading="lazy">
-        </div>
-    </section>
-
-    <section class="section-container" id="newsletter">
-        <style>
-            .home-newsletter-layout {
-                display: grid;
-                grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
-                align-items: center;
-                gap: 40px;
-                padding: 32px;
-                background: rgba(12, 17, 29, 0.92);
-                border: 1px solid rgba(148, 163, 184, 0.18);
-                border-top: 2px solid #3b82f6;
-                border-radius: 8px;
-            }
-
-            .home-newsletter-copy .pill-badge {
-                margin-bottom: 14px;
-            }
-
-            .home-newsletter-copy h2 {
-                margin: 0 0 12px;
-                font-size: 1.8rem;
-            }
-
-            .home-newsletter-copy p {
-                margin: 0;
-                color: #aab6c8;
-                line-height: 1.65;
-            }
-
-            #mlb2-46388045.ml-form-embedContainer {
-                display: block !important;
-                width: 100% !important;
-            }
-
-            #mlb2-46388045 .ml-form-align-center {
-                display: block !important;
-                text-align: left !important;
-            }
-
-            #mlb2-46388045 .ml-form-embedWrapper.embedForm {
-                display: block !important;
-                width: 100%;
-                max-width: none;
-                background: transparent;
-                border: 0;
-            }
-
-            #mlb2-46388045 .ml-form-embedBody,
-            #mlb2-46388045 .ml-form-successBody {
-                padding: 0 !important;
-            }
-
-            #mlb2-46388045 .ml-form-fieldRow {
-                margin: 0 0 16px !important;
-            }
-
-            #mlb2-46388045 .ml-form-fieldRow input[type="email"] {
-                width: 100% !important;
-                min-height: 48px;
-                padding: 12px 14px !important;
-                color: #f8fafc !important;
-                background: #070b14 !important;
-                border: 1px solid #354155 !important;
-                border-radius: 6px !important;
-                font: inherit !important;
-                box-sizing: border-box !important;
-            }
-
-            #mlb2-46388045 .ml-form-fieldRow input[type="email"]::placeholder {
-                color: #94a3b8;
-            }
-
-            #mlb2-46388045 .ml-form-checkboxRow {
-                float: none !important;
-                margin: 0 0 16px !important;
-            }
-
-            #mlb2-46388045 .ml-form-checkboxRow .home-newsletter-consent {
-                display: flex;
-                align-items: flex-start;
-                gap: 10px;
-                min-height: auto;
-                padding: 0;
-            }
-
-            #mlb2-46388045 .ml-form-checkboxRow input[type="checkbox"] {
-                position: static !important;
-                z-index: auto !important;
-                width: 17px;
-                height: 17px;
-                margin: 2px 0 0 !important;
-                opacity: 1 !important;
-                accent-color: #3b82f6;
-                flex: 0 0 auto;
-            }
-
-            #mlb2-46388045 .ml-form-checkboxRow .label-description,
-            #mlb2-46388045 .ml-form-checkboxRow .label-description p {
-                margin: 0 !important;
-                color: #aab6c8 !important;
-                font-size: 0.9rem !important;
-                line-height: 1.5 !important;
-            }
-
-            #mlb2-46388045 .ml-form-recaptcha {
-                clear: both;
-                float: none !important;
-                margin: 0 0 16px;
-            }
-
-            #mlb2-46388045 .ml-form-embedSubmit {
-                float: none !important;
-                margin: 0 !important;
-                width: 100%;
-            }
-
-            #mlb2-46388045 .ml-form-embedSubmit button {
-                width: 100% !important;
-                min-height: 48px;
-                padding: 12px 18px !important;
-                color: #fff !important;
-                background: #2563eb !important;
-                border: 0 !important;
-                border-radius: 6px !important;
-                font: inherit !important;
-                font-weight: 700 !important;
-                cursor: pointer;
-            }
-
-            #mlb2-46388045 .ml-form-embedSubmit button:hover {
-                background: #3b82f6 !important;
-            }
-
-            #mlb2-46388045 .ml-form-successContent h4 {
-                margin: 0 0 8px;
-                color: #f8fafc;
-                font-size: 1.4rem;
-            }
-
-            #mlb2-46388045 .ml-form-successContent p {
-                margin: 0;
-                color: #aab6c8;
-                line-height: 1.6;
-            }
-
-            .home-newsletter-sr-only {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border: 0;
-            }
-
-            @media (max-width: 700px) {
-                .home-newsletter-layout {
-                    grid-template-columns: 1fr;
-                    gap: 26px;
-                    padding: 24px 20px;
-                }
-            }
-        </style>
-
-        <div class="home-newsletter-layout">
-            <div class="home-newsletter-copy">
-                <span class="pill-badge">Whister updates</span>
-                <h2>Whister, in your inbox.</h2>
-                <p>Get occasional product news, release announcements, and privacy tips. Unsubscribe whenever you like.</p>
+        <!-- STATS -->
+        <section class="section-container reveal-hidden" id="stats">
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-number" data-target="157">0</div><div class="stat-label">Chromium version</div></div>
+                <div class="stat-item"><div class="stat-number" data-target="0">0</div><div class="stat-label">Accounts to create</div></div>
+                <div class="stat-item"><div class="stat-number" data-target="4">0</div><div class="stat-label">Steps to set up</div></div>
             </div>
+        </section>
 
-            <div id="mlb2-46388045" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-46388045">
-                <div class="ml-form-align-center">
-                    <div class="ml-form-embedWrapper embedForm">
-                        <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
-                            <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2662758/forms/199683029547878222/subscribe" data-code="" method="post" target="_blank">
-                                <div class="ml-form-formContent">
-                                    <div class="ml-form-fieldRow ml-last-item">
-                                        <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-                                            <label class="home-newsletter-sr-only" for="home-newsletter-email">Email address</label>
-                                            <input id="home-newsletter-email" aria-label="Email address" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="you@example.com" autocomplete="email" required>
+        <!-- FAQ -->
+        <section class="section-container reveal-hidden" id="faq">
+            <div class="section-header">
+                <span class="pill-badge">Questions</span>
+                <h2>Frequently asked questions</h2>
+            </div>
+            <div class="faq-wrapper">
+                <details class="faq-item" open>
+                    <summary><span>Is Whister free?</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></summary>
+                    <div class="faq-content"><p>Yes. Whister is free to download and use, and the source is on GitHub. There is no account and no advertising.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span>Can I import my data from Chrome or Brave?</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></summary>
+                    <div class="faq-content"><p>Because Whister is built on Chromium, you can import bookmarks, history and passwords from other browsers using the browser&rsquo;s standard import tool.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span>How do Bangs work?</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></summary>
+                    <div class="faq-content"><p>Start a search with a shortcut such as <code>!yt</code> or <code>!gh</code> and the search goes straight to that site instead of a general search page. The demo on this page shows the idea.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span>Which systems are supported?</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></summary>
+                    <div class="faq-content"><p>Windows 10 and 11 (64-bit) for now. macOS and Linux builds are planned for later.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary><span>Does Whister update itself?</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></summary>
+                    <div class="faq-content"><p>Not yet. For now you install new builds from this site. Check the <a href="blog/index.html">blog</a> for release news.</p></div>
+                </details>
+            </div>
+        </section>
+
+        <!-- ATMOS -->
+        <section class="section-container atmos-promo reveal-hidden" aria-labelledby="atmos-promo-title">
+            <div class="atmos-promo-copy">
+                <span class="atmos-promo-eyebrow">Another project from our team</span>
+                <h2 id="atmos-promo-title">Meet Atmos Web</h2>
+                <p>Check current conditions, forecasts and detailed weather insights in a clean, interactive dashboard.</p>
+                <a class="atmos-promo-link" href="https://joshhowis2013-ctrl.github.io/atmos-web/" target="_blank" rel="noopener noreferrer">Explore Atmos Web <span aria-hidden="true">&nearr;</span></a>
+            </div>
+            <div class="atmos-preview">
+                <img src="atmos-preview.png" alt="Atmos Web weather dashboard showing current conditions in London" loading="lazy">
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="section-container reveal-hidden" id="newsletter">
+            <div class="home-newsletter-layout">
+                <div class="home-newsletter-copy">
+                    <span class="pill-badge">Whister updates</span>
+                    <h2>Whister, in your inbox.</h2>
+                    <p>Get occasional product news, release announcements and privacy tips. Unsubscribe whenever you like.</p>
+                </div>
+
+                <div id="mlb2-46388045" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-46388045">
+                    <div class="ml-form-align-center">
+                        <div class="ml-form-embedWrapper embedForm">
+                            <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                                <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2662758/forms/199683029547878222/subscribe" data-code="" method="post" target="_blank">
+                                    <div class="ml-form-formContent">
+                                        <div class="ml-form-fieldRow ml-last-item">
+                                            <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                                <label class="home-newsletter-sr-only" for="home-newsletter-email">Email address</label>
+                                                <input id="home-newsletter-email" aria-label="Email address" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="you@example.com" autocomplete="email" required>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="ml-form-checkboxRow ml-validate-required">
-                                    <label class="checkbox home-newsletter-consent">
-                                        <input type="checkbox" required>
-                                        <span class="label-description"><span>I agree to receive email updates from Whister.</span></span>
-                                    </label>
-                                </div>
+                                    <div class="ml-form-checkboxRow ml-validate-required">
+                                        <label class="checkbox home-newsletter-consent">
+                                            <input type="checkbox" required>
+                                            <span class="label-description"><span>I agree to receive email updates from Whister.</span></span>
+                                        </label>
+                                    </div>
 
-                                <div class="ml-form-recaptcha ml-validate-required">
-                                    <script src="https://www.google.com/recaptcha/api.js"></script>
-                                    <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
-                                </div>
+                                    <div class="ml-form-recaptcha ml-validate-required">
+                                        <script src="https://www.google.com/recaptcha/api.js"></script>
+                                        <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
+                                    </div>
 
-                                <input type="hidden" name="ml-submit" value="1">
-                                <input type="hidden" name="anticsrf" value="true">
-                                <div class="ml-form-embedSubmit">
-                                    <button type="submit">Join Newsletter</button>
-                                    <button disabled="disabled" style="display: none;" type="button" class="loading">
-                                        <span class="home-newsletter-sr-only">Loading...</span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                                    <input type="hidden" name="ml-submit" value="1">
+                                    <input type="hidden" name="anticsrf" value="true">
+                                    <div class="ml-form-embedSubmit">
+                                        <button type="submit">Join Newsletter</button>
+                                        <button disabled="disabled" style="display: none;" type="button" class="loading">
+                                            <span class="home-newsletter-sr-only">Loading...</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
 
-                        <div class="ml-form-successBody row-success" style="display: none;">
-                            <div class="ml-form-successContent">
-                                <h4>You're on the list!</h4>
-                                <p>Thanks for signing up. Watch your inbox for Whister updates.</p>
+                            <div class="ml-form-successBody row-success" style="display: none;">
+                                <div class="ml-form-successContent">
+                                    <h4>You're on the list!</h4>
+                                    <p>Thanks for signing up. Watch your inbox for Whister updates.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-     <!-- NEW BULLETPROOF SITE FOOTER -->
-<footer class="wf-main-footer" style="background-color: #040710; position: relative; padding: 90px 40px 40px 40px; border-top: 1px solid rgba(59, 130, 246, 0.15); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: block; clear: both; overflow: hidden;">
-    
-    <!-- Ambient glowing tech accent behind the branding info -->
-    <div style="position: absolute; top: -150px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(37, 99, 235, 0.07) 0%, rgba(0,0,0,0) 70%); pointer-events: none;"></div>
-
-    <style>
-        /* =======================================================
-   STEP 1: PREMIUM THEME BASE CANVAS (Ignored by IE)
-   ======================================================= */
-@supports (display: grid) {
-    html {
-        scroll-behavior: smooth;
-        background-color: #030712; /* Obsidian Space Dark */
-    }
-
-    body {
-        background-color: #030712;
-        color: #f8fafc; /* Crisp clean text */
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        margin: 0;
-        overflow-x: hidden;
-        /* Ambient subtle tech glow behind the page layout */
-        background-image: radial-gradient(circle at 50% -200px, rgba(59, 130, 246, 0.18) 0%, rgba(0,0,0,0) 65%);
-        background-repeat: no-repeat;
-    }
-}
-
-/* =======================================================
-   STEP 2: GLASS NAVIGATION BAR & GLOW HOVERS
-   ======================================================= */
-@supports (display: grid) {
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px 40px;
-        background: rgba(3, 7, 18, 0.75); /* Dark translucent background */
-        backdrop-filter: blur(12px); /* Premium iOS-style glass blur */
-        -webkit-backdrop-filter: blur(12px);
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        transition: background 0.3s ease;
-    }
-
-    .nav-left, .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-    }
-
-    /* Modern clean layout link styling */
-    .nav-links a {
-        color: #94a3b8; /* Cool titanium gray */
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        position: relative;
-        padding: 4px 0;
-        transition: color 0.25s ease;
-    }
-
-    /* Cool underline trace animation on link hover */
-    .nav-links a::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: #3b82f6; /* Electric Blue line */
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .nav-links a:hover {
-        color: #f8fafc; /* Brightens up on hover */
-    }
-
-    .nav-links a:hover::after {
-        transform: scaleX(1);
-        transform-origin: left;
-    }
-
-    /* Premium Neon Download Button Accent */
-    .btn-nav-download {
-        background: rgba(59, 130, 246, 0.1);
-        border: 1px solid rgba(59, 130, 246, 0.3);
-        color: #3b82f6;
-        padding: 10px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-        box-shadow: 0 0 15px rgba(59, 130, 246, 0);
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .btn-nav-download:hover {
-        background: #3b82f6;
-        color: #ffffff !important;
-        transform: translateY(-2px);
-        box-shadow: 0 0 25px rgba(59, 130, 246, 0.45); /* Gives it a premium cyber glow */
-    }
-}
-
-/* =======================================================
-   STEP 3: METALLIC TYPOGRAPHY & HERO ENTRANCE BOUNCE
-   ======================================================= */
-@supports (display: grid) {
-    /* Set up your main hero structure padding layout */
-    .download-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 180px 40px 100px 40px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 60px;
-    }
-
-    /* Dramatic, high-speed fluid entry keyframe for the hero elements */
-    @keyframes kineticWhooshUp {
-        0% {
-            opacity: 0;
-            transform: translateY(60px) scale(0.96);
-            filter: blur(8px); /* Movie-style motion blur on entry */
-        }
-        60% {
-            opacity: 0.9;
-            transform: translateY(-4px) scale(1.01); /* Subtle overshoot bounce */
-            filter: blur(0px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-    }
-
-    /* Target the text wrapper directly to animate it instantly on load */
-    .download-content {
-        opacity: 0;
-        animation: kineticWhooshUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        animation-delay: 0.1s; /* Drops in right after the webpage frame loads */
-    }
-
-    /* Give the Whister title a high-end metal color look */
-    .download-content h1 {
-        font-size: 64px;
-        font-weight: 800;
-        margin: 0 0 16px 0;
-        letter-spacing: -2px;
-        line-height: 1.1;
-        /* Creates an elegant multi-tone shade across the characters */
-        background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    /* Polish the secondary descriptive text element */
-    .download-content p {
-        font-size: 18px;
-        color: #64748b; /* Sleek metal-gray slate shade */
-        line-height: 1.6;
-        margin: 0 0 36px 0;
-        max-width: 520px;
- 
-    }
-   /* =======================================================
-   STEP 4: NEON ACCENT BUTTON & GLOW INTERACTION
-   ======================================================= */
-@supports (display: grid) {
-    /* Base configuration for the main download controller */
-    .btn-download {
-        display: inline-block;
-        background: #3b82f6; /* Electric Blue Core */
-        color: #ffffff !important;
-        text-decoration: none !important;
-        padding: 16px 36px;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 16px;
-        letter-spacing: 0.3px;
-        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25);
-        /* Handles position vectors smoothly across complex interactions */
-        transition: background-color 0.2s ease, 
-                    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                    box-shadow 0.3s ease;
-    }
-
-    /* Elastic hover response state modification */
-    .btn-download:hover {
-        background-color: #2563eb; /* Deepens slightly for mechanical feedback */
-        transform: translateY(-3px) scale(1.02); /* Pop out cleanly towards the user */
-        box-shadow: 0 12px 30px rgba(59, 130, 246, 0.45), 
-                    0 0 20px rgba(59, 130, 246, 0.2); /* Emits a strong radial cyber glow */
-    }
-
-    /* Active click down transformation compression layer */
-    .btn-download:active {
-        transform: translateY(-1px) scale(0.99); /* Depresses physically when clicked */
-        box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
-    }
-}
-
-
-}
-
-/* =======================================================
-   STEP 5: PREVIEW MOCKUP WHOOSH & FLOATING CHAIN
-   ======================================================= */
-@supports (display: grid) {
-    /* Base wrapper for the preview window asset compartment */
-    .browser-mockup {
-        opacity: 0;
-        background: #0b0f19; /* Sleek slate card backdrop */
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
-                    0 0 40px rgba(59, 130, 246, 0.03);
-        
-        /* Whooshes up on load, then automatically begins the idle floating timeline loop */
-        animation: kineticWhooshUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards, 
-                   smoothIdleFloat 5s ease-in-out infinite 1.2s;
-        animation-delay: 0.25s, 0s; /* Delayed execution so text whooshes up first */
-    }
-
-    /* Continuous running physics loop tracking vertical floating position vectors */
-    @keyframes smoothIdleFloat {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-10px); /* Anti-gravity lift simulation */
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    /* Ensure structural child mockup components scale natively */
-    .mockup-header {
-        background: #111827;
-        padding: 12px 16px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    /* Individual mockup interface window control dots */
-    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-    .dot.red { background: #ef4444; }
-    .dot.yellow { background: #f59e0b; }
-    .dot.green { background: #10b981; }
-
-    .mockup-url {
-        background: #030712;
-        padding: 6px 14px;
-        border-radius: 6px;
-        flex-grow: 1;
-        font-family: monospace;
-        font-size: 13px;
-        color: #94a3b8;
-        border: 1px solid rgba(255, 255, 255, 0.03);
-    }
- 
-    /* =======================================================
-   TYPING ENGINE ANIMATED CURSOR TRACE
-   ======================================================= */
-@supports (display: grid) {
-    .typing-cursor {
-        color: #3b82f6; /* Bright electric blue cursor */
-        font-weight: 700;
-        margin-left: 2px;
-        /* Constantly blinks back and forth smoothly */
-        animation: cyberCursorBlink 0.8s infinite steps(2, start);
-    }
-
-    @keyframes cyberCursorBlink {
-        0%, 100% { opacity: 0; }
-        50% { opacity: 1; }
-    }
-}
-
-   /* =======================================================
-   STEP 6: FIXED MODULE CARDS & GRAYED-OUT ALTERNATIVES
-   ======================================================= */
-@supports (display: grid) {
-    .platform-grid, .beta-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 30px;
-        margin-top: 20px;
-    }
-
-    .platform-card, .beta-card {
-        background: #0d1326; /* Space container card navy */
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 36px 32px;
-        border-radius: 12px;
-        text-align: center;
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                    border-color 0.3s ease, 
-                    box-shadow 0.3s ease,
-                    opacity 0.3s ease;
-    }
-
-    .platform-card h3, .beta-card h4 {
-        color: #ffffff !important;
-        font-size: 24px !important;
-        margin: 0 0 10px 0 !important;
-        font-weight: 700 !important;
-    }
-
-    .platform-card p, .beta-card p {
-        color: #94a3b8 !important;
-        font-size: 14px !important;
-        margin: 0 0 24px 0 !important;
-    }
-
-    /* THE VISIBILITY ACCENT: Active / Detected OS Button Style */
-    .btn-secondary {
-        display: block !important;
-        text-align: center !important;
-        background: #3b82f6 !important; /* Premium brand electric blue */
-        color: #ffffff !important; /* Sharp white text */
-        text-decoration: none !important;
-        padding: 14px 20px !important;
-        border-radius: 8px !important;
-        font-weight: 600 !important;
-        font-size: 15px !important;
-        margin-top: 20px !important;
-        border: none !important;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
-        transition: background-color 0.2s ease, transform 0.2s ease !important;
-    }
-
-    .btn-secondary:hover {
-        background-color: #2563eb !important;
-        transform: scale(1.02) !important;
-    }
-
-    /* =======================================================
-       THE GRAYED OUT INTERFACE MODULE CLASSES
-       ======================================================= */
-    
-    /* Lowers the contrast of unused operating system cards */
-    .platform-card.is-deactivated {
-        opacity: 0.4; /* Softly dims the layout text and background */
-        border-color: rgba(255, 255, 255, 0.02);
-    }
-
-    /* Overwrites the button style within muted cards to look clean and gray */
-    .platform-card.is-deactivated .btn-secondary {
-        background: #1e293b !important; /* Tech slate-gray button background */
-        color: #64748b !important; /* Muted gray text color */
-        box-shadow: none !important;
-    }
-
-    /* Restores full clarity instantly if the user explicitly hovers over it */
-    .platform-card.is-deactivated:hover {
-        opacity: 1 !important;
-        border-color: rgba(255, 255, 255, 0.15);
-        transform: translateY(-4px);
-    }
-
-    .platform-card.is-deactivated:hover .btn-secondary {
-        background: #334155 !important; /* Brightens up the gray on hover */
-        color: #ffffff !important;
-    }
-}
-
-}
-
-/* =======================================================
-   STEP 7: SCROLL REVEAL ENGINE INITIAL STATE PROPERTIES
-   ======================================================= */
-@supports (display: grid) {
-    /* The hidden base state applied to sections before they enter the screen viewport */
-    .reveal-hidden {
-        opacity: 0;
-        transform: translateY(40px); /* Positioned slightly lower down the screen canvas */
-        
-        /* Handles the fade and glide transition simultaneously with an elegant easing curve */
-        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
-                    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-        
-        /* Ensures layout properties stay optimized on complex graphics cards */
-        will-change: transform, opacity;
-    }
-
-    /* The active state injected by the background script once the section crosses into view */
-    .reveal-visible {
-        opacity: 1 !important;
-        transform: translateY(0) !important; /* Smoothly rises up to its correct resting position */
-    }
-}
-
-/* =======================================================
-   STEP 8 OVERRIDE: NEON FEATURE CARDS & ICON GLOWS
-   ======================================================= */
-@supports (display: grid) {
-    /* Main structural layout grid wrapper */
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 30px;
-        margin-top: 40px;
-        position: relative;
-        isolation: isolate;
-    }
-
-    .features-grid::before {
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        content: "";
-        opacity: 0.45;
-        pointer-events: none;
-        background-image:
-            linear-gradient(rgba(103, 232, 249, 0.09) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(103, 232, 249, 0.09) 1px, transparent 1px);
-        background-size: 36px 36px;
-        mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
-        animation: feature-grid-drift 42s linear infinite;
-    }
-
-    @keyframes feature-grid-drift {
-        to { background-position: 36px 36px; }
-    }
-
-    #features .section-header h2 {
-        position: relative;
-        display: inline-block;
-        padding-bottom: 12px;
-    }
-
-    #features .section-header h2::after {
-        position: absolute;
-        right: 50%;
-        bottom: 0;
-        width: 64px;
-        height: 2px;
-        content: "";
-        background: linear-gradient(90deg, #3b82f6, #67e8f9);
-        transform: translateX(50%) scaleX(0);
-        transform-origin: center;
-    }
-
-    #features.reveal-visible .section-header h2::after {
-        animation: feature-title-trace 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-    }
-
-    @keyframes feature-title-trace {
-        to { transform: translateX(50%) scaleX(1); }
-    }
-
-    /* Force all child item feature cards to stay hidden until triggered by scroll */
-    .features-grid .feature-card {
-        opacity: 0;
-        background: #0d1326; /* Dark navy panel background */
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 36px 32px;
-        border-radius: 12px;
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                    border-color 0.3s ease, 
-                    box-shadow 0.3s ease;
-    }
-
-    .features-grid .feature-card::after {
-        position: absolute;
-        top: 0;
-        left: -60%;
-        width: 42%;
-        height: 1px;
-        content: "";
-        pointer-events: none;
-        background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.9), transparent);
-        opacity: 0;
-    }
-
-    .reveal-visible .feature-card::after {
-        animation: feature-card-sheen 4.8s ease-in-out 1s infinite;
-    }
-
-    .reveal-visible .feature-card:nth-child(2)::after { animation-delay: 1.7s; }
-    .reveal-visible .feature-card:nth-child(3)::after { animation-delay: 2.4s; }
-
-    @keyframes feature-card-sheen {
-        0%, 18% { left: -60%; opacity: 0; }
-        28% { opacity: 0.8; }
-        52%, 100% { left: 120%; opacity: 0; }
-    }
-
-    /* Interactive hover expansion outline mechanics */
-    .features-grid .feature-card:hover {
-        transform: translateY(-6px);
-        border-color: rgba(59, 130, 246, 0.4);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    /* =======================================================
-   FIX FOR STEP 8: THE STAGGERED KEYFRAME PATH DEFS
-   ======================================================= */
-@supports (display: grid) {
-    
-    /* This defines the core fly-in movement required by the grid cards */
-    @keyframes structuralFlyIn {
-        0% {
-            opacity: 0;
-            /* Sweeps up from 40px down while pushing slightly from the left */
-            transform: translateY(40px) translateX(-15px) scale(0.98);
-            filter: blur(4px); /* Clean digital motion blur look */
-        }
-        70% {
-            opacity: 0.9;
-            transform: translateY(-2px) scale(1.005); /* Slight overshoot bounce */
-            filter: blur(0px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0) translateX(0) scale(1);
-            filter: blur(0px);
-        }
-    }
-}
-
-    /* Styled neon container block for your symbols */
-    .feature-icon {
-        width: 48px;
-        height: 48px;
-        background: rgba(59, 130, 246, 0.1); /* Translucent blue backplate tint */
-        border: 1px solid rgba(59, 130, 246, 0.25);
-        color: #3b82f6; /* Vibrant electric blue icons */
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 24px;
-        box-shadow: 0 0 15px rgba(59, 130, 246, 0.05);
-        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
-    }
-
-    .reveal-visible .feature-card .feature-icon {
-        animation: feature-icon-signal 3.6s ease-in-out 0.8s infinite;
-    }
-
-    .reveal-visible .feature-card:nth-child(2) .feature-icon { animation-delay: 1.4s; }
-    .reveal-visible .feature-card:nth-child(3) .feature-icon { animation-delay: 2s; }
-
-    @keyframes feature-icon-signal {
-        0%, 72%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.05); }
-        84% { box-shadow: 0 0 22px rgba(103, 232, 249, 0.3); }
-    }
-
-    .feature-card:hover .feature-icon {
-        transform: scale(1.08) rotate(3deg); /* Micro-interaction pop when card is active */
-        background: rgba(59, 130, 246, 0.18);
-        color: #60a5fa;
-    }
-
-    .feature-card h3 {
-        color: #ffffff !important;
-        font-size: 20px !important;
-        margin: 0 0 12px 0 !important;
-        font-weight: 700 !important;
-    }
-
-    .feature-card p {
-        color: #94a3b8 !important;
-        font-size: 14px !important;
-        line-height: 1.6 !important;
-        margin: 0 !important;
-    }
-
-    /* Trigger the cascading waterfall fly-in animations on scroll cross milestone */
-    .reveal-visible .feature-card {
-        animation: structuralFlyIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    /* The exact delay timing multipliers for each card node */
-    .reveal-visible .feature-card:nth-child(1) { animation-delay: 0.1s; }
-    .reveal-visible .feature-card:nth-child(2) { animation-delay: 0.25s; }
-    .reveal-visible .feature-card:nth-child(3) { animation-delay: 0.4s; }
-
-    @media (prefers-reduced-motion: reduce) {
-        #features.reveal-hidden,
-        #features .feature-card {
-            opacity: 1 !important;
-            transform: none !important;
-            filter: none !important;
-            transition: none !important;
-            animation: none !important;
-        }
-
-        .features-grid::before,
-        #features .section-header h2::after,
-        #features .feature-card::after,
-        #features .feature-icon {
-            animation: none !important;
-        }
-
-        #features .section-header h2::after {
-            transform: translateX(50%) scaleX(1);
-        }
-    }
-}
-
-
-
-
-
-        /* Widen layout container up to 1400px maximum constraint */
-        .wf-footer-layout {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-            position: relative;
-            z-index: 2;
-        }
-        
-        /* Specialized narrow dimensions for the brand profile column */
-        .wf-footer-info {
-            flex: 1.5 1 280px;
-            margin-bottom: 40px;
-            padding-right: 40px;
-            box-sizing: border-box;
-        }
-        
-        /* Sleek modular structural allocation blocks */
-        .wf-footer-column {
-            flex: 1 1 180px;
-            margin-bottom: 40px;
-            box-sizing: border-box;
-        }
-        
-        /* Premium tech headers */
-        .wf-main-footer h4 {
-            color: #ffffff !important;
-            font-size: 13px !important;
-            font-weight: 600 !important;
-            margin: 0 0 24px 0 !important;
-            text-transform: uppercase !important;
-            letter-spacing: 1.5px !important;
-            opacity: 0.9;
-        }
-        
-        /* Clean links with high-contrast neutral typography */
-        .wf-footer-column a {
-            display: block !important;
-            color: #94a3b8 !important; /* Soft legible aluminum gray */
-            text-decoration: none !important;
-            font-size: 14px !important;
-            margin-bottom: 16px !important;
-            padding: 0 !important;
-            transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-            font-weight: 400 !important;
-        }
-        
-        /* Vibrant, glow-style hover animation tracking */
-        .wf-footer-column a:hover {
-            color: #3b82f6 !important; /* Pops with Whister's signature electric blue */
-            transform: translateX(4px) !important; /* Elegant subtle micro-slide interaction */
-            text-decoration: none !important;
-        }
-
-        .wf-footer-copyright {
-            max-width: 1400px;
-            margin: 40px auto 0 auto;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            z-index: 2;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .wf-footer-copyright p {
-            color: #475569 !important;
-            font-size: 13px !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            letter-spacing: 0.3px;
-        }
-
-        /* Internet Explorer Layout Fallbacks */
-        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-            .wf-footer-layout { display: block !important; }
-            .wf-footer-info { width: 28% !important; float: left !important; }
-            .wf-footer-column { width: 17% !important; float: left !important; }
-            .wf-footer-layout::after, .wf-main-footer::after { content: "" !important; display: table !important; clear: both !important; }
-            .wf-footer-column a { color: #3b82f6 !important; }
-        }
-
-        </style>
-        <style>
-    /* Animated blinking typing line cursor simulation */
-    @supports (display: grid) {
-        .typing-cursor {
-            color: #3b82f6;
-            font-weight: 700;
-            margin-left: 2px;
-            animation: cursorBlink 0.8s infinite steps(2, start);
-        }
-        @keyframes cursorBlink {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-    }
-</style>
-
-<script>
-    // Configuration framework definitions
-    var typingPhrases = [
-        "built for productivity.",
-        "built for absolute privacy.",
-        "built for incredible speed.",
-        "built for the modern web.",
-        "built for developers and creators.",
-        "built for a better browsing experience.",
-        "Whister is built for you.",
-        "Whister is built for everyone.",
-        "Whister",
-        "built",
-        "for",
-        "Everyone.", "giving you the power to browse without limits.", "built for a safer internet.", "built for a faster browsing experience.", "built for the environment."
-
-
-    ];
-    
-    var currentPhraseIndex = 0;
-    var characterIndex = 0;
-    var isDeletingCharacters = false;
-    var typingSpeedTimer = 100; // Base typing animation delay rate in milliseconds
-
-    function runTypingLoopEngine() {
-        // Fall back quietly if loaded inside a system running Internet Explorer architecture
-        if (typeof window.IntersectionObserver === 'undefined') {
-            var staticTarget = document.getElementById('typing-text');
-            if (staticTarget) staticTarget.innerHTML = "built for productivity.";
-            return;
-        }
-
-        var textElement = document.getElementById('typing-text');
-        var displayElement = document.getElementById('mockup-display-phrase');
-        if (!textElement || !displayElement) return;
-
-        var fullPhraseText = typingPhrases[currentPhraseIndex];
-
-        if (isDeletingCharacters) {
-            // Cut text values down sequentially 
-            characterIndex--;
-            typingSpeedTimer = 40; // Speed up erasure speed for fluidity
-        } else {
-            // Build characters array text loops forward
-            characterIndex++;
-            typingSpeedTimer = 100; // Standard layout generation tempo
-        }
-
-        // Project the string fractions onto the live window spans
-        var currentTextSnippet = fullPhraseText.substring(0, characterIndex);
-        textElement.innerHTML = currentTextSnippet;
-        displayElement.innerHTML = currentTextSnippet;
-
-        // Manage processing path transitions flags
-        if (!isDeletingCharacters && characterIndex === fullPhraseText.length) {
-            // Pause dramatically at the complete phrase string sentence target
-            typingSpeedTimer = 2000; 
-            isDeletingCharacters = true;
-        } else if (isDeletingCharacters && characterIndex === 0) {
-            isDeletingCharacters = false;
-            // Advance item tracker to cycle out the phrase collection indices
-            currentPhraseIndex = (currentPhraseIndex + 1) % typingPhrases.length;
-            typingSpeedTimer = 400; // Intermission delay before drafting subsequent string sequences
-        }
-
-        setTimeout(runTypingLoopEngine, typingSpeedTimer);
-    }
-
-    // Safely fire off the animation timeline engine configuration once the document loads
-    window.addEventListener('DOMContentLoaded', function() {
-        setTimeout(runTypingLoopEngine, 1000);
-    });
-</script>
-
-    </style>
-
-    <div class="wf-footer-layout">
-        <!-- Column 1: Brand Info Box -->
-        <div class="wf-footer-info">
-            <div class="logo" style="color: #3b82f6; margin-bottom: 24px;">
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" style="display: block;">
-                    <path d="M2.5 3h3.8l3.7 12.2L13.7 3h3.6l3.7 12.2 3.7-12.2h3.8L21 21h-4l-3.7-12.2L9.6 21H5.6L2.5 3z"/>
-                </svg>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="section-container reveal-hidden" id="download-cta">
+            <div class="cta-panel">
+                <h2>Ready when you are.</h2>
+                <p>Download Whister and make the web a little calmer.</p>
+                <a href="#all-platforms" class="btn-download">Download Whister</a>
             </div>
-            <p class="brand-text" style="color: #64748b; font-size: 14px; line-height: 1.7; margin: 0; padding: 0; font-weight: 400;">
-                Building a faster, decentralized, and private internet environment for everyone.
-            </p>
+        </section>
+    </main>
+
+    <footer class="wf-main-footer">
+        <div class="wf-footer-layout">
+            <div class="wf-footer-info">
+                <div class="logo"><a href="index.html"><img src="whister-logo.png" width="30" height="30" alt="">Whister</a></div>
+                <p class="brand-text">A private, Chromium-based browser that feels like yours.</p>
+            </div>
+            <div class="wf-footer-column">
+                <h4>Product</h4>
+                <a href="#features">Features</a>
+                <a href="#all-platforms">Download</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="wf-footer-column">
+                <h4>Resources</h4>
+                <a href="blog/index.html">Blog</a>
+                <a href="blog/beta-1.html">Beta 1 update</a>
+                <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+            </div>
+            <div class="wf-footer-column">
+                <h4>More</h4>
+                <a href="#newsletter">Newsletter</a>
+                <a href="whister_friendly_privacy_companion%20(1).html">Privacy Suite</a>
+                <a href="https://joshhowis2013-ctrl.github.io/atmos-web/" target="_blank" rel="noopener noreferrer">Atmos Web</a>
+            </div>
         </div>
-        
-        <!-- Column 2: Product link directory -->
-        <div class="wf-footer-column">
-            <h4>Product</h4>
-            <a href="#features">Features</a>
-            <a href="#all-platforms">Download</a>
-            <a href="#">Security</a>
+        <div class="wf-footer-copyright">
+            <p>&copy; 2026 Whister Software. All rights reserved.</p>
+            <p>Whister Beta 1</p>
         </div>
-        
-        <!-- Column 3: Navigation list paths -->
-        <div class="wf-footer-column">
-            <h4>Navigation</h4>
-            <a href="#bangs-dashboard">Bangs Index</a>
-            <a href="#stats">Live Metrics</a>
-            <a href="#beta-info">Stable Builds</a>
-        </div>
-        
-        <!-- Column 4: Documentation details -->
-        <div class="wf-footer-column">
-            <h4>Resources</h4>
-            <a href="#">Developer API</a>
-            <a href="#">Release Notes</a>
-            <a href="#">Open Source</a>
-        </div>
-        
-        <!-- Column 5: Corporate data protection nodes -->
-        <div class="wf-footer-column">
-            <h4>Company</h4>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Contact Support</a>
-        </div>
-    </div>
-    
-    <div class="wf-footer-copyright">
-        <p>&copy; 2026 Whister Software. All rights reserved.</p>
-        <p style="color: #3b82f6 !important; font-weight: 500; font-size: 12px !important; letter-spacing: 1px; text-transform: uppercase;">Engine v1.2.0 Beta</p>
-    </div>
-</footer>
-<style>
-    /* ==========================================================================
-       FORCED OVERRIDE: SLIDER POSITION FIX
-       ========================================================================== */
-    .slider-section {
-        position: relative !important;
-        max-width: 900px !important;
-        margin: 80px auto !important;
-        width: 100% !important;
-        display: block !important;
-    }
-    .slider-viewport {
-        position: relative !important;
-        min-height: 400px !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        width: 100% !important;
-    }
-    /* Forces elements out of a stacked paragraph flow into individual slides */
-    .browser-slide {
-        position: absolute !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        width: 100% !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        transition: opacity 0.4s ease-in-out !important;
-    }
-    /* Only displays the active panel element frame */
-    .browser-slide.active-slide {
-        opacity: 1 !important;
-        pointer-events: auto !important;
-    }
-    .slide-greeting { font-size: 3.2rem !important; font-weight: 300 !important; color: #ffffff !important; margin: 0 0 10px 0 !important; }
-    .slide-time { font-size: 0.95rem !important; color: #4b5563 !important; letter-spacing: 0.05em !important; margin-bottom: 40px !important; }
-    .slide-search-wrapper { width: 100% !important; max-width: 460px !important; margin-bottom: 40px !important; }
-    .slide-search-mock { width: 100% !important; background: transparent !important; border: 1px solid rgba(86, 108, 255, 0.4) !important; border-radius: 50px !important; padding: 14px 24px !important; color: #94a3b8 !important; text-align: left !important; }
-    .slide-caption-text { font-size: 1.25rem !important; color: #94a3b8 !important; font-style: italic !important; margin: 0 !important; line-height: 1.6 !important; }
-    .slide-weather-pill { background: rgba(19, 25, 38, 0.6) !important; border: 1px solid rgba(255, 255, 255, 0.05) !important; border-radius: 12px !important; padding: 16px 24px !important; display: inline-flex !important; align-items: center !important; gap: 16px !important; backdrop-filter: blur(10px) !important; }
-    
-    /* ==========================================================================
-       FORCED OVERRIDE: CLEAN ACCORDION FAQs FIX
-       ========================================================================== */
-    .faq-container { width: 100% !important; max-width: 850px !important; margin: 80px auto !important; display: block !important; }
-    .faq-list { display: flex !important; flex-direction: column !important; gap: 18px !important; }
-    .faq-list details { background-color: #131926 !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; border-radius: 12px !important; overflow: hidden !important; width: 100% !important; display: block !important; }
-    .faq-list summary { padding: 24px !important; font-size: 1.1rem !important; font-weight: 600 !important; color: #ffffff !important; cursor: pointer !important; user-select: none !important; display: flex !important; justify-content: space-between !important; align-items: center !important; }
-    .faq-answer { border-top: 1px solid rgba(255, 255, 255, 0.05) !important; background-color: rgba(0, 0, 0, 0.1) !important; }
-    .faq-answer p { padding: 24px !important; color: #94a3b8 !important; line-height: 1.65 !important; font-size: 0.98rem !important; text-align: left !important; margin: 0 !important; }
-</style>
-
-    <script src="script.js"></script>
-
-    <!-- STEP 9: LIVE SCROLL TRACKER ENGINE -->
-<script>
-    // Failsafe execution framework wrap
-    window.addEventListener('DOMContentLoaded', function() {
-        
-        // FEATURE DETECTION: Check if the browser supports modern Intersection Observers (Chrome, Edge, Safari, Firefox)
-        if (typeof window.IntersectionObserver !== 'undefined') {
-            
-            // 1. Gather all sections carrying our initial hidden animation class
-            var hiddenElements = document.querySelectorAll('.reveal-hidden');
-            
-            // 2. Set up the observer configuration
-            var revealObserver = new IntersectionObserver(function(entries) {
-                for (var i = 0; i < entries.length; i++) {
-                    var entry = entries[i];
-                    
-                    // If the section crosses into the screen viewport (threshold milestone met)
-                    if (entry.isIntersecting) {
-                        // Inject the modern active visibility class to trigger our CSS cascade animations
-                        entry.target.className += " reveal-visible";
-                        
-                        // Disconnect the listener from this specific node so it doesn't repeat trigger
-                        revealObserver.unobserve(entry.target);
-                    }
-                }
-            }, { 
-                // Fires the layout change when at least 10% of the section card is visible on screen
-                threshold: 0.1,
-                // Expands the bottom tracking boundary slightly to preload elements just before they arrive
-                rootMargin: "0px 0px -50px 0px"
-            });
-            
-            // 3. Bind the scanner to each flagged component container
-            for (var j = 0; j < hiddenElements.length; j++) {
-                revealObserver.observe(hiddenElements[j]);
-            }
-            
-        } else {
-            // INTERNET EXPLORER FALLBACK: Instantly uncover all content zones immediately if engine is legacy
-            var ieElements = document.querySelectorAll('.reveal-hidden');
-            for (var k = 0; k < ieElements.length; k++) {
-                ieElements[k].className += " reveal-visible";
-            }
-        }
-    });
-</script>
-
-<script>
-    function ml_webform_success_46388045() {
-        var $ = ml_jQuery || jQuery;
-        $('.ml-subscribe-form-46388045 .row-success').show();
-        $('.ml-subscribe-form-46388045 .row-form').hide();
-    }
-</script>
-<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
-<script>
-    fetch('https://assets.mailerlite.com/jsonp/2662758/forms/199683029547878222/takel');
-</script>
-    
-<style>
-    body {
-        isolation: isolate;
-    }
-
-    body::before,
-    body::after {
-        position: fixed;
-        z-index: -1;
-        pointer-events: none;
-        content: "";
-    }
-
-    body::before {
-        inset: 72px 0 0;
-        opacity: 0.12;
-        background-image:
-            linear-gradient(rgba(103, 232, 249, 0.12) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(103, 232, 249, 0.12) 1px, transparent 1px);
-        background-size: 64px 64px;
-        mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 78%, transparent);
-        animation: ambient-grid-drift 48s linear infinite;
-    }
-
-    body::after {
-        top: 72px;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        opacity: 0.28;
-        background: linear-gradient(90deg, transparent 4%, rgba(103, 232, 249, 0.7) 50%, transparent 96%);
-        animation: ambient-scanline 24s linear infinite;
-    }
-
-    @keyframes ambient-grid-drift {
-        to { background-position: 64px 64px; }
-    }
-
-    @keyframes ambient-scanline {
-        to { transform: translateY(calc(100vh - 72px)); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        body::before,
-        body::after {
-            animation: none;
-        }
-    }
-
-    @media (max-width: 600px) {
-        body {
-            gap: 52px;
-            overflow-x: hidden;
-            padding: 112px 12px 48px;
-        }
-
-        .navbar {
-            display: grid !important;
-            grid-template-columns: minmax(0, 1fr) auto;
-            grid-template-rows: auto auto;
-            gap: 8px 12px;
-            height: auto;
-            padding: 8px 14px !important;
-        }
-
-        .navbar .nav-left {
-            display: contents;
-        }
-
-        .navbar .logo {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .navbar .nav-links {
-            display: flex;
-            grid-column: 1 / -1;
-            grid-row: 2;
-            gap: 16px;
-            width: 100%;
-            min-width: 0;
-            overflow-x: auto;
-            padding: 2px 0;
-            scrollbar-width: none;
-            white-space: nowrap;
-        }
-
-        .navbar .nav-links::-webkit-scrollbar {
-            display: none;
-        }
-
-        .navbar .nav-links a {
-            flex: 0 0 auto;
-            font-size: 12px;
-        }
-
-        .navbar .nav-right {
-            grid-column: 2;
-            grid-row: 1;
-            margin: 0;
-        }
-
-        .btn-nav-download {
-            padding: 8px 11px !important;
-            font-size: 13px !important;
-        }
-
-        .download-container {
-            max-width: 100%;
-            grid-template-columns: minmax(0, 1fr) !important;
-            gap: 28px !important;
-            padding: 36px 4px 16px !important;
-            text-align: center;
-        }
-
-        .download-content h1 {
-            font-size: clamp(36px, 11vw, 48px) !important;
-            letter-spacing: 0 !important;
-        }
-
-        .download-content p {
-            margin: 0 auto 24px;
-            font-size: 16px;
-        }
-
-        .actions {
-            align-items: center;
-        }
-
-        .download-preview,
-        .browser-mockup {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-            margin: 0;
-        }
-
-        .browser-mockup {
-            opacity: 1;
-            animation: none;
-            transform: none;
-        }
-
-        .mockup-url {
-            flex: 1;
-            min-width: 0;
-            max-width: none;
-            margin-left: 4px;
-            overflow: hidden;
-            padding: 6px 8px;
-            font-size: 11px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .mockup-body {
-            height: 160px !important;
-            min-width: 0;
-            padding: 12px !important;
-        }
-
-        #mockup-display-phrase {
-            font-size: clamp(16px, 5vw, 22px) !important;
-            overflow-wrap: anywhere;
-        }
-    }
-
-    @media (max-width: 360px) {
-        body {
-            padding-right: 8px;
-            padding-left: 8px;
-        }
-
-        .features-grid {
-            width: 100%;
-            grid-template-columns: minmax(0, 1fr);
-        }
-
-        .feature-card {
-            width: 100%;
-            min-width: 0;
-        }
-
-        .feature-large {
-            grid-column: auto;
-            grid-row: auto;
-        }
-
-        .platform-grid,
-        .beta-grid {
-            grid-template-columns: minmax(0, 1fr) !important;
-        }
-
-        .platform-card,
-        .beta-card {
-            width: 100%;
-            min-width: 0;
-            padding: 24px 16px !important;
-        }
-
-        .comparison-layout-container {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-            margin: 24px 0;
-            padding: 10px;
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .comparison-layout-container .img-slider-wrapper,
-        .comparison-layout-container .control-panel {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-        }
-
-        .home-newsletter-layout {
-            width: 100%;
-            min-width: 0;
-            grid-template-columns: minmax(0, 1fr);
-            padding: 16px 12px;
-        }
-
-        .home-newsletter-layout > *,
-        .home-newsletter-copy {
-            min-width: 0;
-        }
-
-        #mlb2-46388045 .ml-form-recaptcha {
-            width: 245px;
-            height: 62px;
-            overflow: hidden;
-        }
-
-        #mlb2-46388045 .g-recaptcha {
-            transform: scale(.78);
-            transform-origin: top left;
-        }
-    }
-</style>
+    </footer>
 </body>
 </html>
