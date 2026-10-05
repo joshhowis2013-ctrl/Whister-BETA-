@@ -5,8 +5,8 @@
     <link rel="icon" type="image/png" href="../whister-logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="What is in Whister Beta 1: a native new tab, settings, setup screen and installer, plus the known issues.">
-    <title>Whister Beta 1 Is Almost Here</title>
+    <meta name="description" content="Whister 2.0 Beta 1 is available as an early Windows pre-release. Read what is included and the current known issues.">
+    <title>Whister 2.0 Beta 1 Is Here</title>
     <link rel="stylesheet" href="../whister.css?v=2">
     <style>
         body {
@@ -109,33 +109,38 @@
     <main class="article-wrapper">
         <a href="index.html" class="back-link">&larr; All articles</a>
         <header>
-            <div class="article-meta">October 3, 2026 · Whister Software</div>
-            <h1 class="article-title">Whister Beta 1 Is Almost Here</h1>
+            <div class="article-meta">October 5, 2026 · Whister Software</div>
+            <h1 class="article-title">Whister 2.0 Beta 1 Is Here</h1>
         </header>
 
         <article class="article-content">
-            <p>When we started rebuilding Whister, we said we would share more once there was something real to show. There now is. Beta 1 of the rebuilt browser is working, and we are finishing testing before the download goes live. It is not released yet, and the current download on the site is still the early experimental build.</p>
+            <p>Whister 2.0 Beta 1 is now available for Windows 10 and 11 (64-bit). This is the first public build of the rebuilt browser. It is an early pre-release: expect rough edges, back up anything important, and test it in a virtual machine before considering regular use.</p>
+
+            <p><a class="btn-download" href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/2.0/Whister-Beta1-Setup.exe">Download Whister Beta 1</a></p>
+            <p><strong>SHA-256:</strong> <code>0f83503486d1960d9557b2a63e27b0ae855d5d085849506c212a0d296873dd1b</code></p>
 
             <h2>What is in Beta 1</h2>
             <ul>
-                <li><strong>A native new tab page.</strong> Built into the browser itself, with a search box that lets you choose your own search engine, and local weather.</li>
-                <li><strong>Whister settings.</strong> A settings page designed for Whister, with separate pages for search, appearance, startup, privacy, autofill and languages. Pick your search engine, theme, text size, home page and more.</li>
-                <li><strong>A first-run setup screen.</strong> A short welcome that asks for your search engine, privacy choices and startup behaviour, so Whister feels like yours from the first launch.</li>
-                <li><strong>Whister branding.</strong> New logo throughout, including the version page, and a dark toolbar theme.</li>
-                <li><strong>A Windows installer.</strong> A simple installer that does not need administrator rights and adds a Start menu entry, a desktop shortcut and a proper uninstaller.</li>
+                <li><strong>A rebuilt Chromium browser.</strong> Chromium 157.0.8084.0 is the foundation for this beta.</li>
+                <li><strong>A Whister new tab.</strong> Search, time, appearance choices, and a selectable search engine are built into the browser.</li>
+                <li><strong>Whister settings.</strong> Separate areas for search, appearance, startup, privacy, autofill, languages, downloads, and browser information.</li>
+                <li><strong>A Windows installer.</strong> Installs per-user, creates Start menu and desktop shortcuts, and includes an uninstaller.</li>
             </ul>
 
             <h2>Known issues</h2>
-            <p>This is a beta, and we would rather be upfront about it:</p>
+            <p>This is a pre-release, and we want to be clear about its current limits:</p>
             <ul>
-                <li>The new tab page can occasionally crash. We are tracking this down.</li>
-                <li>Whister does not update itself yet. For now you will need to download new builds from this site.</li>
-                <li>Some pages, such as history, extensions and the password manager, still use the standard browser design. We plan to replace them over time.</li>
+                <li>Do not make this your default browser yet. Stability testing is still in progress.</li>
+                <li>The first-run welcome may still show Chromium&rsquo;s stock screen in this build.</li>
+                <li>Some published builds may crash when opening the custom new tab or changing the search engine. A corrected build is being tested.</li>
+                <li>uBlock Origin Lite may not install automatically in this package. You can install it from the <a href="https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh">official Chrome Web Store listing</a>.</li>
+                <li>Some browser pages still use Chromium&rsquo;s standard interface.</li>
+                <li>Whister does not update itself; download future builds manually from the <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/tag/2.0">GitHub release page</a>.</li>
                 <li>Windows only for now.</li>
             </ul>
 
-            <h2>What happens next</h2>
-            <p>We are working through the last two milestones: finishing the installer and stability testing. The progress bar on the home page shows where we are. When Beta 1 is ready, we will announce it here and on the home page. Thank you for following along and for all the feedback so far.</p>
+            <h2>Getting started</h2>
+            <p>Our <a href="getting-started.html">Getting Started guide</a> walks through installation, the first launch, and where to find Whister&rsquo;s settings. Thanks for trying the beta and helping us test it.</p>
         </article>
     </main>
 </body>

@@ -78,7 +78,7 @@
   }
 
   /* ---------- OS detection and download ---------- */
-  var DOWNLOAD_EXE = 'https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/Release/WhisterGUIInstaller.exe';
+  var DOWNLOAD_EXE = 'https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/2.0/Whister-Beta1-Setup.exe';
 
   function showThanks() {
     var panel = document.getElementById('hero-content-panel');

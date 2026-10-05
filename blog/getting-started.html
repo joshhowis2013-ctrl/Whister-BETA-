@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07080f">
+    <meta name="description" content="Install Whister 2.0 Beta 1, take a few first steps, and learn what to expect from this early pre-release.">
+    <title>Getting Started with Whister 2.0 Beta 1</title>
+    <link rel="icon" type="image/png" href="../whister-logo.png">
+    <link rel="stylesheet" href="../whister.css?v=2">
+    <link rel="stylesheet" href="../ie.css?v=2">
+    <script src="../whister.js?v=2"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo"><a href="../index.html" aria-label="Whister home"><img src="../whister-logo.png" width="30" height="30" alt="">Whister</a></div>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="../index.html#features">Features</a>
+                <a href="index.html" class="active">Blog</a>
+                <a href="../index.html#all-platforms">Download</a>
+            </nav>
+        </div>
+        <a class="nav-cta" href="../index.html#all-platforms">Download</a>
+    </header>
+
+    <main class="article-wrapper">
+        <a href="index.html" class="back-link">&larr; All articles</a>
+        <header>
+            <div class="article-meta">October 5, 2026 · Whister Software</div>
+            <h1 class="article-title">Getting Started with Whister 2.0 Beta 1</h1>
+        </header>
+
+        <article class="article-content">
+            <p>Thanks for trying Whister. Beta 1 is an early Windows pre-release, so test it in a virtual machine or on a non-critical profile. It is not ready to be your default browser.</p>
+
+            <h2>1. Download and verify</h2>
+            <p>Get <code>Whister-Beta1-Setup.exe</code> from the official <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/tag/2.0">2.0 release page</a>.</p>
+            <p>For the published installer, the SHA-256 is:</p>
+            <p><code>422D0902CBA3F3399CA686549C0A4D4458717AE1948285B3AF91108814FF232B</code></p>
+            <p>In PowerShell, you can check the file with <code>Get-FileHash .\Whister-Beta1-Setup.exe -Algorithm SHA256</code>. Only continue if the result matches.</p>
+
+            <h2>2. Install</h2>
+            <p>Run the installer and follow its prompts. It installs for your Windows account and creates Start menu and desktop shortcuts. If Windows displays a security warning, make sure the file came from the release page above before choosing to continue.</p>
+
+            <h2>3. First launch</h2>
+            <p>This beta may show Chromium&rsquo;s stock welcome screen on first launch. Continue through it if it appears. You can open Whister settings later from the address bar at <code>chrome://whister-settings</code>.</p>
+            <p>The new tab includes a search provider selector. In this published build, changing the search engine can crash Whister; keep the current selection until a corrected build is posted. The newer background and widget customizer is not included in this installer yet.</p>
+
+            <h2>4. Keep the beta in perspective</h2>
+            <ul>
+                <li>Use a virtual machine for testing and avoid sensitive accounts or important browsing.</li>
+                <li>The new-tab and search-engine crash fixes are still being tested. If either crashes, stop testing that feature and send us the crash report.</li>
+                <li>uBlock Origin Lite may need to be installed manually from its <a href="https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh">official Chrome Web Store listing</a>.</li>
+                <li>Some pages still use Chromium&rsquo;s standard interface.</li>
+                <li>Whister does not update itself yet. Check the <a href="index.html">blog</a> or release page for newer builds.</li>
+                <li>If a tab or the browser crashes, note what you were doing and share the crash report with us.</li>
+            </ul>
+
+            <p>Thanks for helping us test Whister 2.0 Beta 1. Your reports help us make the next build safer and more reliable.</p>
+        </article>
+    </main>
+
+    <footer class="wf-main-footer">
+        <div class="wf-footer-copyright" style="margin-top:0;border-top:0;padding-top:0;">
+            <p>&copy; 2026 Whister Software. All rights reserved.</p>
+            <p><a href="../index.html" style="color:var(--muted);text-decoration:none;">Back to home</a></p>
+        </div>
+    </footer>
+</body>
+</html>
