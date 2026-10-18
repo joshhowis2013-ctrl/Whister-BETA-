@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whister Browser — Privacy Policy</title>
+    <style>
+        :root {
+            --bg-main: #070a13;
+            --bg-panel: rgba(19, 25, 38, 0.65);
+            --bg-surface-light: rgba(255, 255, 255, 0.06);
+            --accent-blue: #3b52df;
+            --accent-glow: rgba(59, 82, 223, 0.25);
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-glow: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            line-height: 1.7;
+            /* Injected custom neon cyan/indigo gradient canvas glow */
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 82, 223, 0.15) 0px, transparent 50%), 
+                radial-gradient(at 100% 100%, rgba(34, 184, 207, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Top Branded Sticky Navigation Header Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 1000;
+            background-color: rgba(7, 10, 19, 0.75);
+            border-bottom: 1px solid var(--bg-surface-light);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-box {
+            display: inline-grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #3b52df, #6366f1);
+            color: #fff;
+            font-weight: 800;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+
+        /* Aero Glass Morphic Primary Article Content Container */
+        .policy-container {
+            max-width: 800px;
+            width: 100%;
+            margin: 110px 24px 40px;
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .policy-header {
+            margin-bottom: 36px;
+            border-bottom: 1px solid var(--bg-surface-light);
+            padding-bottom: 28px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .meta-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .policy-container h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 40px 0 16px;
+            color: #fff;
+            letter-spacing: -0.01em;
+        }
+
+        .policy-container p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .policy-container ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .policy-container li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            font-size: 1.02rem;
+        }
+
+        /* Neon dot list accent indicators */
+        .policy-container li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #22b8cf;
+            font-size: 0.9rem;
+        }
+
+        code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #0c101b;
+            color: #a5b4fc;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 40px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--bg-surface-light);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .policy-container { padding: 28px; margin-top: 96px; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation Strip Container -->
+    <nav class="navbar">
+        <div class="brand-wrapper">
+            <div class="logo-box">W</div>
+            <span>Whister</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Back to Project Index</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Document Structure -->
+    <article class="policy-container">
+        <div class="policy-header">
+            <h1>Whister Project Privacy Policy</h1>
+            <div class="meta-date">Operational Architecture Record &bull; Effective 18 October 2026</div>
+        </div>
+
+        <p>Whister is an independent, open-source browser fork utilizing the Chromium rendering architecture. We believe software interface design must respect individual privacy boundaries automatically. This operational document registers our zero-telemetry structure constraints, local storage borders, and edge automated routing parameters line-for-line.</p>
+        
+        <h2>1. Zero-Telemetry Local Privacy Model</h2>
+        <p>Unlike conventional web deployment platforms, the Whister browser engine isolates all execution behaviors directly onto the user's local machine layer, actively dropping baseline tracking instrumentation routes completely.</p>
+        <ul>
+            <li><strong>No Upstream Metric Streams:</strong> Usage indicators, navigation session timings, and crash tracking dumps remain encrypted inside your device filesystem and are never aggregated onto outer networks.</li>
+            <li><strong>Decoupled Profiles:</strong> Whister operates with completely decoupled local workspace storage profiles (<code>AppData\Local\Chromium\User Data\</code>). There are no cloud account integrations or personal usage database clusters.</li>
+            <li><strong>Search Query Isolation:</strong> When altering providers via the New Tab dropdown widget elements, parameters string chunks are dispatched directly to the chosen engine node (DuckDuckGo, Brave, or Google). Whister functions purely as an analytical bridge and never logs user search keys.</li>
+        </ul>
+
+        <h2>2. Smart Update Loop Validation</h2>
+        <p>To safely deliver engine structural performance increments and source tree tweaks, the native C++ controller layer speaks securely with our subdomains to evaluate file patch availability metrics automatically.</p>
+        <ul>
+            <li><strong>Minimalist Check-in Payloads:</strong> Clicking version checker inputs prompts <code>WhisterSettingsHandler::TriggerServerUpdateCheck</code> to send a simple, isolated version check string block: <br>
+            <code>{"version": "158.0.8105.0"}</code></li>
+            <li><strong>Ephemeral Edge Validation:</strong> Requests drop into high-performance Cloudflare serverless edge runtimes deployed directly at <code>://whisterbrowser.com</code>. Network address tags (IP headers) are evaluated entirely in volatile server memory caches on the fly to fulfill routing tasks and are never logged to database files.</li>
+            <li><strong>Zero-Egress Hosting Pools:</strong> Discovered patch layers (<code>.patch</code> structural diff chunks) and compiled installer stubs (<code>mini_installer.exe</code>) are hosted entirely via encrypted Cloudflare R2 storage assets to guarantee secure download channels.</li>
+     <p>Visualisation of the zero-egress hosting pools and update loop validation process.</p> 
+     <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+                    <thead>
+                        <tr bgcolor="#ffcccc">
+                            <th>Target URL Subdomain / Path</th>
+                            <th>Backend Platform Architecture</th>
+                            <th>Functional Deployment Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>https://beta-updates.whisterbrowser.com</code></td>
+                            <td>Cloudflare Workers (Beta Staging Runtime)</td>
+                            <td>Intercepts incoming test client JSON strings, parses experimental version parameters, and serves beta patch manifests.</td>
+                        </tr>
+                        <tr>
+                            <td><code>https://beta-updates.whisterbrowser.com/UPDATES/MINI-installer/directory-index</code></td>
+                            <td>Cloudflare R2 Storage Pool</td>
+                            <td>Delivers the production Windows background executable block to clients silently with zero egress fees.</td>
+                        </tr>
+                        <tr>
+                            <td><code>https://whisterbrowser.com[version].patch</code></td>
+                            <td>Cloudflare R2 Storage Pool</td>
+                            <td>Provides compressed, raw structural text diff blocks for lightweight source patches.</td>
+                        </tr>
+                    </tbody>
+                </table>
+        <p>Note: All data exchanges with the above backend platforms are conducted over secure, encrypted channels to ensure user privacy and data integrity.</p>
+        </div> <!-- End of zero-egress hosting pools visualization section -->
+        
+        <p>Auto Update visualization section provides an overview of how our update mechanism interacts with the backend infrastructure to deliver patches efficiently and securely.
+
+        </p>
+        <div> <!-- Start of auto update visualization section --> <hr>
+
+                <h2>Automated Execution Protocol Pipeline</h2>
+                <p>The internal C++ thread layer coordinates with the network storage layout according to this three-tier execution loop sequence:</p>
+                
+                <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; margin-top: 10px;">
+                    <tr bgcolor="#000000">
+                        <td><strong>Stage 1: The Request</strong></td>
+                        <td>The browser calls <code>WhisterSettingsHandler::TriggerServerUpdateCheck</code>, transmitting a quick payload string container to the staging subdomain: <br>
+                        <code>{"version": "158.0.8105.0"}</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stage 2: The Parsing</strong></td>
+                        <td>The Cloudflare Edge Beta Worker script interprets the JSON payload, cross-checks version strings, and replies with an update instruction block pointing to the staging patch assets.</td>
+                    </tr>
+                    <tr bgcolor="#000000">
+                        <td><strong>Stage 3: The Deployment</strong></td>
+                        <td>The browser client downloads the target chunk asynchronously into the local temp folder and executes the background process silently via <code>base::LaunchProcess</code>.</td>
+                    </tr>
+                </table>
+
+                <hr>
+        </div> <!-- End of auto update visualization section -->
+ 
+        <hr>
+
+    </hr>
+        <h2>3. Cookies & Network Cookies Handling</h2>
+        <p>Our project directories are engineered strictly as low-overhead, informative developer manifests.</p>
+        <ul>
+            <li><strong>No Analytics Cookies:</strong> Whister documentation indices do not serve third-party user profile tracking scripts, marketing cookie assets, or audience canvas mapping tags.</li>
+            <li><strong>Open Source Review:</strong> Because this implementation runs transparently in the open, users and contributors can trace our core processing parameters line-by-line right inside our public repository file rows at any time.</li>
+        </ul>
+
+        <h2>4. Third-Party Integrations</h2>
+        <p>In general, The browser Has been designed to minimize third-party integrations and limit external data exchanges to essential services only.</p>
+        <p>However, Use of this website Is subject to certain third-party integrations that may require limited data exchanges for functionality purposes.</p>
+        <ul>
+            <li><strong>Cloudflare Integration:</strong> Our website Here and for atmos web, And our auto-updates Is powered by Cloudflare. Use of this is subject to <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's Privacy Policy</a>.</li>
+            <li><strong>Open Source Review:</strong> Because this implementation runs transparently in the open, users and contributors can trace our core processing parameters line-by-line right inside our public repository file rows at any time.</li>
+        </ul>
+        <ul>
+            <li><strong>GitHub Integration:</strong> GitHub is used for hosting our public repository and managing version control. Use of this is subject to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">GitHub's Privacy Policy</a>.</li>
+            <li><strong>Chromium Integration:</strong> Our browser leverages Chromium for rendering web content. Use of this is subject to <a href="https://www.chromium.org/Home/chromium-privacy">Chromium's Privacy Policy</a>.</li>
+        </ul>
+        <footer>
+            &copy; 2026 The Whister Project Authors. Built for speed, absolute user security.
+        </footer>
+    </article>
+
+</body>
+</html>
+
