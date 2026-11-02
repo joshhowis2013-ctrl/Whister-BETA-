@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../whister-logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Whister 2.0 Beta 2 is available as an early Windows pre-release. Read what is included and the current known issues.">
+    <title>Whister 2.0 Beta 2 Is Here</title>
+    <link rel="stylesheet" href="../whister.css?v=2">
+    <style>
+        body {
+            background-color: #050811;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .article-wrapper {
+            max-width: 760px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+
+        .article-meta {
+            margin-bottom: 16px;
+            color: #64748b;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .article-title {
+            margin: 0 0 30px;
+            font-size: clamp(34px, 7vw, 48px);
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        .article-content p,
+        .article-content li {
+            color: #aab6c8;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .article-content p {
+            margin-bottom: 24px;
+        }
+
+        .article-content ul {
+            margin: 0 0 24px;
+            padding-left: 22px;
+        }
+
+        .article-content h2 {
+            margin: 36px 0 12px;
+            font-size: 24px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #67e8f9;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+        }
+
+        .article-meta, .article-title, .article-content > * {
+            animation: text-in .8s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+        .article-title { animation-delay: .1s; }
+        .article-content > :nth-child(1) { animation-delay: .2s; }
+        .article-content > :nth-child(2) { animation-delay: .3s; }
+        .article-content > :nth-child(3) { animation-delay: .4s; }
+        .article-content > :nth-child(4) { animation-delay: .5s; }
+        .article-content > :nth-child(n+5) { animation-delay: .6s; }
+
+        @keyframes text-in {
+            from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .article-meta, .article-title, .article-content > * { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <a href="../index.html" aria-label="Whister home">
+                    <img src="../whister-logo.png" width="28" height="28" alt="Whister" style="display:block;border-radius:7px;">
+                </a>
+            </div>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html">Back to Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="article-wrapper">
+        <a href="index.html" class="back-link">&larr; All articles</a>
+        <header>
+            <div class="article-meta">October 5, 2026 · Whister Software</div>
+            <h1 class="article-title">Whister 2.0 Beta 2 Is Here</h1>
+        </header>
+
+        <article class="article-content">
+            <p>Whister 2.0 Beta 2 is now available for Windows 10 and 11 (64-bit). This is the second public build of the rebuilt browser. It is an early pre-release: expect rough edges, back up anything important, and test it in a virtual machine before considering regular use.</p>
+
+            <p><a class="btn-download" href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/download/beta2/WhisterSetup-158.0.8105.0.exe">Download Whister Beta 2</a></p>
+            <p><strong>SHA-256:</strong> <code>36EFC3FE6B824ADAEEFD39D15E1A85C91A02C5079DE59603F941837F4E1E14EA</code></p>
+
+            <h2>What is in Beta 2</h2>
+            <ul>
+                <li><strong>Bug fixes and improvements.</strong> Various stability and performance enhancements over Beta 1.</li>
+                <li><strong>Updated installer.</strong> The installation process has been refined for a smoother setup experience.</li>
+                <li><strong>Performance improvements.</strong> Optimizations have been made to enhance browsing speed and responsiveness.</li>
+                <li><strong>Security updates.</strong> Important security fixes have been applied to protect against known vulnerabilities.</li>
+                <li><strong>Meet whister blocker</strong> Whister now includes a built-in content blocker to enhance your browsing privacy and security.</li>
+            </ul>
+
+            <h2>Whister Blocker</h2>
+            <p>Whister Blocker is our built-in content blocker designed to enhance your browsing privacy and security. It helps prevent unwanted ads, trackers, and other intrusive content from affecting your browsing experience.</p>
+            <p>You can configure Whister Blocker in the browser settings, where you can enable or disable it, manage blocked content, and customize your privacy preferences.</p>
+            <p>Whister blocker blocks sites, trackers, ads, and other unwanted content to provide a cleaner and safer browsing experience.</p>
+            <p>Its not perfect yet, and we are continuously working to improve its effectiveness and compatibility with various websites. Your feedback is valuable in helping us make Whister Blocker better.</p>
+            
+            <h2>Known issues</h2>
+            <p>This is a pre-release, and we want to be clear about its current limits:</p>
+            <ul>
+                <li>Whister blocker blocks may not work perfectly on all websites yet.</li>
+                <li>The first-run welcome may still show Chromium&rsquo;s stock screen in this build.</li>
+                <li>The settings for this whister blocker may sometimes reset In the FULL settings.</li>
+                <li>Ongoing improvements are being made to enhance compatibility with various websites.</li>
+                <li>Some browser pages still use Chromium&rsquo;s standard interface.</li>
+                <li>Whister does not update itself; download future builds manually from the <a href="https://github.com/joshhowis2013-ctrl/Whister-BETA-/releases/tag/2.0">GitHub release page</a>.</li>
+                <li>Windows only for now.</li>
+            </ul>
+
+            <h2>Getting started</h2>
+            <p>Our <a href="getting-started.html">Getting Started guide</a> walks through installation, the first launch, and where to find Whister&rsquo;s settings. Thanks for trying the beta and helping us test it.</p>
+        </article>
+    </main>
+</body>
+</html>
