@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../whister-logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Whister 2.0 Beta 2 is available as an early Windows pre-release. Read what is included and the current known issues.">
+    <title>Whister Search is here 🚀🚀</title>
+    <link rel="stylesheet" href="../whister.css?v=2">
+    <style>
+        body {
+            background-color: #050811;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .article-wrapper {
+            max-width: 760px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+
+        .article-meta {
+            margin-bottom: 16px;
+            color: #64748b;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .article-title {
+            margin: 0 0 30px;
+            font-size: clamp(34px, 7vw, 48px);
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        .article-content p,
+        .article-content li {
+            color: #aab6c8;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .article-content p {
+            margin-bottom: 24px;
+        }
+
+        .article-content ul {
+            margin: 0 0 24px;
+            padding-left: 22px;
+        }
+
+        .article-content h2 {
+            margin: 36px 0 12px;
+            font-size: 24px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #67e8f9;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #ffffff;
+        }
+
+        .article-meta, .article-title, .article-content > * {
+            animation: text-in .8s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+        .article-title { animation-delay: .1s; }
+        .article-content > :nth-child(1) { animation-delay: .2s; }
+        .article-content > :nth-child(2) { animation-delay: .3s; }
+        .article-content > :nth-child(3) { animation-delay: .4s; }
+        .article-content > :nth-child(4) { animation-delay: .5s; }
+        .article-content > :nth-child(n+5) { animation-delay: .6s; }
+
+        @keyframes text-in {
+            from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .article-meta, .article-title, .article-content > * { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <a href="../index.html" aria-label="Whister home">
+                    <img src="../whister-logo.png" width="28" height="28" alt="Whister" style="display:block;border-radius:7px;">
+                </a>
+            </div>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html">Back to Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="article-wrapper">
+        <a href="index.html" class="back-link">&larr; All articles</a>
+        <header>
+            <div class="article-meta">November 12, 2026 · Whister Software</div>
+            <h1 class="article-title">Whister Search is here 🚀🚀</h1>
+        </header>
+         
+        <article class="article-content">
+            <p>Whister Search is here designed To Search without trackers. Its baseed on brave search and aims to give you a fast and secure browsering experence </p>
+
+           
+            <h1>What makes whister search special?</h1>
+            <h2>You can run it locally</h2>
+            <ul>
+                <li>Whister Search runs entirely on your local machine, ensuring your search queries remain private.</li>
+                <li>No data is sent to external servers, giving you full control over your search experience.</li>
+                 
+            </ul>
+
+            <h2>Privacy-focused</h2>
+            <p>Whister Search is built with privacy in mind. It does not track your searches or store personal information.</p>
+            <p>Your search history remains on your device, giving you full control over your data.</p>
+            <p>By running locally, it minimizes exposure to third-party trackers and ads.</p>
+            <p>Enjoy a secure and private search experience without compromising on speed or functionality.</p>
+            
+            <h2>You can also use it via our website</h2>
+            <p><a class="btn-download" href="https://search.whisterbrowser.com">Use whister search now</a></p>
+            <h2>Great things to know</h2>
+            <p></p>
+            <ul>
+                <li>Whister browser will be getting integrated with Whister Search for a seamless experience soon.</li>
+                <li>Whister Search can be used independently of the browser, giving you flexibility in how you search.</li>
+                <li>It is based on Brave Search, ensuring a fast and reliable search experience.</li>
+                <li>All searches are performed locally, enhancing privacy and security.(local hosting only) </li>
+                <li>The interface is designed to be user-friendly and intuitive.</li>
+                <li>Regular updates will bring new features and improvements.</li>
+                <li>Uses php For local processing of search queries.</li>
+            </ul>
+
+           
+           
+        </article>
+    </main>
+</body>
+</html>
