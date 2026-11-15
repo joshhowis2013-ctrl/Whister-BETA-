@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how uBlock Origin works in Whister, how to manage its settings, and how to troubleshoot sites that do not load as expected.">
+    <meta name="theme-color" content="#071426">
+    <title>Using uBlock Origin in Whister</title>
+    <link rel="icon" type="image/png" href="../whister-logo.png">
+    <link rel="stylesheet" href="../whister.css?v=4">
+    <link rel="stylesheet" href="../ie.css?v=3">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <a href="../index.html" aria-label="Whister home">
+                    <img src="../whister-logo.png" width="30" height="30" alt="">Whister
+                </a>
+            </div>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html">Blog</a>
+            </nav>
+        </div>
+        <a class="nav-cta" href="../index.html#all-platforms">Download</a>
+    </header>
+
+    <main class="article-wrapper">
+        <a href="index.html" class="back-link">&larr; All articles</a>
+        <article>
+            <header>
+                <p class="article-meta"><time datetime="2026-11-15">November 15, 2026</time> · Whister Software</p>
+                <h1 class="article-title">Using uBlock Origin in Whister</h1>
+            </header>
+
+            <div class="article-content">
+                <p>Whister includes uBlock Origin as its built-in content blocker. It uses filter lists and your own rules to block many unwanted network requests and hide page elements, which can make browsing cleaner and sometimes faster. As work continues on Beta 3, the separate custom Whister Blocker is being retired; uBlock Origin will remain included.</p>
+
+                <h2>What is changing in Beta 3?</h2>
+                <p>Whister previously had its own blocker alongside uBlock Origin. Running both could make them apply overlapping rules and cause compatibility problems on some sites. The plan for Beta 3 is to remove the custom Whister Blocker and its separate controls, leaving uBlock Origin as Whister's built-in content blocker.</p>
+                <p>Beta 3 is still in development. This is a progress update, not a release announcement; details may change as testing continues.</p>
+
+                <h2>Open the controls</h2>
+                <p>Select the uBlock Origin icon in Whister's toolbar to open its popup. The popup provides the current site's controls; use its dashboard button to manage filter lists and other settings.</p>
+
+                <h2>Choose filter lists carefully</h2>
+                <p>Filter lists are collections of rules maintained for different kinds of content. The defaults are a good starting point. You can review or change them in the dashboard's <strong>Filter lists</strong> tab. Adding more lists is optional, and overlapping or aggressive rules can cause parts of a site to stop working.</p>
+
+                <h2>If a site does not work</h2>
+                <ol>
+                    <li>Open the uBlock Origin popup on that site.</li>
+                    <li>Use the large power button to pause filtering for the current site, then reload the page.</li>
+                    <li>If that fixes the issue, turn filtering back on and adjust site-specific settings or report the broken page to the relevant filter-list maintainers.</li>
+                </ol>
+                <p>Pausing filtering is a troubleshooting step, not a guarantee that the site is safe. Only allow sites you trust.</p>
+
+                <h2>What it does not do</h2>
+                <p>Content blocking is one part of safer browsing, not a promise of anonymity or complete protection. uBlock Origin is not a VPN or antivirus, and websites you visit still receive requests from your browser. Keep Whister and its extensions up to date, and use care with downloads and links.</p>
+
+                <p>For more about the project, visit the <a href="https://ublockorigin.com/">official uBlock Origin website</a>.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="wf-main-footer">
+        <div class="wf-footer-copyright" style="margin-top:0;border-top:0;padding-top:0;">
+            <p>&copy; 2026 Whister Software. All rights reserved.</p>
+            <p><a href="../index.html" style="color:var(--muted);text-decoration:none;">Back to home</a></p>
+        </div>
+    </footer>
+</body>
+</html>

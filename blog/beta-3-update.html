@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Whister Beta 3 is in development. Read about the planned retirement of the custom Whister Blocker and the continued inclusion of uBlock Origin.">
+    <meta name="theme-color" content="#071426">
+    <title>Whister Beta 3 is in the Works</title>
+    <link rel="icon" type="image/png" href="../whister-logo.png">
+    <link rel="stylesheet" href="../whister.css?v=5">
+    <link rel="stylesheet" href="../ie.css?v=3">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <a href="../index.html" aria-label="Whister home">
+                    <img src="../whister-logo.png" width="30" height="30" alt="">Whister
+                </a>
+            </div>
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html">Blog</a>
+            </nav>
+        </div>
+        <a class="nav-cta" href="../index.html#all-platforms">Download</a>
+    </header>
+
+    <main class="article-wrapper">
+        <a href="index.html" class="back-link">&larr; All articles</a>
+        <article>
+            <header>
+                <p class="article-meta"><time datetime="2026-11-15">November 15, 2026</time> · Whister Software</p>
+                <h1 class="article-title">Whister Beta 3 is in the works</h1>
+            </header>
+
+            <div class="article-content">
+                <p>Work is underway on Whister 2.0 Beta 3. We are continuing to improve the browser and test changes before sharing the next build. This is a development update, not a release announcement, and there is no release date to share yet.</p>
+
+                <h2>The custom Whister Blocker is going away</h2>
+                <p>The custom Whister Blocker is planned to be removed in Beta 3. Whister will continue to include uBlock Origin as its built-in content blocker. The change is about removing Whister's separate blocker, not removing content blocking from the browser.</p>
+                <p>Maintaining two blockers led to overlapping filtering and compatibility issues on some websites. When both systems evaluate the same page, it can be harder to identify which rule caused a site element or request to fail. Focusing on one blocker should make the setup simpler to understand and troubleshoot.</p>
+
+                <h2>How the blockers compare</h2>
+                <p>This table describes the current plan for Beta 3. It compares Whister's custom blocker with uBlock Origin as it is bundled with Whister; it does not promise that every site will work perfectly.</p>
+                <div class="comparison-table-wrap" role="region" aria-label="Comparison of Whister Blocker and uBlock Origin" tabindex="0">
+                    <table class="comparison-table">
+                        <caption>Planned content-blocking setup in Whister Beta 3</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Area</th>
+                                <th scope="col">Whister Blocker</th>
+                                <th scope="col">uBlock Origin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">What it is</th>
+                                <td>Whister's separate, custom content blocker.</td>
+                                <td>An independently maintained content-blocking extension included with Whister.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Beta 3 plan</th>
+                                <td>Planned to be removed.</td>
+                                <td>Remains included as Whister's built-in content blocker.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Where to manage it</th>
+                                <td>Its separate Whister controls and settings.</td>
+                                <td>The extension popup and dashboard, including filter-list and user-rule settings.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Why the change</th>
+                                <td>Running it alongside another blocker created overlapping filtering and compatibility issues.</td>
+                                <td>Using it on its own avoids maintaining two independent blockers on the same pages.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">What to expect</th>
+                                <td>Its separate settings will no longer be part of the planned Beta 3 setup.</td>
+                                <td>It can still block content, but some sites may need per-site troubleshooting or rule adjustments.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>What this means for uBlock Origin</h2>
+                <ul>
+                    <li>uBlock Origin remains included with Whister; the planned change does not remove it.</li>
+                    <li>You can manage filtering through its toolbar popup and dashboard rather than a separate Whister Blocker page.</li>
+                    <li>Filter lists and user rules remain adjustable, but adding more rules can sometimes cause site compatibility problems.</li>
+                    <li>If a site breaks, use the steps in our <a href="ublock-origin.html">uBlock Origin guide</a> to troubleshoot it.</li>
+                </ul>
+
+                <h2>What is still in progress</h2>
+                <p>Beta 3 is being developed and tested. This post covers the blocker direction only; it is not a complete feature list, and other details may change before a release. We will share an update when there is a build ready to announce.</p>
+                <p>The previous <a href="beta-2.html">Beta 2 article</a> describes that release's custom blocker. That description is historical and does not change the planned Beta 3 direction.</p>
+
+                <h2>Beta 3 status</h2>
+                <p>There is no release date to share yet. Please treat the blocker transition and other plans as tentative until they appear in a published Beta 3 build.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="wf-main-footer">
+        <div class="wf-footer-copyright" style="margin-top:0;border-top:0;padding-top:0;">
+            <p>&copy; 2026 Whister Software. All rights reserved.</p>
+            <p><a href="../index.html" style="color:var(--muted);text-decoration:none;">Back to home</a></p>
+        </div>
+    </footer>
+</body>
+</html>
