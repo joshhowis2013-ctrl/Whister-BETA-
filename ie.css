@@ -9,7 +9,7 @@
   p, li { color: #b4bfd3; }
   code { background: #171a2a; color: #c9d4ee; }
 
-  .ie-browser-alert { display: block; padding: 12px 20px; background: #3b1d70; color: #fff; text-align: center; font-size: 14px; }
+  .ie-browser-alert { display: block; padding: 12px 20px; background: #12366a; color: #fff; text-align: center; font-size: 14px; }
   .ie-browser-alert a { color: #fff; font-weight: bold; }
 
   /* Reveal effects never run in IE, so keep everything visible. */
@@ -20,22 +20,18 @@
   .logo, .logo a { display: inline-block; color: #fff; font-weight: bold; text-decoration: none; }
   .nav-links { display: inline-block; margin-left: 20px; }
   .nav-links a { display: inline-block; padding: 7px 12px; color: #94a3b8; text-decoration: none; }
-  .nav-cta { float: right; margin-top: 4px; padding: 9px 20px; background: #7c2cf5; color: #fff; text-decoration: none; font-weight: bold; }
+  .nav-cta { float: right; margin-top: 4px; padding: 9px 20px; background: #2563eb; color: #fff; text-decoration: none; font-weight: bold; }
 
   .section-container, .download-container, .blog-container, .thanks-container { max-width: 1120px; margin: 0 auto; padding: 56px 24px; overflow: hidden; }
   .section-header { max-width: 680px; margin: 0 auto 36px; text-align: center; }
   .section-header p { color: #94a3b8; }
-  .pill-badge { display: inline-block; padding: 5px 14px; border: 1px solid #6b3fd0; background: #24123f; color: #c4a8ff; font-size: 12px; text-transform: uppercase; }
+  .pill-badge { display: inline-block; padding: 5px 14px; border: 1px solid #60a5fa; background: #10233d; color: #bfdbfe; font-size: 12px; text-transform: uppercase; }
 
-  .btn-download, .btn-secondary, .btn-thanks-primary, .btn-thanks-secondary, .btn-read-article { display: inline-block; padding: 12px 24px; border: 1px solid #7c2cf5; background: #7c2cf5; color: #fff; font-weight: bold; text-decoration: none; }
+  .btn-download, .btn-secondary, .btn-thanks-primary, .btn-thanks-secondary, .btn-read-article { display: inline-block; padding: 12px 24px; border: 1px solid #2563eb; background: #2563eb; color: #fff; font-weight: bold; text-decoration: none; }
   .btn-secondary, .btn-thanks-secondary { background: transparent; border-color: #3b3f58; }
 
-  .browser-status-notice { width: auto; max-width: 1072px; margin: 24px auto 0; padding: 20px; border: 1px solid #23263a; background: #14122a; overflow: hidden; }
-  .browser-status-label { color: #c4a8ff; font-size: 12px; text-transform: uppercase; }
-  .rebuild-progress-track { height: 6px; background: #2a2d3f; }
-  .rebuild-progress-indicator { background: #7c2cf5; }
-  .rebuild-milestones { padding: 0; list-style: none; color: #94a3b8; font-size: 12px; }
-  .rebuild-milestones li { display: inline-block; margin-right: 14px; }
+  .browser-status-notice { width: auto; max-width: 1072px; margin: 24px auto 0; padding: 20px; border: 1px solid #263650; background: #111b2c; overflow: hidden; }
+  .browser-status-label { color: #bfdbfe; font-size: 12px; text-transform: uppercase; }
 
   .download-content { float: left; width: 52%; }
   .download-preview { float: right; width: 44%; }
@@ -47,13 +43,13 @@
   .blog-card { width: 47%; padding: 0; }
   .blog-card-content, .blog-image-wrapper { padding: 20px; }
   .stat-item { text-align: center; }
-  .stat-number { font-size: 40px; font-weight: bold; color: #c4a8ff; }
+  .stat-number { font-size: 40px; font-weight: bold; color: #bfdbfe; }
   .platform-card.is-deactivated { opacity: .55; }
   .platform-grid, .beta-grid, .features-grid, .stats-grid, .steps-grid, .blog-grid { display: block; max-width: none; }
 
   .search-bar-mock { border: 1px solid #23263a; background: #11131f; padding: 8px 12px; }
   #browser-search-input { width: 70%; border: 0; background: transparent; color: #e8ecf5; }
-  #browser-search-btn { padding: 10px 20px; border: 0; background: #7c2cf5; color: #fff; }
+  #browser-search-btn { padding: 10px 20px; border: 0; background: #2563eb; color: #fff; }
   .legend-pill { display: inline-block; margin: 4px; padding: 6px 14px; border: 1px solid #23263a; background: #11131f; color: #94a3b8; }
 
   .nt-mock, .img-slider-wrapper { border: 1px solid #23263a; background: #11131f; }
@@ -69,7 +65,7 @@
   .home-newsletter-layout { padding: 28px; border: 1px solid #23263a; background: #11131f; overflow: hidden; }
   .home-newsletter-copy { float: left; width: 42%; }
   #mlb2-46388045 { float: right; width: 52%; }
-  .cta-panel, .action-box { padding: 36px; border: 1px solid #3b2a6e; background: #11131f; text-align: center; }
+  .cta-panel, .action-box { padding: 36px; border: 1px solid #29466c; background: #111b2c; text-align: center; }
 
   .wf-main-footer { margin-top: 40px; padding: 48px 24px 24px; border-top: 1px solid #23263a; background: #05060c; overflow: hidden; }
   .wf-footer-info, .wf-footer-column { float: left; width: 22%; margin-right: 3%; }
